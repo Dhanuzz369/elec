@@ -97,3 +97,32 @@ test("invalid YAML names the file", async () => {
   expect(err.field).toBe("front matter");
   expect(err.message).toContain("broken-yaml.md");
 });
+
+const failField = async (dir: string) =>
+  ((await getAllPosts({ dir: path.join(FIX, "posts-bad", dir), now }).catch((e) => e)) as PostValidationError).field;
+
+test("description outside 120-160 characters names the field", async () => {
+  expect(await failField("desc")).toBe("description");
+});
+
+test("impossible calendar dates are rejected", async () => {
+  expect(await failField("caldate")).toBe("date");
+});
+
+test("tags must produce a URL slug", async () => {
+  expect(await failField("badtag")).toBe("tags");
+});
+
+test("cover must be a site path or https URL", async () => {
+  expect(await failField("cover")).toBe("cover");
+});
+
+test("tagSlug drops accents instead of splitting words", () => {
+  expect(tagSlug("Résumé tips")).toBe("resume-tips");
+});
+
+test("publish day follows India time, not UTC", async () => {
+  // 20:00 UTC on 18 Oct is already 19 Oct in India (UTC+5:30).
+  const posts = await getAllPosts({ dir: DIR, now: new Date("2026-10-09T20:00:00Z"), includeDrafts: false });
+  expect(posts.map((p) => p.slug)).toContain("valid-post");
+});

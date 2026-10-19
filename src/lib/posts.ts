@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
+import yaml from "js-yaml";
 import type { Element, Root } from "hast";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
@@ -11,6 +12,8 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
+import { site } from "@/data/site";
+import { DESCRIPTION_MAX, DESCRIPTION_MIN } from "@/lib/meta";
 
 // Blog posts are Markdown files in content/blog/<slug>.md, written by people or
 // by the publishing automation. The contract is documented in content/blog/README.md.
@@ -65,6 +68,7 @@ export function tagSlug(tag: string): string {
   return tag
     .toLowerCase()
     .normalize("NFKD")
+    .replace(/\p{M}/gu, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
@@ -73,9 +77,22 @@ function defaultDir() {
   return path.join(process.cwd(), "content/blog");
 }
 
-function toDateString(value: unknown): unknown {
-  // YAML turns 2026-10-10 into a Date; keep the calendar day it was written as.
-  return value instanceof Date ? value.toISOString().slice(0, 10) : value;
+// YAML is read with the JSON schema, so dates stay as the text that was written
+// (the default schema would turn 2026-02-30 into 2 March without a word).
+function parseFrontMatter(raw: string) {
+  return matter(raw, {
+    engines: { yaml: (s: string) => (yaml.load(s, { schema: yaml.JSON_SCHEMA }) ?? {}) as object },
+  });
+}
+
+function isCalendarDate(value: unknown): value is string {
+  if (typeof value !== "string" || !DATE.test(value)) return false;
+  const d = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === value;
+}
+
+function todayIn(timeZone: string, now: Date): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
 }
 
 function validate(file: string, slug: string, data: Record<string, unknown>) {
@@ -106,16 +123,21 @@ function validate(file: string, slug: string, data: Record<string, unknown>) {
 
   const title = str("title", true)!;
   const description = str("description", true)!;
+  if (description.length < DESCRIPTION_MIN || description.length > DESCRIPTION_MAX)
+    fail("description", `is ${description.length} characters; keep it ${DESCRIPTION_MIN}–${DESCRIPTION_MAX}`);
+  if (description === title) fail("description", "must not repeat the title");
   const author = str("author", true)!;
 
-  const date = toDateString(data.date);
+  const date = data.date;
   if (date === undefined) fail("date", "is required");
-  if (typeof date !== "string" || !DATE.test(date)) fail("date", "must be YYYY-MM-DD");
-  const updatedRaw = toDateString(data.updated);
-  if (updatedRaw !== undefined && (typeof updatedRaw !== "string" || !DATE.test(updatedRaw)))
-    fail("updated", "must be YYYY-MM-DD");
+  if (!isCalendarDate(date)) fail("date", "must be a real date written YYYY-MM-DD");
+  const updatedRaw = data.updated;
+  if (updatedRaw !== undefined && !isCalendarDate(updatedRaw)) fail("updated", "must be a real date written YYYY-MM-DD");
 
   const tags = strList("tags", true)!;
+  tags.forEach((t) => {
+    if (!tagSlug(t)) fail("tags", `"${t}" needs at least one Latin letter or digit to make a web address`);
+  });
 
   const family = str("family", false);
   if (family && !families.some((f) => f.slug === family))
@@ -128,6 +150,7 @@ function validate(file: string, slug: string, data: Record<string, unknown>) {
 
   const cover = str("cover", false);
   const coverAlt = str("coverAlt", false);
+  if (cover && !/^(\/[^/]|https:\/\/)/.test(cover)) fail("cover", "must start with / (a file in /public) or https://");
   if (cover && !coverAlt) fail("coverAlt", "is required when cover is set");
 
   const faqRaw = data.faq ?? [];
@@ -206,8 +229,8 @@ async function loadAll(dir: string): Promise<Post[]> {
       const raw = await readFile(path.join(dir, name), "utf8");
       let parsed: matter.GrayMatterFile<string>;
       try {
-        // Pass an options object so gray-matter skips its cache and re-parses each build.
-        parsed = matter(raw, {});
+        // Custom engines also make gray-matter skip its cache, so each build re-reads the file.
+        parsed = parseFrontMatter(raw);
       } catch (e) {
         throw new PostValidationError(name, "front matter", `is not valid YAML (${(e as Error).message.split("\n")[0]})`);
       }
@@ -221,7 +244,7 @@ async function loadAll(dir: string): Promise<Post[]> {
 }
 
 export async function getAllPosts(opts: Options = {}): Promise<Post[]> {
-  const today = (opts.now ?? new Date()).toISOString().slice(0, 10);
+  const today = todayIn(site.timeZone, opts.now ?? new Date());
   const includeDrafts = opts.includeDrafts ?? showDrafts();
   const posts = await loadAll(opts.dir ?? defaultDir());
   return posts

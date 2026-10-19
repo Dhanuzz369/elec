@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useDeferredValue, useMemo, useState } from "react";
-import hsn from "@/data/hsn.json";
 import { families } from "@/data/products";
+import { defaultHsnEntries, hsnEntries } from "@/lib/hsn";
 
-type Entry = { code: string; description: string; product: string; family: string };
-const ENTRIES = (hsn as Entry[]).filter((e) => e.code.startsWith("85"));
+const ENTRIES = hsnEntries();
+const DEFAULTS = defaultHsnEntries();
 const familyName = (slug: string) => families.find((f) => f.slug === slug)?.name;
 
 export function HsnFinder() {
@@ -14,7 +14,7 @@ export function HsnFinder() {
   const query = useDeferredValue(q.trim().toLowerCase());
 
   const results = useMemo(() => {
-    if (!query) return ENTRIES.filter((e) => /^853(6|7|8)/.test(e.code) || /^85042/.test(e.code)).slice(0, 12);
+    if (!query) return DEFAULTS;
     const digits = query.replace(/\s/g, "");
     return ENTRIES.filter(
       (e) =>

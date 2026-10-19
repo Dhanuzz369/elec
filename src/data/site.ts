@@ -17,6 +17,8 @@ export const site = {
     country: "IN",
   },
   logo: "/logo.png",
+  // Posts go live on their date in this time zone (builds usually run in UTC).
+  timeZone: "Asia/Kolkata",
   foundingDate: undefined as string | undefined,
   sameAs: [] as string[], // LinkedIn, IndiaMART and other official profiles when they exist
   description:

@@ -4,8 +4,8 @@ import { ProductExplorer } from "@/components/ProductExplorer";
 import { HsnFinder } from "@/components/HsnFinder";
 import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
-import hsn from "@/data/hsn.json";
 import { breadcrumbLd, faqLd, familiesListLd, hsnTermSetLd } from "@/lib/jsonld";
+import { defaultHsnEntries } from "@/lib/hsn";
 import { pageMeta } from "@/lib/meta";
 
 const HSN_FAQ = [
@@ -31,9 +31,7 @@ const HSN_FAQ = [
   },
 ];
 
-const HSN_ENTRIES = (hsn as { code: string; description: string; product: string }[]).filter((e) =>
-  e.code.startsWith("85"),
-);
+
 
 export const metadata: Metadata = pageMeta({
   title: "Products and HSN codes",
@@ -66,7 +64,7 @@ export default function ProductsPage() {
             { name: "Products", path: "/products" },
           ]),
           familiesListLd(),
-          hsnTermSetLd(HSN_ENTRIES),
+          hsnTermSetLd(defaultHsnEntries()),
           faqLd(HSN_FAQ),
         ]}
       />
