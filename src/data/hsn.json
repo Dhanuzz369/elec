@@ -1,0 +1,824 @@
+[
+ {
+  "code": "85042100",
+  "description": "Liquid dielectric transformers: Having a power handling capacity not exceeding 650 kVA",
+  "product": "Oil-filled distribution transformer up to 650 kVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85042200",
+  "description": "Liquid dielectric transformers: Having a power handling capacity exceeding 650 kVA but not exceeding 10,000 kVA",
+  "product": "Oil-filled power/distribution transformer 650 kVA-10 MVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85042310",
+  "description": "Liquid dielectric transformers: Having a power handling capacity exceeding 10,000 kVA -- exceeding 10,000 kVA but not exceeding 50,000 kVA",
+  "product": "Oil-filled power transformer 10-50 MVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85042320",
+  "description": "Liquid dielectric transformers: exceeding 10,000 kVA -- exceeding 50,000 kVA but not exceeding 1,00,000 kVA",
+  "product": "Oil-filled power transformer 50-100 MVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85042330",
+  "description": "Liquid dielectric transformers: exceeding 10,000 kVA -- exceeding 1,00,000 kVA but not exceeding 2,50,000 kVA",
+  "product": "Oil-filled power transformer 100-250 MVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85042340",
+  "description": "Liquid dielectric transformers: exceeding 10,000 kVA -- exceeding 2,50,000 kVA",
+  "product": "Oil-filled power transformer above 250 MVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85043100",
+  "description": "Other transformers: Having a power handling capacity not exceeding 1 kVA",
+  "product": "Dry-type/small transformer up to 1 kVA (incl. instrument CT/PT, control transformers)",
+  "family": "transformers"
+ },
+ {
+  "code": "85043200",
+  "description": "Other transformers: Having a power handling capacity exceeding 1 kVA but not exceeding 16 kVA",
+  "product": "Dry-type transformer 1-16 kVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85043300",
+  "description": "Other transformers: Having a power handling capacity exceeding 16 kVA but not exceeding 500 kVA",
+  "product": "Dry-type (cast resin) transformer 16-500 kVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85043400",
+  "description": "Other transformers: Having a power handling capacity exceeding 500 kVA",
+  "product": "Dry-type (cast resin) transformer above 500 kVA",
+  "family": "transformers"
+ },
+ {
+  "code": "85044010",
+  "description": "Static converters: Electric inverter",
+  "product": "Inverter (incl. solar/PCS inverters)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85044021",
+  "description": "Static converters: Rectifiers -- Dip bridge rectifier",
+  "product": "DIP bridge rectifier",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85044029",
+  "description": "Static converters: Rectifiers -- Other",
+  "product": "Rectifier (e.g. substation DC rectifier)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85044030",
+  "description": "Static converters: Battery chargers",
+  "product": "Battery charger (e.g. substation float-cum-boost charger)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85044040",
+  "description": "Static converters: Voltage regulator and stabilizers (other than automatic)",
+  "product": "Voltage stabiliser/regulator (non-automatic)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85044090",
+  "description": "Static converters: Other",
+  "product": "UPS and other static converters",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85045010",
+  "description": "Other inductors: Choke coils (chokes)",
+  "product": "Choke coil",
+  "family": "transformers"
+ },
+ {
+  "code": "85045090",
+  "description": "Other inductors: Other",
+  "product": "Reactor / inductor (shunt, series, neutral-grounding reactor)",
+  "family": "transformers"
+ },
+ {
+  "code": "85049010",
+  "description": "Parts: Of transformers",
+  "product": "Transformer parts",
+  "family": "parts"
+ },
+ {
+  "code": "85049090",
+  "description": "Parts: Other",
+  "product": "Parts of static converters/inductors",
+  "family": "parts"
+ },
+ {
+  "code": "85071000",
+  "description": "Lead-acid, of a kind used for starting piston engines",
+  "product": "Starter (SLI) lead-acid battery",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85072000",
+  "description": "Other lead-acid accumulators",
+  "product": "Lead-acid battery for UPS/substation (VRLA, tubular, Plante)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85073000",
+  "description": "Nickel-cadmium",
+  "product": "Ni-Cd battery (substation DC systems)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85075000",
+  "description": "Nickel-metal hydride",
+  "product": "NiMH battery",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85076000",
+  "description": "Lithium-ion",
+  "product": "Li-ion battery (UPS, BESS)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85078000",
+  "description": "Other accumulators",
+  "product": "Other batteries",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85079010",
+  "description": "Parts: Accumulator cases made of hard rubber",
+  "product": "Hard-rubber battery cases",
+  "family": "parts"
+ },
+ {
+  "code": "85079020",
+  "description": "Parts: Battery separators",
+  "product": "Battery separators",
+  "family": "parts"
+ },
+ {
+  "code": "85079090",
+  "description": "Parts: Other",
+  "product": "Other battery parts",
+  "family": "parts"
+ },
+ {
+  "code": "85351010",
+  "description": ">1000 V Fuses: For switches having rating upto 15 amps, rewireable",
+  "product": "HV fuse (rewireable, up to 15 A)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85351020",
+  "description": ">1000 V Fuses: For switches having rating above 15 amps, high rupturing capacity or rewireable",
+  "product": "HV fuse above 15 A (HRC/rewireable)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85351030",
+  "description": ">1000 V Fuses: Other rewireable fuses",
+  "product": "HV rewireable fuse",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85351040",
+  "description": ">1000 V Fuses: Other high rupturing capacity fuses",
+  "product": "HV HRC fuse (e.g. RMU/transformer fuse link)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85351050",
+  "description": ">1000 V Fuses: Fuses gear",
+  "product": "HV fuse gear / fuse switch unit",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85351090",
+  "description": ">1000 V Fuses: Other",
+  "product": "Other HV fuse",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352111",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: SF6 (gas) circuit breakers: For a voltage of 11 kV",
+  "product": "11 kV SF6 circuit breaker",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352112",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: SF6 (gas) circuit breakers: For a voltage of 33 kV",
+  "product": "33 kV SF6 circuit breaker",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352113",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: SF6 (gas) circuit breakers: For a voltage of 66 kV",
+  "product": "66 kV SF6 circuit breaker",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352119",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: SF6 (gas) circuit breakers: Other",
+  "product": "SF6 circuit breaker, other voltage <72.5 kV",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352121",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: Vacuum circuit breakers: For a voltage of 11 kV",
+  "product": "11 kV vacuum circuit breaker (VCB)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352122",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: Vacuum circuit breakers: For a voltage of 33 kV",
+  "product": "33 kV VCB",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352123",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: Vacuum circuit breakers: For a voltage of 66 kV",
+  "product": "66 kV VCB",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352129",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: Vacuum circuit breakers: Other",
+  "product": "VCB, other voltage <72.5 kV (e.g. 22 kV)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352190",
+  "description": "Automatic circuit breakers, for a voltage of less than 72.5 kV: Other",
+  "product": "Other circuit breaker <72.5 kV (oil, air-blast)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85352911",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): SF6 circuit breakers: For a voltage of 132 kV",
+  "product": "132 kV SF6 circuit breaker",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352912",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): SF6 circuit breakers: For a voltage of 220 kV",
+  "product": "220 kV SF6 circuit breaker",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352913",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): SF6 circuit breakers: For a voltage of 400 kV",
+  "product": "400 kV SF6 circuit breaker",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352919",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): SF6 circuit breakers: Other",
+  "product": "SF6 circuit breaker, other EHV voltage",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352921",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): Vacuum circuit breakers: For a voltage of 132 kV",
+  "product": "132 kV VCB",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352922",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): Vacuum circuit breakers: For a voltage of 220 kV",
+  "product": "220 kV VCB",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352923",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): Vacuum circuit breakers: For a voltage of 400 kV",
+  "product": "400 kV VCB",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352929",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): Vacuum circuit breakers: Other",
+  "product": "VCB, other EHV voltage",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85352990",
+  "description": "Automatic circuit breakers, Other (72.5 kV and above): Other",
+  "product": "Other EHV circuit breaker",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85353010",
+  "description": "Isolating switches and make-and-break switches (>1000 V): Of plastic",
+  "product": "HV isolator/switch, plastic",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85353090",
+  "description": "Isolating switches and make-and-break switches (>1000 V): Other",
+  "product": "HV isolator / disconnector / load-break switch / earth switch",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85354010",
+  "description": "Lightning arresters, voltage limiters and surge suppressors (>1000 V): Lightning arresters",
+  "product": "HV lightning / surge arrester (ZnO)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85354020",
+  "description": "Lightning arresters, voltage limiters and surge suppressors (>1000 V): Voltage limiters",
+  "product": "HV voltage limiter",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85354030",
+  "description": "Lightning arresters, voltage limiters and surge suppressors (>1000 V): Surge suppressors",
+  "product": "HV surge suppressor",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85359010",
+  "description": ">1000 V Other: Motor starters for AC motors",
+  "product": "HV AC motor starter",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85359020",
+  "description": ">1000 V Other: Control gear and starters for DC motors",
+  "product": "HV DC motor control gear/starter",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85359030",
+  "description": ">1000 V Other: Other control and switchgears",
+  "product": "Other HV control and switchgear (incl. RMU switching modules, LBS units)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85359040",
+  "description": ">1000 V Other: Junction boxes",
+  "product": "HV junction box / cable termination box",
+  "family": "enclosures-junction-boxes"
+ },
+ {
+  "code": "85359090",
+  "description": ">1000 V Other: Other",
+  "product": "Other HV apparatus (HV connectors, cable terminations, bus couplers)",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85361010",
+  "description": "<=1000 V Fuses: For switches having rating upto 15 amps, rewireable",
+  "product": "LV rewireable fuse up to 15 A",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85361020",
+  "description": "<=1000 V Fuses: For switches having rating above 15 amps, high rupturing capacity or rewireable",
+  "product": "LV fuse above 15 A (HRC/rewireable)",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85361030",
+  "description": "<=1000 V Fuses: Other rewireable fuses",
+  "product": "LV rewireable fuse",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85361040",
+  "description": "<=1000 V Fuses: Other high rupturing capacity fuses",
+  "product": "LV HRC fuse",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85361050",
+  "description": "<=1000 V Fuses: Fuses gear",
+  "product": "LV fuse gear / SFU",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85361060",
+  "description": "<=1000 V Fuses: Electronic fuses",
+  "product": "Electronic fuse",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85361090",
+  "description": "<=1000 V Fuses: Other",
+  "product": "Other LV fuse",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85362010",
+  "description": "Automatic circuit breakers (<=1000 V): Air circuit breakers",
+  "product": "ACB",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85362020",
+  "description": "Automatic circuit breakers (<=1000 V): Moulded case circuit breakers",
+  "product": "MCCB",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85362030",
+  "description": "Automatic circuit breakers (<=1000 V): Miniature circuit breakers",
+  "product": "MCB",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85362040",
+  "description": "Automatic circuit breakers (<=1000 V): Earth leak circuit breakers",
+  "product": "ELCB / RCCB / RCBO",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85362090",
+  "description": "Automatic circuit breakers (<=1000 V): Other",
+  "product": "Other LV automatic breaker (e.g. motor protection circuit breaker)",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85363000",
+  "description": "Other apparatus for protecting electrical circuits",
+  "product": "LV SPD / surge protector, overload relay-type protective devices",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85364100",
+  "description": "Relays: For a voltage not exceeding 60 V",
+  "product": "Low-voltage relay (<=60 V)",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85364900",
+  "description": "Relays: Other",
+  "product": "Relay >60 V (protection/auxiliary relays); contactors are commonly declared here",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85365010",
+  "description": "Other switches: Control and switch gears",
+  "product": "LV control & switchgear (changeover switch, switch-disconnector, contactor-type gear)",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85365020",
+  "description": "Other switches: Other switches of plastic",
+  "product": "Plastic switch (modular/wiring switch)",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85365090",
+  "description": "Other switches: Other",
+  "product": "Other LV switch (rotary, limit, metal-bodied)",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85366110",
+  "description": "Lamp-holders: Of plastic",
+  "product": "Plastic lamp-holder",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85366190",
+  "description": "Lamp-holders: Of other materials",
+  "product": "Lamp-holder, other material",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85366910",
+  "description": "Plugs and sockets: Other: Of plastic",
+  "product": "Plastic plug / socket / industrial socket",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85366990",
+  "description": "Plugs and sockets: Other: Of other materials",
+  "product": "Plug / socket of other material",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85367000",
+  "description": "Connectors for optical fibres, optical fibre bundles or cables",
+  "product": "Optical fibre connector",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85369010",
+  "description": "<=1000 V Other apparatus: Motor starters for AC motors",
+  "product": "LV AC motor starter (DOL, star-delta)",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85369020",
+  "description": "<=1000 V Other apparatus: Motor starters for DC motors",
+  "product": "LV DC motor starter",
+  "family": "breakers-contactors"
+ },
+ {
+  "code": "85369030",
+  "description": "<=1000 V Other apparatus: Junction boxes",
+  "product": "LV junction box",
+  "family": "enclosures-junction-boxes"
+ },
+ {
+  "code": "85369090",
+  "description": "<=1000 V Other apparatus: Other",
+  "product": "Terminal blocks, connectors, busbar connectors, lugs and other LV apparatus",
+  "family": "enclosures-junction-boxes"
+ },
+ {
+  "code": "85371000",
+  "description": "Boards, panels, consoles, desks, cabinets and other bases ... For a voltage not exceeding 1,000 V",
+  "product": "LT panel: PCC, MCC, APFC, distribution board, control panel, PLC panel",
+  "family": "lt-panels"
+ },
+ {
+  "code": "85372000",
+  "description": "Boards, panels, consoles, desks, cabinets and other bases ... For a voltage exceeding 1,000 V",
+  "product": "MV/HV switchgear panel, RMU, GIS bay panel, HT panel",
+  "family": "mv-switchgear-rmu"
+ },
+ {
+  "code": "85381010",
+  "description": "Boards, panels, consoles, desks, cabinets and other bases for the goods of heading 8537, not equipped with their apparatus: For industrial use",
+  "product": "Empty panel enclosure / cabinet (industrial)",
+  "family": "enclosures-junction-boxes"
+ },
+ {
+  "code": "85381090",
+  "description": "Boards, panels, consoles, desks, cabinets and other bases for the goods of heading 8537, not equipped with their apparatus: Other",
+  "product": "Empty enclosure / DB box (non-industrial)",
+  "family": "enclosures-junction-boxes"
+ },
+ {
+  "code": "85389000",
+  "description": "Parts suitable for use solely or principally with the apparatus of headings 8535, 8536 or 8537: Other",
+  "product": "Switchgear parts (contacts, VCB interrupter parts, mechanisms, panel parts)",
+  "family": "parts"
+ },
+ {
+  "code": "85441110",
+  "description": "Winding wire: Of copper: Enamelled",
+  "product": "Enamelled copper winding wire",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85441190",
+  "description": "Winding wire: Of copper: Other",
+  "product": "Other copper winding wire (paper/fibreglass covered)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85441910",
+  "description": "Winding wire: Other: Asbestos covered",
+  "product": "Asbestos-covered winding wire",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85441920",
+  "description": "Winding wire: Other: Plastic insulated",
+  "product": "Plastic-insulated winding wire (non-copper)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85441930",
+  "description": "Winding wire: Other: Rubber insulated",
+  "product": "Rubber-insulated winding wire (non-copper)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85441990",
+  "description": "Winding wire: Other: Other",
+  "product": "Other winding wire (e.g. aluminium)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85442010",
+  "description": "Co-axial cable and other co-axial electric conductors: Co-axial cable",
+  "product": "Coaxial cable",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85442090",
+  "description": "Co-axial cable and other co-axial electric conductors: Other",
+  "product": "Other coaxial conductor",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85443000",
+  "description": "Ignition wiring sets and other wiring sets of a kind used in vehicles, aircraft or ships",
+  "product": "Vehicle wiring harness",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444210",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Fitted with connectors: Paper insulated",
+  "product": "LV cable with connectors, paper insulated",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444220",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Fitted with connectors: Plastic insulated",
+  "product": "LV cable assembly with connectors, plastic insulated",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444230",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Fitted with connectors: Rubber insulated",
+  "product": "LV cable assembly with connectors, rubber insulated",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444291",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Fitted with connectors: Other: Paper insulated, of a kind used in telecommunication",
+  "product": "Telecom cable with connectors, paper",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444292",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Fitted with connectors: Other: Plastic insulated, of a kind used in telecommunication",
+  "product": "Telecom cable with connectors, plastic",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444293",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Fitted with connectors: Other: Rubber insulated, of a kind used in telecommunication",
+  "product": "Telecom cable with connectors, rubber",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444299",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Fitted with connectors: Other: Other",
+  "product": "Other LV cable with connectors",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444910",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Other: Paper insulated",
+  "product": "LV cable, paper insulated",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444920",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Other: Plastic insulated",
+  "product": "LV power/control cable, PVC/XLPE insulated (no connectors)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444930",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Other: Rubber insulated",
+  "product": "LV rubber cable (e.g. flexible trailing)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444991",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Other: Other: Paper insulated, of a kind used in telecommunication",
+  "product": "Telecom cable, paper",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444992",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Other: Other: Plastic insulated, of a kind used in telecommunication",
+  "product": "Telecom cable, plastic",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444993",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Other: Other: Rubber insulated, of a kind used in telecommunication",
+  "product": "Telecom cable, rubber",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85444999",
+  "description": "Other electric conductors, for a voltage not exceeding 1,000 V: Other: Other: Other",
+  "product": "Other LV conductor (e.g. non-standard insulation)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85446010",
+  "description": "Other electric conductors, for a voltage exceeding 1,000 V: Paper insulated",
+  "product": "HT cable, paper insulated (PILC)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85446020",
+  "description": "Other electric conductors, for a voltage exceeding 1,000 V: Plastic insulated",
+  "product": "HT XLPE/PVC power cable (3.3-400 kV)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85446030",
+  "description": "Other electric conductors, for a voltage exceeding 1,000 V: Rubber insulated",
+  "product": "HT rubber cable",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85446090",
+  "description": "Other electric conductors, for a voltage exceeding 1,000 V: Other",
+  "product": "Other HT conductor",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85447010",
+  "description": "Optical fibre cables: Lead alloy sheathed cables for lighting purposes",
+  "product": "Lead-alloy sheathed cable (lighting)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85447090",
+  "description": "Optical fibre cables: Other",
+  "product": "Optical fibre cable",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85461000",
+  "description": "Electrical insulators of any material: Of glass",
+  "product": "Glass disc insulator",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85462011",
+  "description": "Of ceramics: Porcelain below 6.6 kV",
+  "product": "Porcelain insulator <6.6 kV",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85462090",
+  "description": "Of ceramics: Other",
+  "product": "Other ceramic insulator",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85469010",
+  "description": "Other insulators: Heat shrinkable components",
+  "product": "Heat-shrink termination/insulating components",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85469090",
+  "description": "Other insulators: Other",
+  "product": "Polymer/composite insulator (long-rod, post)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85471010",
+  "description": "Insulating fittings of ceramics: Porcelain bushing below 6.6 kV",
+  "product": "Porcelain bushing <6.6 kV",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85471040",
+  "description": "Insulating fittings of ceramics: Porcelain bushings for voltage 66 kV or above",
+  "product": "Porcelain bushing >=66 kV",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "85472000",
+  "description": "Insulating fittings of plastics",
+  "product": "Plastic insulating fittings (busbar supports etc.)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "73082011",
+  "description": "Towers and lattice masts: Towers, whether or not assembled: For transmission line",
+  "product": "Transmission tower",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "73082019",
+  "description": "Towers and lattice masts: Towers: Other",
+  "product": "Other steel tower (switchyard gantry/structure)",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "73089090",
+  "description": "Other structures and parts of structures, of iron or steel: Other",
+  "product": "Switchyard steel structures / equipment support structures",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "74130000",
+  "description": "Stranded wire, cables, plaited bands and the like, of copper, not electrically insulated",
+  "product": "Bare copper earthing conductor / stranded copper / braid",
+  "family": "switchyard-cables-ups"
+ },
+ {
+  "code": "72172010",
+  "description": "Wire of iron or non-alloy steel: Plated or coated with zinc: Of a thickness of 18 SWG and below",
+  "product": "GI earthing wire (thick)",
+  "family": "switchyard-cables-ups"
+ }
+]

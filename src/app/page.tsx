@@ -1,103 +1,133 @@
-import Image from "next/image";
+import Link from "next/link";
+import { brands } from "@/data/brands";
+import { HeroStage } from "@/components/HeroStage";
+import { Bullet } from "@/components/Motif";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="hero-card">
+          <div className="busbars" aria-hidden="true">
+            {Array.from({ length: 40 }).map((_, i) => (
+              <span key={i} />
+            ))}
+          </div>
+          <div className="hero-card-body" data-stagger>
+            <h1 id="hero-title" data-reveal>
+              Built for your grid
+            </h1>
+            <p data-reveal>
+              Panels, transformers, RMUs and switchgear from India, made to the voltage, standard and paperwork of
+              the country they ship to.
+            </p>
+            <div className="hero-actions" data-reveal>
+              <Link href="/configurator" className="btn">
+                Configure your requirement
+              </Link>
+              <Link href="/products" className="btn btn--paper">
+                See all products
+              </Link>
+            </div>
+          </div>
+          <div className="hero-links">
+            <Link href="/products/lt-panels" className="link">
+              LT & MCC panels
+            </Link>
+            <Link href="/products/transformers" className="link">
+              Transformers
+            </Link>
+            <Link href="/products/mv-switchgear-rmu" className="link">
+              MV switchgear & RMU
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <HeroStage />
+      </section>
+
+      <section className="brands" aria-labelledby="brands-title">
+        <div className="brand-board" data-stagger>
+          <div className="brand-tile brand-tile--head" data-reveal>
+            <h2 id="brands-title">Brands you trust</h2>
+            <p>
+              We fit the breakers, relays and meters your specification names, so spares and approvals stay simple
+              on site.
+            </p>
+          </div>
+          {brands.map((b) => (
+            <div key={b} className="brand-tile" data-reveal>
+              {b}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="field-notes" aria-labelledby="export-title">
+        <div data-stagger>
+          <h2 id="export-title" data-reveal>
+            Shipped ready to energise
+          </h2>
+          <p data-reveal>
+            Every order leaves India tested, documented and packed for the voyage, with the HSN codes and
+            certificates your customs broker will ask for.
+          </p>
+          <ul data-reveal>
+            <li>
+              <Bullet />
+              Routine tests witnessed, or by video, before dispatch
+            </li>
+            <li>
+              <Bullet />
+              Seaworthy packing for container or break-bulk
+            </li>
+            <li>
+              <Bullet />
+              Invoice, packing list, HSN and certificate of origin
+            </li>
+            <li>
+              <Bullet />
+              Nameplates and drawings in the language of site
+            </li>
+          </ul>
+        </div>
+        <div className="linked" data-stagger>
+          <figure data-reveal-circle>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/free-container-ship-port-image.webp"
+              alt="Containers stacked on a ship at a port"
+              width={1024}
+              height={709}
+              loading="lazy"
+            />
+          </figure>
+          <figure data-reveal-circle>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/electrical-substation-in-cerepova-daugavpils.jpg"
+              alt="An outdoor substation with gantries and lightning masts"
+              width={1920}
+              height={1280}
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <Link href="/configurator" className="cta-band" aria-label="Configure your requirement">
+        <div className="cta-top">
+          <p>
+            Are you a contractor looking for electrical solutions? Tell us the project and the country; we build
+            to match and ship it.
+          </p>
+          <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
+            <path d="M12 36 36 12M16 12h20v20" />
+          </svg>
+        </div>
+        <span className="cta-word" aria-hidden="true" data-reveal>
+          configure
+        </span>
+      </Link>
+    </>
   );
 }
