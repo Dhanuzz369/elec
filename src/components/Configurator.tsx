@@ -492,11 +492,11 @@ export function Configurator() {
 
       <aside className="plate-wrap" aria-label="Rating plate preview">
         <p>
-          Your rating plate, as it would leave our factory for {country.name}. It changes as you fill the form.
+          Your rating plate, as it would ship to {country.name}. It changes as you fill the form.
         </p>
         <div className="plate" aria-live="polite">
           <div className="plate-head">
-            <span>GoodBiz · Made in India</span>
+            <span>Supplied by GoodBiz · Origin India</span>
             <TransformerSymbol />
           </div>
           <table>

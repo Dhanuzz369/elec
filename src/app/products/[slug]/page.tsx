@@ -123,7 +123,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
 
       <Link href={`/configurator?family=${fam.slug}`} className="cta-band" aria-label={`Request ${fam.name}`}>
         <div className="cta-top">
-          <p>Tell us the country and the rating. We build to match and ship it.</p>
+          <p>Tell us the country and the rating. We source to match and ship it.</p>
           <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
             <path d="M12 36 36 12M16 12h20v20" />
           </svg>

@@ -15,11 +15,11 @@ export default function Home() {
           </div>
           <div className="hero-card-body" data-stagger>
             <h1 id="hero-title" data-reveal>
-              Built for your grid
+              Fit for your grid
             </h1>
             <p data-reveal>
-              Panels, transformers, RMUs and switchgear from India, made to the voltage, standard and paperwork of
-              the country they ship to.
+              Panels, transformers, RMUs and switchgear sourced from proven manufacturers to the voltage, standard
+              and paperwork of the country they ship to.
             </p>
             <div className="hero-actions" data-reveal>
               <Link href="/configurator" className="btn">
@@ -50,8 +50,8 @@ export default function Home() {
           <div className="brand-tile brand-tile--head" data-reveal>
             <h2 id="brands-title">Brands you trust</h2>
             <p>
-              We fit the breakers, relays and meters your specification names, so spares and approvals stay simple
-              on site.
+              We source the breakers, relays and meters your specification names, so spares and approvals stay
+              simple on site.
             </p>
           </div>
           {brands.map((b) => (
@@ -117,8 +117,8 @@ export default function Home() {
       <Link href="/configurator" className="cta-band" aria-label="Configure your requirement">
         <div className="cta-top">
           <p>
-            Are you a contractor looking for electrical solutions? Tell us the project and the country; we build
-            to match and ship it.
+            Are you a contractor looking for electrical solutions? Tell us the project and the country; we source
+            to match, arrange the certificates and ship it.
           </p>
           <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
             <path d="M12 36 36 12M16 12h20v20" />

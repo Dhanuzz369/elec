@@ -17,7 +17,7 @@ export default function ProductsPage() {
           <h1 data-reveal>
             Eight product families
           </h1>
-          <p data-reveal>One export desk. Every line below is built or sourced to order and shipped with its HSN code.</p>
+          <p data-reveal>One export desk. Every line below is sourced to order and shipped with its HSN code.</p>
         </div>
         <Link href="/configurator" className="btn">
           Get a quote

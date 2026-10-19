@@ -6,7 +6,7 @@ import { RevealObserver } from "@/components/RevealObserver";
 
 export const metadata: Metadata = {
   title: {
-    default: "GoodBiz · Electrical equipment built for your grid",
+    default: "GoodBiz · Electrical equipment sourced for your grid",
     template: "%s · GoodBiz",
   },
   description:

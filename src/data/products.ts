@@ -29,7 +29,7 @@ export const families: Family[] = [
     name: "LT panels",
     short: "MCC, PCC, APFC, ATS and PLC panels up to 6300 A.",
     summary:
-      "Low-voltage panels built to your single-line diagram, with copper or aluminium busbars and the breaker brand your site already stocks.",
+      "Low-voltage panels built by our partner manufacturers to your single-line diagram, with copper or aluminium busbars and the breaker brand your site already stocks.",
     range: [
       { value: "6300 A", label: "main busbar" },
       { value: "≤ 1 kV", label: "rated voltage" },
@@ -79,7 +79,7 @@ export const families: Family[] = [
     name: "Transformers",
     short: "Oil-filled and dry-type: distribution, power and converter duty.",
     summary:
-      "Distribution, power and converter transformers wound in copper or aluminium, tested to IEC and shipped with the oil, radiators and rating plate your grid expects.",
+      "Distribution, power and converter transformers with copper or aluminium windings, sourced from IEC-tested manufacturers and supplied with the oil, radiators and rating plate your grid expects.",
     range: [
       { value: "2500 kVA", label: "distribution class" },
       { value: "33 kV", label: "primary voltage" },
@@ -106,7 +106,7 @@ export const families: Family[] = [
     name: "Compact & package substations",
     short: "Factory-built substations up to 2500 kVA at 11, 22 and 33 kV.",
     summary:
-      "MV switchgear, transformer and LV board in one enclosure, wired and tested in the factory so the site only needs a plinth and cables.",
+      "MV switchgear, transformer and LV board in one enclosure, wired and tested at the manufacturer's works so the site only needs a plinth and cables.",
     range: [
       { value: "2500 kVA", label: "transformer" },
       { value: "11 · 22 · 33 kV", label: "class" },
@@ -131,7 +131,7 @@ export const families: Family[] = [
     name: "Breakers & contactors",
     short: "ACB, MCCB, MCB and industrial contactors.",
     summary:
-      "Protection and switching devices supplied loose or fitted into our panels, sourced from the brand your specification names.",
+      "Protection and switching devices supplied loose or fitted into panels, sourced from the brand your specification names.",
     range: [
       { value: "6300 A", label: "ACB frame" },
       { value: "100 kA", label: "breaking capacity" },

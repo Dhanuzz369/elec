@@ -1,4 +1,4 @@
-// SAMPLE LIST — replace with the component brands GoodBiz actually builds with,
+// SAMPLE LIST — replace with the component brands GoodBiz actually sources,
 // and drop single-colour SVG logos into /public/brands/ (see BrandBoard).
 export const brands = [
   "ABB",

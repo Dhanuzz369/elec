@@ -89,7 +89,7 @@ export function SiteFooter() {
       </p>
 
       <div className="footer-last">
-        <span>© {new Date().getFullYear()} GoodBiz. Built in India, shipped worldwide.</span>
+        <span>© {new Date().getFullYear()} GoodBiz. Sourced in India, shipped worldwide.</span>
         <Link href="/configurator" className="btn">
           Get a quote
         </Link>
