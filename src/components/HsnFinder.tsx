@@ -34,6 +34,9 @@ export function HsnFinder() {
           Type a product or the first digits of an HSN code. These are Indian 8-digit tariff lines; your import
           code will share the first six digits.
         </p>
+        <p className="updated" data-reveal>
+          Codes checked against the Indian Customs Tariff. Last updated <time dateTime="2026-10-19">19 October 2026</time>.
+        </p>
       </div>
       <div>
         <label className="search">

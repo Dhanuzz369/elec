@@ -7,6 +7,9 @@ import { Bullet } from "@/components/Motif";
 import { getFamily } from "@/data/products";
 import { formatDate } from "@/lib/format";
 import { pageMeta } from "@/lib/meta";
+import { FaqList } from "@/components/FaqList";
+import { JsonLd } from "@/components/JsonLd";
+import { blogPostingLd, breadcrumbLd, faqLd } from "@/lib/jsonld";
 import { getAllPosts, getPost, tagSlug } from "@/lib/posts";
 
 export const dynamicParams = false;
@@ -83,19 +86,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       <ArticleBody post={post} />
 
-      {post.faq.length > 0 && (
-        <section className="article-faq" aria-labelledby="faq-title" data-reveal>
-          <h2 id="faq-title">Questions buyers ask</h2>
-          <dl>
-            {post.faq.map((f) => (
-              <div key={f.q}>
-                <dt>{f.q}</dt>
-                <dd>{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      )}
+      <FaqList faq={post.faq} />
 
       <aside className="article-related" aria-label="Related" data-reveal>
         <h2>Take it further</h2>
@@ -140,6 +131,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </nav>
       )}
       <div style={{ height: "var(--section)" }} />
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+          blogPostingLd(post),
+          faqLd(post.faq),
+        ]}
+      />
     </article>
   );
 }

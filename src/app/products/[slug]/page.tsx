@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { families, getFamily } from "@/data/products";
 import { Bullet, TransformerDrawing, TransformerSymbol } from "@/components/Motif";
 import { pageMeta, trimDescription } from "@/lib/meta";
+import { FaqList } from "@/components/FaqList";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd, faqLd, familyLd } from "@/lib/jsonld";
 
 export function generateStaticParams() {
   return families.map((f) => ({ slug: f.slug }));
@@ -116,6 +119,19 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
           </div>
         ))}
       </section>
+
+      <FaqList faq={fam.faq} />
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Products", path: "/products" },
+            { name: fam.name, path: `/products/${fam.slug}` },
+          ]),
+          familyLd(fam),
+          faqLd(fam.faq),
+        ]}
+      />
 
       <Link href={`/products/${next.slug}`} className="next-family">
         <strong>Next: {next.name}</strong>

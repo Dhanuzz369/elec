@@ -4,6 +4,8 @@ import { site } from "@/data/site";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { RevealObserver } from "@/components/RevealObserver";
+import { JsonLd } from "@/components/JsonLd";
+import { organizationLd, websiteLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -31,6 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main>{children}</main>
         <SiteFooter />
         <RevealObserver />
+        <JsonLd data={[organizationLd(), websiteLd()]} />
       </body>
     </html>
   );

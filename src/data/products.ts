@@ -3,6 +3,8 @@
 // CBIC-derived listings in Oct 2026. Confirm each code with your customs broker
 // before quoting it on a shipping bill.
 
+import type { Faq } from "@/lib/posts";
+
 export type Variant = {
   name: string;
   note: string;
@@ -20,6 +22,7 @@ export type Family = {
   standards: string[];
   builtFor: string[];
   options: string[];
+  faq: Faq[];
   image?: { src: string; alt: string; credit: string };
 };
 
@@ -46,6 +49,13 @@ export const families: Family[] = [
     standards: ["IEC 61439-1/2", "IS/IEC 61439", "BS EN 61439", "IEC 61641 arc tested, on request"],
     builtFor: ["Process plants", "Commercial buildings", "Data centres", "Water and wastewater"],
     options: ["Copper or aluminium busbars", "IP31 to IP54", "Front or rear access", "Fixed or withdrawable feeders"],
+    faq: [
+      { q: "What is the HSN code for an MCC or PCC panel?", a: "85371000. India uses one 8-digit line for boards and panels for 1000 V or less, so PCC, MCC, APFC, ATS, PLC panels and distribution boards all ship under it." },
+      { q: "What is the largest LT panel GoodBiz supplies?", a: "Power distribution panels up to 6300 A main busbar, with copper or aluminium busbars. MCCs go up to 4000 A." },
+      { q: "Which standard are the LT panels built to?", a: "IEC 61439-1/2 as standard, with IS/IEC 61439 or BS EN 61439 on request. Arc-fault testing to IEC 61641 is available when the specification asks for it." },
+      { q: "Can I choose the breaker brand inside the panel?", a: "Yes. Panels are built by our partner manufacturers with the ACB, MCCB and relay brand your specification or approved vendor list names." },
+      { q: "Which enclosure ratings are available for LT panels?", a: "IP31 to IP54, front or rear access, with fixed or withdrawable feeders and Form 4b separation on request." },
+    ],
   },
   {
     slug: "mv-switchgear-rmu",
@@ -68,6 +78,13 @@ export const families: Family[] = [
     standards: ["IEC 62271-100/200", "IEC 62271-1", "IS/IEC 62271", "IAC AFLR, on request"],
     builtFor: ["Utility distribution", "Solar and wind farms", "Industrial substations", "Airports and metros"],
     options: ["SCADA-ready RTU", "Numerical protection relays", "Motorised operation", "Outdoor kiosk housing"],
+    faq: [
+      { q: "What is the HSN code for an RMU?", a: "85372000. A complete ring main unit is a board for more than 1000 V, so it ships under 85372000 together with MV switchgear panels." },
+      { q: "What voltage range does the MV switchgear cover?", a: "11 kV to 33 kV, air-insulated (AIS) or gas-insulated (GIS), with short-time ratings up to 25 kA for 3 seconds." },
+      { q: "What is the HSN code for a vacuum circuit breaker?", a: "85352121 for an 11 kV VCB and 85352122 for 33 kV. Breakers fitted inside a panel ship with the panel under 85372000." },
+      { q: "Which standards apply to MV switchgear and RMUs?", a: "IEC 62271-100, IEC 62271-200 and IEC 62271-1, with internal arc classification IAC AFLR on request." },
+      { q: "Can RMUs be supplied SCADA-ready?", a: "Yes. RMUs and switchboards can be supplied with an RTU, numerical protection relays and motorised operation for remote switching." },
+    ],
     image: {
       src: "/images/high-voltage-switchgear-29.jpg",
       alt: "Outdoor circuit breakers and busbars in a substation",
@@ -95,6 +112,13 @@ export const families: Family[] = [
     standards: ["IEC 60076", "IS 1180", "IS 2026", "Ecodesign / EU Tier 2, on request"],
     builtFor: ["Utility distribution", "Solar parks", "Industrial plants", "Compact substations"],
     options: ["Copper or aluminium windings", "Mineral or ester oil", "OLTC with RTCC", "Bilingual rating plate"],
+    faq: [
+      { q: "What is the HSN code for an oil-filled distribution transformer?", a: "85042100 up to 650 kVA and 85042200 from 650 kVA to 10 MVA. Above 10 MVA the codes run from 85042310 to 85042340 by rating." },
+      { q: "What is the HSN code for a dry-type transformer?", a: "85043300 for cast-resin units from 16 kVA to 500 kVA and 85043400 above 500 kVA." },
+      { q: "Which standards do the transformers meet?", a: "IEC 60076 as standard, with IS 1180 and IS 2026 where specified, and Ecodesign or EU Tier 2 losses on request." },
+      { q: "Can the rating plate be in the site's language?", a: "Yes. Rating plates can be bilingual, for example Arabic and English for Saudi Arabia and Kuwait." },
+      { q: "Copper or aluminium windings?", a: "Both are available. State your preference in the enquiry, along with mineral or ester oil and the cooling class, ONAN or ONAF." },
+    ],
     image: {
       src: "/images/a-power-transformer-mounted-on-a-wooden.jpg",
       alt: "A pole-mounted distribution transformer with three insulators against the sky",
@@ -120,6 +144,12 @@ export const families: Family[] = [
     standards: ["IEC 62271-202", "IEC 60076", "IEC 61439"],
     builtFor: ["Housing and townships", "Solar parks", "Industrial estates", "Temporary power"],
     options: ["Walk-in or non-walk-in", "GRP, steel or concrete housing", "Internal arc classified", "Metering compartment"],
+    faq: [
+      { q: "What is a compact substation?", a: "A factory-assembled unit with an RMU, a transformer and an LV board in one enclosure, wired and tested at the manufacturer's works so the site needs only a plinth and cables." },
+      { q: "What ratings do the compact substations cover?", a: "Up to 2500 kVA at 11 kV, 22 kV and 33 kV class, built to IEC 62271-202." },
+      { q: "Which HSN code applies to a compact substation?", a: "There is no separate tariff line. It is usually declared under 85372000 when the switchgear is the main function, or under the transformer line when the transformer is." },
+      { q: "Are solar inverter stations available?", a: "Yes. Inverter-duty transformers with an RMU in one skid are supplied up to 6.6 MVA." },
+    ],
     image: {
       src: "/images/electrical-substation-in-cerepova-daugavpils.jpg",
       alt: "An outdoor electrical substation in winter with gantries and lightning masts",
@@ -148,6 +178,12 @@ export const families: Family[] = [
     standards: ["IEC 60947-2", "IEC 60947-4-1", "IEC 60898-1", "IEC 61008/61009"],
     builtFor: ["Panel builders", "Contractors' site stock", "Spares for existing boards"],
     options: ["Brand of your choice", "Motor operators and shunt trips", "Interlocks", "Test certificates per lot"],
+    faq: [
+      { q: "What are the HSN codes for ACB, MCCB and MCB?", a: "85362010 for air circuit breakers, 85362020 for MCCBs and 85362030 for MCBs, all for 1000 V or less." },
+      { q: "What is the HSN code for an RCCB or RCBO?", a: "85362040, the Indian line for earth-leakage and residual current breakers." },
+      { q: "What is the HSN code for an industrial contactor?", a: "Contactors are commonly declared under 85364900. Some exporters use 85365010, so confirm the line with your customs broker." },
+      { q: "Which brands of breakers can GoodBiz supply?", a: "The brand your specification names. Breakers are sourced from that brand and supplied loose or fitted into panels, with test certificates for each lot." },
+    ],
   },
   {
     slug: "enclosures-junction-boxes",
@@ -169,6 +205,12 @@ export const families: Family[] = [
     standards: ["IEC 62208", "IEC 60529", "IK08–IK10"],
     builtFor: ["Panel builders", "Instrumentation contractors", "Telecom and solar sites"],
     options: ["CRCA, galvanised or SS316", "Cut-outs and gland plates", "Mounting plates", "Canopies and plinths"],
+    faq: [
+      { q: "What is the HSN code for an empty panel enclosure?", a: "85381010 for unfitted cabinets for industrial use and 85381090 for other unfitted boards and cabinets." },
+      { q: "What is the HSN code for a junction box?", a: "85369030, the Indian line for junction boxes for 1000 V or less." },
+      { q: "Which IP ratings are available for enclosures?", a: "From IP54 for outdoor kiosks up to IP66 for wall-mount enclosures and junction boxes, to IEC 60529 and IEC 62208." },
+      { q: "Which materials and finishes are available?", a: "CRCA, galvanised or SS316 steel, or polycarbonate for junction boxes, powder-coated to any RAL shade and cut to your gland plan." },
+    ],
   },
   {
     slug: "parts",
@@ -190,6 +232,12 @@ export const families: Family[] = [
     standards: ["IEC 61439", "IEC 62271", "Drawing or sample matched"],
     builtFor: ["Panel builders", "Maintenance teams", "Retrofit projects"],
     options: ["Silver or tin plating", "Heat-shrink sleeving", "Kits per panel", "Mixed-lot shipping"],
+    faq: [
+      { q: "What is the HSN code for switchgear parts?", a: "85389000 covers parts for boards and switchgear under headings 8535 to 8537, such as busbars, insulators, shutters and mechanisms." },
+      { q: "What is the HSN code for terminals and connectors?", a: "85369090 for terminal blocks, connectors and lugs for 1000 V or less." },
+      { q: "Can spares be matched to an existing panel?", a: "Yes. Spares are matched to your drawing or sample, and supplied as kits per panel when needed." },
+      { q: "Are busbars supplied plated?", a: "Copper busbars can be supplied bare, tin-plated or silver-plated, punched to drawing and sleeved." },
+    ],
   },
   {
     slug: "switchyard-cables-ups",
@@ -212,6 +260,12 @@ export const families: Family[] = [
     standards: ["IEC 62271", "IEC 60502", "IEC 62040", "IEC 60896"],
     builtFor: ["Utility substations", "Power plants", "Process plants"],
     options: ["Drum lengths to order", "Fire-survival cables", "Battery racks and DCDBs", "Site-wise packing"],
+    faq: [
+      { q: "What is the HSN code for HT power cable?", a: "85446020 for XLPE or PVC insulated cable above 1000 V. LV power and control cable without connectors is 85444920." },
+      { q: "What is the HSN code for a 220 kV circuit breaker?", a: "85352912 for a 220 kV SF6 circuit breaker. Lightning arresters for the switchyard are 85354010." },
+      { q: "What is the HSN code for a UPS?", a: "A UPS is usually declared under 85044090. Battery chargers are 85044030 and lead-acid batteries 85072000." },
+      { q: "Which switchyard equipment can be supplied?", a: "Breakers, isolators, CTs, PTs and lightning arresters up to 220 kV, sourced to IEC 62271." },
+    ],
     image: {
       src: "/images/chilime-switchyard.jpg",
       alt: "An outdoor hydropower switchyard with lattice gantries in a mountain valley",

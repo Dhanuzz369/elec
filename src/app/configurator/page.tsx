@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Configurator } from "@/components/Configurator";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -12,8 +14,16 @@ export const metadata: Metadata = pageMeta({
 
 export default function ConfiguratorPage() {
   return (
-    <Suspense>
-      <Configurator />
-    </Suspense>
+    <>
+      <Suspense>
+        <Configurator />
+      </Suspense>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Configure your requirement", path: "/configurator" },
+        ])}
+      />
+    </>
   );
 }

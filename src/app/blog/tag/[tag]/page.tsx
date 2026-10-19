@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostList, TagLinks } from "@/components/PostList";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/jsonld";
 import { pageMeta, trimDescription } from "@/lib/meta";
 import { getAllPosts, getAllTags, tagSlug } from "@/lib/posts";
 
@@ -50,6 +52,13 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
         <PostList posts={posts} />
       </section>
       <div style={{ height: "var(--section)" }} />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: tag.tag, path: `/blog/tag/${tag.slug}` },
+        ])}
+      />
     </>
   );
 }
