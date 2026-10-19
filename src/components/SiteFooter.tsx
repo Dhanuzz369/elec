@@ -54,6 +54,9 @@ export function SiteFooter() {
           <Link href="/blog" className="link">
             Blog
           </Link>
+          <Link href="/export" className="link">
+            Countries we ship to
+          </Link>
         </nav>
         <div className="footer-contact">
           <strong>{site.name} export desk</strong>

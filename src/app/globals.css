@@ -2173,3 +2173,140 @@ fieldset {
     position: static;
   }
 }
+
+/* ---------- Country export pages ---------- */
+
+.country-head {
+  padding: clamp(48px, 7vw, 120px) var(--margin) 0;
+  display: grid;
+  gap: 28px;
+}
+
+.country-head h1 {
+  font-size: clamp(2.75rem, 1rem + 5.4vw, 6.5rem);
+  max-width: 14ch;
+}
+
+.country-head p {
+  font-size: var(--step-lead);
+  line-height: 1.35;
+  max-width: 46ch;
+}
+
+.grid-facts {
+  margin: var(--section) var(--margin) 0;
+  padding: clamp(32px, 5vw, 72px);
+  background: var(--accent);
+  color: var(--accent-ink);
+  display: grid;
+  gap: 32px;
+}
+
+.grid-facts h2 {
+  font-size: var(--step-head);
+  max-width: 16ch;
+}
+
+.grid-facts dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px 40px;
+}
+
+.grid-facts dt {
+  font-size: 1rem;
+}
+
+.grid-facts dd {
+  margin: 6px 0 0;
+  font-size: var(--step-lead);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.grid-note {
+  max-width: 70ch;
+}
+
+.country-families {
+  padding: var(--section) var(--margin) 0;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(32px, 5vw, 96px);
+}
+
+.country-families h2 {
+  font-size: var(--step-head);
+  max-width: 12ch;
+}
+
+.country-families ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.country-families li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+}
+
+.regions {
+  padding: 56px var(--margin) 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 48px 32px;
+}
+
+.region h2 {
+  font-size: var(--step-lead);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.region ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.region-link {
+  display: grid;
+  gap: 4px;
+  padding: 16px 20px;
+  background: var(--surface);
+  transition:
+    background-color 150ms ease,
+    transform 160ms var(--ease-out);
+}
+
+.region-link:active {
+  transform: scale(0.99);
+}
+
+.region-link strong {
+  font-weight: 500;
+  font-size: var(--step-body);
+}
+
+.region-link span {
+  color: var(--muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .region-link:hover {
+    background: var(--accent);
+  }
+}
+
+@media (max-width: 860px) {
+  .country-families {
+    grid-template-columns: 1fr;
+  }
+}

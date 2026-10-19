@@ -91,6 +91,10 @@ export function Configurator() {
     if (fam && families.some((f) => f.slug === fam)) {
       setForm((f) => (f.equipment.includes(fam) ? f : { ...f, equipment: [...f.equipment, fam] }));
     }
+    const code = params.get("country")?.toUpperCase();
+    if (code && countries.some((c) => c.code === code)) {
+      setForm((f) => ({ ...f, ...fromCountry(code) }));
+    }
   }, [params]);
 
   const set = <K extends keyof Form>(key: K, value: Form[K]) => setForm((f) => ({ ...f, [key]: value }));

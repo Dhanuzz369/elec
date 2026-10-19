@@ -4,7 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleBody } from "@/components/ArticleBody";
 import { Bullet } from "@/components/Motif";
+import { countries } from "@/data/countries";
 import { getFamily } from "@/data/products";
+import { countrySlug } from "@/lib/countries";
 import { formatDate } from "@/lib/format";
 import { pageMeta } from "@/lib/meta";
 import { FaqList } from "@/components/FaqList";
@@ -111,6 +113,16 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               Look up an HSN code
             </Link>
           </li>
+          {countries
+            .filter((c) => post.countries?.includes(c.code))
+            .map((c) => (
+              <li key={c.code}>
+                <Bullet />
+                <Link href={`/export/${countrySlug(c)}`} className="link">
+                  Exporting to {c.name}: grid, standards and certificate
+                </Link>
+              </li>
+            ))}
         </ul>
       </aside>
 
