@@ -31,11 +31,15 @@ export function conformityInSentence(c: Country): string {
 }
 
 export function countryDescription(c: Country): string {
-  const lead = `Electrical panels, transformers, RMUs and switchgear for ${c.name}: ${c.lv}, ${c.hz} Hz`;
+  const grid = `${c.lv}, ${c.hz} Hz`;
   const tail = `with the ${conformityInSentence(c)} arranged by GoodBiz.`;
-  // Drop the standards list before cutting a sentence in half.
-  let text = `${lead}, ${c.standard}, ${tail}`;
-  if (text.length > 160) text = `${lead}, ${tail}`;
+  // Shed detail in order (standards list, then product names) before cutting a sentence in half.
+  const options = [
+    `Electrical panels, transformers, RMUs and switchgear for ${c.name}: ${grid}, ${c.standard}, ${tail}`,
+    `Electrical panels, transformers, RMUs and switchgear for ${c.name}: ${grid}, ${tail}`,
+    `Electrical equipment for ${c.name}: ${grid}, ${tail}`,
+  ];
+  let text = options.find((o) => o.length <= 160) ?? options[options.length - 1];
   if (text.length < 120) text = `${text} Sourced in India and shipped by sea or air.`;
   return trimDescription(text);
 }
