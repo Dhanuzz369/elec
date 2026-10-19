@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { countries, defaultCountry } from "@/data/countries";
 import { families } from "@/data/products";
+import { mailtoHref } from "@/data/site";
 import { TransformerSymbol } from "./Motif";
 
 const PROJECTS = [
@@ -174,7 +175,7 @@ export function Configurator() {
       "(Please attach your SLD, BOQ or specification to this email.)",
     ];
     const subject = `Enquiry: ${equipmentNames.join(", ")} for ${country.name}`;
-    window.location.href = `mailto:export@goodbiz.example?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    window.location.href = mailtoHref(subject, lines.join("\n"));
     setSent(true);
   }
 

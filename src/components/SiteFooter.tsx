@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { families } from "@/data/products";
+import { mailtoHref, site, whatsappHref } from "@/data/site";
 
 const BLOCKS = [
   { ch: "G", h: 100, bg: "var(--accent)", fg: "var(--accent-ink)" },
@@ -52,12 +53,12 @@ export function SiteFooter() {
           </Link>
         </nav>
         <div className="footer-contact">
-          <strong>GoodBiz export desk</strong>
-          <a className="link" href="mailto:export@goodbiz.example">
-            export@goodbiz.example
+          <strong>{site.name} export desk</strong>
+          <a className="link" href={mailtoHref()}>
+            {site.email}
           </a>
-          <a className="link" href="https://wa.me/910000000000">
-            WhatsApp +91 00000 00000
+          <a className="link" href={whatsappHref()}>
+            WhatsApp {site.phone}
           </a>
           <span>India · shipping worldwide by sea and air</span>
         </div>
