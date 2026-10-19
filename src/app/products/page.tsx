@@ -48,7 +48,10 @@ export default function ProductsPage() {
           <h1 data-reveal>
             Eight product families
           </h1>
-          <p data-reveal>One export desk. Every line below is sourced to order and shipped with its HSN code.</p>
+          <p data-reveal>
+            A complete range of LT and MV electrical equipment, sourced from India&apos;s manufacturers and shipped
+            with its HSN code. Mix families and brands in one order; we consolidate them into one shipment.
+          </p>
         </div>
         <Link href="/configurator" className="btn">
           Get a quote

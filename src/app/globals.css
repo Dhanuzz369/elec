@@ -2327,3 +2327,194 @@ fieldset {
     transition: none;
   }
 }
+
+/* ---------- Landing: who we are, what we export, why, industries ---------- */
+
+.about {
+  padding: var(--section) var(--margin) 0;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(32px, 5vw, 96px);
+  align-items: end;
+}
+
+.about h2 {
+  font-size: var(--step-head);
+  margin-bottom: 24px;
+}
+
+.about-statement {
+  font-size: clamp(1.375rem, 1rem + 1vw, 2.25rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 34ch;
+}
+
+.about-body {
+  margin-top: 20px;
+  max-width: 56ch;
+}
+
+.about-facts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.about-facts div {
+  background: var(--surface);
+  padding: 24px;
+}
+
+.about-facts dt {
+  font-size: var(--step-head);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.about-facts dd {
+  margin: 10px 0 0;
+}
+
+.exports {
+  padding: var(--section) var(--margin) 0;
+}
+
+.exports-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.exports-head h2 {
+  font-size: var(--step-display);
+}
+
+.export-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.export-row {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) 40px;
+  gap: 32px;
+  align-items: center;
+  padding: 22px 24px;
+  background: var(--surface);
+  transition:
+    background-color 150ms ease,
+    transform 160ms var(--ease-out);
+}
+
+.export-list li:nth-child(even) .export-row {
+  background: var(--surface-2);
+}
+
+.export-row strong {
+  font-size: var(--step-lead);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.export-row span {
+  color: var(--ink);
+}
+
+.export-row svg {
+  width: 32px;
+  height: 32px;
+  transition: transform 200ms var(--ease-out);
+}
+
+.export-row:active {
+  transform: scale(0.995);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .export-row:hover,
+  .export-list li:nth-child(even) .export-row:hover {
+    background: var(--accent);
+  }
+  .export-row:hover svg {
+    transform: translateX(4px);
+  }
+}
+
+.why-list {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.why-list li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  max-width: 56ch;
+}
+
+.why-list strong {
+  font-weight: 500;
+}
+
+.industries {
+  padding: var(--section) var(--margin) 0;
+}
+
+.industries h2 {
+  font-size: var(--step-head);
+  margin-bottom: 28px;
+}
+
+.industries ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+
+.industries li {
+  font-size: var(--step-lead);
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+@media (max-width: 860px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .export-row {
+    grid-template-columns: minmax(0, 1fr) 28px;
+    gap: 8px 16px;
+    padding: 18px;
+  }
+  .export-row span {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .export-row svg {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 24px;
+    height: 24px;
+  }
+  .industries li {
+    font-size: var(--step-body);
+  }
+}
