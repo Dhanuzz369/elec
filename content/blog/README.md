@@ -66,3 +66,16 @@ Posts with a future `date` go live at the first rebuild on or after that date. S
 ## Drafts
 
 `draft: true` posts are hidden on the live site. They show, labelled "Draft" and hidden from search engines, when running `npm run dev` or a build with `SHOW_DRAFTS=1` (use that for a preview deploy).
+
+## Launch checklist
+
+Before the site goes live:
+
+1. Fill every `PLACEHOLDER` in `src/data/site.ts`: domain, legal name, email, phone, WhatsApp, registered address. Add official profiles (LinkedIn, IndiaMART) to `sameAs`.
+2. Review the three starter posts in this folder and change `draft: true` to `draft: false` on each one you approve.
+3. Replace the sample brand list in `src/data/brands.ts` with the brands GoodBiz really sources.
+4. Set up a daily rebuild (a scheduled deploy hook on the host) so dated posts go live on their day.
+5. Verify the domain in Google Search Console and Bing Webmaster Tools; put the Google token in `googleSiteVerification` in `src/data/site.ts`.
+6. Submit `https://<your-domain>/sitemap.xml` in both tools.
+7. Run Google's Rich Results Test on a product family page, a blog post and a country page.
+8. Run `npm test && npm run build && npm run check:meta` before every release.

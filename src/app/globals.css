@@ -2310,3 +2310,20 @@ fieldset {
     grid-template-columns: 1fr;
   }
 }
+
+/* Blog thumbnails settle inside their circle as the row arrives. */
+.js .post-row-thumb[data-reveal-circle] img {
+  transform: scale(1.15);
+  transition: transform 1100ms var(--ease-out);
+}
+
+.js .post-row-thumb[data-reveal-circle][data-in="true"] img {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .post-row-thumb[data-reveal-circle] img {
+    transform: none;
+    transition: none;
+  }
+}

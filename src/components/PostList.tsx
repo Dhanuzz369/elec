@@ -11,7 +11,7 @@ export function PostList({ posts }: { posts: Post[] }) {
       {posts.map((p) => (
         <li key={p.slug} data-reveal>
           <Link href={`/blog/${p.slug}`} className="post-row">
-            <span className="post-row-thumb" aria-hidden="true">
+            <span className="post-row-thumb" aria-hidden="true" data-reveal-circle>
               {p.cover?.startsWith("/") ? (
                 <Image src={p.cover} alt="" width={240} height={240} sizes="120px" />
               ) : p.cover ? (
