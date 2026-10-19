@@ -65,6 +65,9 @@ export function SiteHeader() {
         <Link href="/products#hsn" className="link nav-hide">
           HSN finder
         </Link>
+        <Link href="/blog" className="link">
+          Blog
+        </Link>
         <Link href="/products" className="link nav-hide">
           All products
         </Link>

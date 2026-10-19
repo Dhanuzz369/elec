@@ -90,3 +90,10 @@ test("canonical is kept", async () => {
 test("getPost returns undefined for unknown slugs", async () => {
   expect(await getPost("nope", { dir: DIR, now })).toBeUndefined();
 });
+
+test("invalid YAML names the file", async () => {
+  const err = await getAllPosts({ dir: path.join(FIX, "posts-bad/yaml"), now }).catch((e) => e);
+  expect(err).toBeInstanceOf(PostValidationError);
+  expect(err.field).toBe("front matter");
+  expect(err.message).toContain("broken-yaml.md");
+});

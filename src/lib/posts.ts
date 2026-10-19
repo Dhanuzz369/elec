@@ -203,7 +203,15 @@ async function loadAll(dir: string): Promise<Post[]> {
   const names = (await readdir(dir)).filter((n) => n.endsWith(".md") && n.toLowerCase() !== "readme.md");
   return Promise.all(
     names.map(async (name) => {
-      const { data, content } = matter(await readFile(path.join(dir, name), "utf8"));
+      const raw = await readFile(path.join(dir, name), "utf8");
+      let parsed: matter.GrayMatterFile<string>;
+      try {
+        // Pass an options object so gray-matter skips its cache and re-parses each build.
+        parsed = matter(raw, {});
+      } catch (e) {
+        throw new PostValidationError(name, "front matter", `is not valid YAML (${(e as Error).message.split("\n")[0]})`);
+      }
+      const { data, content } = parsed;
       const meta = validate(name, name.replace(/\.md$/, ""), data);
       const { html, headings } = await render(content);
       const words = content.split(/\s+/).filter(Boolean).length;

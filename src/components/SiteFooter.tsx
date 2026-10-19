@@ -51,6 +51,9 @@ export function SiteFooter() {
           <Link href="/products" className="link">
             All products
           </Link>
+          <Link href="/blog" className="link">
+            Blog
+          </Link>
         </nav>
         <div className="footer-contact">
           <strong>{site.name} export desk</strong>

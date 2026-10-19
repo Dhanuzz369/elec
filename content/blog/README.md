@@ -15,7 +15,7 @@ The file starts with a YAML block between `---` lines.
 
 | Field | Required | Type | Notes |
 | --- | --- | --- | --- |
-| `title` | yes | text | 65 characters or fewer recommended; used as the page heading and the browser title |
+| `title` | yes | text | 45 characters or fewer recommended so the page heading fits on two lines; also the browser title |
 | `description` | yes | text | 120–160 characters; the meta description and the summary in lists. Never the same as the title |
 | `date` | yes | `YYYY-MM-DD` | publish date. A future date stays hidden until a rebuild happens on or after that day |
 | `updated` | no | `YYYY-MM-DD` | last meaningful edit; shown on the page and used as `dateModified` |
@@ -23,7 +23,7 @@ The file starts with a YAML block between `---` lines.
 | `tags` | yes | list of text | first tag is the main topic. `Export Compliance` and `export compliance` are the same tag |
 | `family` | no | product family slug | one of `lt-panels`, `mv-switchgear-rmu`, `transformers`, `substations`, `breakers-contactors`, `enclosures-junction-boxes`, `parts`, `switchyard-cables-ups` |
 | `countries` | no | list of country codes | codes from `src/data/countries.ts`, e.g. `[SA, NG, KE]` |
-| `cover` | no | path or URL | a file under `/public` (e.g. `/images/x.jpg`) or an absolute `https://` URL |
+| `cover` | no | path or URL | a file under `/public` (e.g. `/images/x.jpg`) or an absolute `https://` URL. Strongly recommended: it is the list thumbnail and the article picture |
 | `coverAlt` | when `cover` is set | text | describes the picture |
 | `faq` | no | list of `{ q, a }` | shown at the end of the post and marked up for answer boxes. Quote answers that start with a number |
 | `draft` | no | `true` / `false` | `true` hides the post on the live site |
