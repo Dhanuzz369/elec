@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostList, TagLinks } from "@/components/PostList";
+import { pageMeta, trimDescription } from "@/lib/meta";
 import { getAllPosts, getAllTags, tagSlug } from "@/lib/posts";
 
 export const dynamicParams = false;
@@ -18,11 +19,14 @@ async function load(slug: string) {
 export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
   const { tag } = await load((await params).tag);
   if (!tag) return {};
-  return {
+  return pageMeta({
     title: `${tag.tag} articles`,
-    description: `Guides and notes on ${tag.tag} for buyers of electrical equipment exported from India: HSN codes, standards, certificates and shipping.`,
-    robots: tag.count >= 2 ? undefined : { index: false, follow: true },
-  };
+    description: trimDescription(
+      `Guides and notes on ${tag.tag} for buyers of electrical equipment exported from India: HSN codes, standards, certificates and shipping.`,
+    ),
+    path: `/blog/tag/${tag.slug}`,
+    noindex: tag.count < 2,
+  });
 }
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {

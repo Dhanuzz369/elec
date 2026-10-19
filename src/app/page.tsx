@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { brands } from "@/data/brands";
 import { HeroStage } from "@/components/HeroStage";
 import { Bullet } from "@/components/Motif";
+import { pageMeta } from "@/lib/meta";
+
+export const metadata: Metadata = pageMeta({
+  title: "Electrical equipment sourced for your grid",
+  description: "GoodBiz exports LT panels, MCC, transformers, RMUs, MV switchgear and enclosures from India, sourced to your country's voltage, standards and certificates.",
+  path: "/",
+});
 
 export default function Home() {
   return (

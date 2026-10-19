@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PostList, TagLinks } from "@/components/PostList";
+import { pageMeta } from "@/lib/meta";
 import { getAllPosts, getAllTags } from "@/lib/posts";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Blog",
   description:
     "Weekly notes for buyers of electrical equipment exported from India: HSN codes, country standards and certificates, transformer and panel choices, and shipping.",
-};
+  path: "/blog",
+});
 
 export default async function BlogIndex() {
   const [posts, tags] = await Promise.all([getAllPosts(), getAllTags()]);

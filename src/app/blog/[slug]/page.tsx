@@ -6,6 +6,7 @@ import { ArticleBody } from "@/components/ArticleBody";
 import { Bullet } from "@/components/Motif";
 import { getFamily } from "@/data/products";
 import { formatDate } from "@/lib/format";
+import { pageMeta } from "@/lib/meta";
 import { getAllPosts, getPost, tagSlug } from "@/lib/posts";
 
 export const dynamicParams = false;
@@ -17,11 +18,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const post = await getPost((await params).slug);
   if (!post) return {};
-  return {
+  return pageMeta({
     title: post.title,
     description: post.description,
-    robots: post.draft ? { index: false, follow: false } : undefined,
-  };
+    path: `/blog/${post.slug}`,
+    canonical: post.canonical,
+    type: "article",
+    publishedTime: post.date,
+    modifiedTime: post.updated,
+    noindex: post.draft,
+  });
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {

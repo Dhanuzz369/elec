@@ -16,7 +16,7 @@ export const site = {
     postalCode: "", // PLACEHOLDER — required before launch
     country: "IN",
   },
-  logo: "/icon.png",
+  logo: "/logo.png",
   foundingDate: undefined as string | undefined,
   sameAs: [] as string[], // LinkedIn, IndiaMART and other official profiles when they exist
   description:

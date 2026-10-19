@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { families, getFamily } from "@/data/products";
 import { Bullet, TransformerDrawing, TransformerSymbol } from "@/components/Motif";
+import { pageMeta, trimDescription } from "@/lib/meta";
 
 export function generateStaticParams() {
   return families.map((f) => ({ slug: f.slug }));
@@ -12,10 +13,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const fam = getFamily(slug);
   if (!fam) return {};
-  return {
-    title: fam.name,
-    description: `${fam.short} ${fam.summary}`,
-  };
+  const codes = [...new Set(fam.variants.map((v) => v.hsn))].slice(0, 3).join(", ");
+  return pageMeta({
+    title: `${fam.name}: product lines and HSN codes`,
+    description: trimDescription(`${fam.name} for export from India, HSN ${codes}. ${fam.short} ${fam.summary}`),
+    path: `/products/${fam.slug}`,
+  });
 }
 
 export default async function FamilyPage({ params }: { params: Promise<{ slug: string }> }) {
