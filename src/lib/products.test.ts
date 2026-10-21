@@ -32,8 +32,8 @@ test("LT panels show the five LT panel photos", () => {
   ]);
 });
 
-test("enclosures show the six cabinet and feeder-pillar photos", () => {
-  expect((getFamily("enclosures-junction-boxes")!.gallery ?? []).map((p) => p.src)).toEqual([
+test("MV switchgear and RMU show the six cabinet and feeder-pillar photos", () => {
+  expect((getFamily("mv-switchgear-rmu")!.gallery ?? []).map((p) => p.src)).toEqual([
     "/images/products/enclosure-modular-distribution.webp",
     "/images/products/enclosure-outdoor-feeder-pillar.webp",
     "/images/products/enclosure-compartment-cabinet.webp",
@@ -43,12 +43,19 @@ test("enclosures show the six cabinet and feeder-pillar photos", () => {
   ]);
 });
 
-test("MV switchgear carries no LT photos", () => {
-  expect(getFamily("mv-switchgear-rmu")!.gallery).toBeUndefined();
+test("enclosures show the six enclosure and junction-box photos", () => {
+  expect((getFamily("enclosures-junction-boxes")!.gallery ?? []).map((p) => p.src)).toEqual([
+    "/images/products/enc-outdoor-pedestal-canopy.webp",
+    "/images/products/enc-modular-floor-two-bay.webp",
+    "/images/products/enc-wall-mount-steel.webp",
+    "/images/products/enc-polycarbonate-junction-boxes.webp",
+    "/images/products/enc-grp-meter-boxes.webp",
+    "/images/products/enc-outdoor-grp-kiosk.webp",
+  ]);
 });
 
 test("every gallery photo exists and has alt text and a caption", () => {
-  for (const slug of ["transformers", "parts", "lt-panels", "enclosures-junction-boxes"]) {
+  for (const slug of ["transformers", "parts", "lt-panels", "enclosures-junction-boxes", "mv-switchgear-rmu"]) {
     for (const p of getFamily(slug)!.gallery ?? []) {
       expect(onDisk(p.src), p.src).toBe(true);
       expect(p.alt.length).toBeGreaterThan(20);

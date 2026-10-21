@@ -107,6 +107,38 @@ export const families: Family[] = [
     standards: ["IEC 62271-100/200", "IEC 62271-1", "IS/IEC 62271", "IAC AFLR, on request"],
     builtFor: ["Utility distribution", "Solar and wind farms", "Industrial substations", "Airports and metros"],
     options: ["SCADA-ready RTU", "Numerical protection relays", "Motorised operation", "Outdoor kiosk housing"],
+    gallery: [
+      {
+        src: "/images/products/enclosure-modular-distribution.webp",
+        alt: "Modular multi-door distribution cabinet with meter windows, MCB viewing windows and quarter-turn door locks",
+        caption: "Modular distribution cabinet",
+      },
+      {
+        src: "/images/products/enclosure-outdoor-feeder-pillar.webp",
+        alt: "Outdoor feeder pillar on a steel stand with a rain canopy, MCB rows and industrial sockets on the side",
+        caption: "Outdoor feeder pillar with canopy",
+      },
+      {
+        src: "/images/products/enclosure-compartment-cabinet.webp",
+        alt: "Compartmentalised floor-standing cabinet with separate doors for incomer, metering and outgoing sections",
+        caption: "Compartmentalised floor cabinet",
+      },
+      {
+        src: "/images/products/enclosure-metering-cabinet.webp",
+        alt: "Multi-compartment metering cabinet with meter viewing windows, MCB windows and a large viewing panel",
+        caption: "Multi-meter cabinet",
+      },
+      {
+        src: "/images/products/enclosure-pedestal-cabinet.webp",
+        alt: "Pedestal-mounted metering and distribution cabinet on a steel stand, with meter windows and an MCB viewing window",
+        caption: "Pedestal metering cabinet",
+      },
+      {
+        src: "/images/products/enclosure-multi-section-lineup.webp",
+        alt: "Long multi-section cabinet line-up with incomer sections and rows of feeder compartments with viewing windows",
+        caption: "Multi-section cabinet line-up",
+      },
+    ],
     faq: [
       { q: "What is the HSN code for an RMU?", a: "85372000. A complete ring main unit is a board for more than 1000 V, so it ships under 85372000 together with MV switchgear panels." },
       { q: "What voltage range does the MV switchgear cover?", a: "11 kV to 33 kV, air-insulated (AIS) or gas-insulated (GIS), with short-time ratings up to 25 kA for 3 seconds." },
@@ -248,34 +280,34 @@ export const families: Family[] = [
     options: ["CRCA, galvanised or SS316", "Cut-outs and gland plates", "Mounting plates", "Canopies and plinths"],
     gallery: [
       {
-        src: "/images/products/enclosure-modular-distribution.webp",
-        alt: "Modular multi-door distribution cabinet with meter windows, MCB viewing windows and quarter-turn door locks",
-        caption: "Modular distribution cabinet",
+        src: "/images/products/enc-outdoor-pedestal-canopy.webp",
+        alt: "Outdoor pedestal enclosure with a rain canopy, a viewing window, louvred side vents and a lockable lower compartment with mounting plate",
+        caption: "Outdoor pedestal enclosure with canopy",
       },
       {
-        src: "/images/products/enclosure-outdoor-feeder-pillar.webp",
-        alt: "Outdoor feeder pillar on a steel stand with a rain canopy, MCB rows and industrial sockets on the side",
-        caption: "Outdoor feeder pillar with canopy",
+        src: "/images/products/enc-modular-floor-two-bay.webp",
+        alt: "Two-bay modular floor-standing enclosure on a plinth, one bay open to show the punched rack frame and galvanised mounting plate",
+        caption: "Modular floor-standing enclosure",
       },
       {
-        src: "/images/products/enclosure-compartment-cabinet.webp",
-        alt: "Compartmentalised floor-standing cabinet with separate doors for incomer, metering and outgoing sections",
-        caption: "Compartmentalised floor cabinet",
+        src: "/images/products/enc-wall-mount-steel.webp",
+        alt: "Two wall-mount steel enclosures with gasketed doors, quarter-turn locks, galvanised mounting plate and door earth strap",
+        caption: "Wall-mount steel enclosures",
       },
       {
-        src: "/images/products/enclosure-metering-cabinet.webp",
-        alt: "Multi-compartment metering cabinet with meter viewing windows, MCB windows and a large viewing panel",
-        caption: "Multi-meter cabinet",
+        src: "/images/products/enc-polycarbonate-junction-boxes.webp",
+        alt: "Three grey polycarbonate junction boxes: a hinged-lid box, a screw-cover box and an open box with gasket and brass inserts",
+        caption: "Polycarbonate junction boxes",
       },
       {
-        src: "/images/products/enclosure-pedestal-cabinet.webp",
-        alt: "Pedestal-mounted metering and distribution cabinet on a steel stand, with meter windows and an MCB viewing window",
-        caption: "Pedestal metering cabinet",
+        src: "/images/products/enc-grp-meter-boxes.webp",
+        alt: "White GRP meter enclosures with hinged doors and clear viewing windows for meters and MCBs",
+        caption: "GRP meter boxes with viewing windows",
       },
       {
-        src: "/images/products/enclosure-multi-section-lineup.webp",
-        alt: "Long multi-section cabinet line-up with incomer sections and rows of feeder compartments with viewing windows",
-        caption: "Multi-section cabinet line-up",
+        src: "/images/products/enc-outdoor-grp-kiosk.webp",
+        alt: "Outdoor GRP kiosk with two lockable doors, louvred vents, a raised base and an internal mounting frame",
+        caption: "Outdoor GRP kiosk, double door",
       },
     ],
     faq: [
