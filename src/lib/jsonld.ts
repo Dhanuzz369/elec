@@ -4,7 +4,7 @@ import { absoluteUrl, site } from "@/data/site";
 import type { Faq, Post } from "@/lib/posts";
 
 // schema.org builders. Every claim here must also be visible on the page.
-// GoodBiz sources every product, so products never carry brand or manufacturer,
+// GoodBiz Power Systems sources every product, so products never carry brand or manufacturer,
 // and there are no prices, ratings or reviews.
 
 type Node = Record<string, unknown>;

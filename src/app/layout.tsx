@@ -10,10 +10,10 @@ import { organizationLd, websiteLd } from "@/lib/jsonld";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "GoodBiz · Electrical equipment sourced for your grid",
-    template: "%s · GoodBiz",
+    default: "GoodBiz Power Systems · Electrical equipment sourced for your grid",
+    template: "%s · GoodBiz Power Systems",
   },
-  description: "GoodBiz exports LT panels, MCC, transformers, RMUs, MV switchgear and enclosures from India, sourced to your country's voltage, standards and certificates.",
+  description: "GoodBiz Power Systems exports LT panels, transformers, RMUs, MV switchgear and enclosures from India, matched to your country's grid and certificates.",
   applicationName: site.name,
   openGraph: { siteName: site.name, locale: "en", type: "website" },
   twitter: { card: "summary_large_image" },

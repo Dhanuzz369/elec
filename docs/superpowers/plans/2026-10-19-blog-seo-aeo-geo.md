@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a Markdown-fed blog, country export pages, answer blocks, structured data, full metadata, sitemap/robots/RSS/llms.txt, and correct the copy so GoodBiz reads as an exporter and supplier.
+**Goal:** Add a Markdown-fed blog, country export pages, answer blocks, structured data, full metadata, sitemap/robots/RSS/llms.txt, and correct the copy so GoodBiz Power Systems reads as an exporter and supplier.
 
 **Architecture:** Pure data and string builders live in `src/lib/` and are unit-tested with Vitest. App Router pages and route handlers stay thin and call them. Everything is statically generated at build time; Markdown is parsed on the server only.
 
@@ -13,8 +13,8 @@
 ## Global Constraints
 
 - All business facts come from `src/data/site.ts`; no other file hard-codes the domain, email, phone or WhatsApp number.
-- GoodBiz sources every product: no copy or JSON-LD may say GoodBiz manufactures, builds, winds or tests in its own factory; JSON-LD `Product` has **no `brand` or `manufacturer`**.
-- GoodBiz arranges destination certificates; pages may say so.
+- GoodBiz Power Systems sources every product: no copy or JSON-LD may say GoodBiz Power Systems manufactures, builds, winds or tests in its own factory; JSON-LD `Product` has **no `brand` or `manufacturer`**.
+- GoodBiz Power Systems arranges destination certificates; pages may say so.
 - No `AggregateRating`, `Review`, or `Offer.price` anywhere.
 - Meta descriptions are 120–160 characters, unique per route, never equal to the title.
 - Headlines (`h1`–`h6`) stay two lines or fewer at 1440/768/390px; no eyebrows, gradients, monospace, or new type faces; colours only via tokens in `globals.css`.
@@ -81,7 +81,7 @@ const BANNED = [/made in india/i, /our factory/i, /\bwe build\b/i, /built in ind
 ```
 
 - [ ] **Step 2: Run** `npx vitest run src/lib/copy.test.ts` — Expected: FAIL listing the 11 matches.
-- [ ] **Step 3: Rewrite** using spec §10's table. Exact strings: hero H1 `Matched to your grid`; hero sentence `Panels, transformers, RMUs and switchgear sourced from proven manufacturers to the voltage, standard and paperwork of the country they ship to.`; layout default title `GoodBiz · Electrical equipment sourced for your grid`; brands tile `We source the breakers, relays and meters your specification names, so spares and approvals stay simple on site.`; contractor band `…Tell us the project and the country; we source to match, arrange the certificates and ship it.`; footer `Sourced in India, shipped worldwide.`; plate header `Supplied by GoodBiz · Origin India`; plate intro `Your rating plate, as it would ship to {country.name}…`. Product summaries: describe the product and that partner manufacturers build it to the buyer's specification.
+- [ ] **Step 3: Rewrite** using spec §10's table. Exact strings: hero H1 `Matched to your grid`; hero sentence `Panels, transformers, RMUs and switchgear sourced from proven manufacturers to the voltage, standard and paperwork of the country they ship to.`; layout default title `GoodBiz Power Systems · Electrical equipment sourced for your grid`; brands tile `We source the breakers, relays and meters your specification names, so spares and approvals stay simple on site.`; contractor band `…Tell us the project and the country; we source to match, arrange the certificates and ship it.`; footer `Sourced in India, shipped worldwide.`; plate header `Supplied by GoodBiz Power Systems · Origin India`; plate intro `Your rating plate, as it would ship to {country.name}…`. Product summaries: describe the product and that partner manufacturers build it to the buyer's specification.
 - [ ] **Step 4: Run** `npm test` (all pass) and the design inspector on `/` (`node <taste-skill>/scripts/inspect.mjs http://localhost:3010/`) — Expected: 0 FAIL (headline still ≤ 2 lines).
 - [ ] **Step 5: Commit** `git commit -am "fix: copy reflects exporter and supplier role"`
 
@@ -141,7 +141,7 @@ test("slug must match file-name pattern", …)    // a fixture "Bad Name.md" →
 
 **Files:**
 - Create: `src/lib/feed.ts`, `src/lib/feed.test.ts`, `src/app/blog/page.tsx`, `src/app/blog/[slug]/page.tsx`, `src/app/blog/tag/[tag]/page.tsx`, `src/app/feed.xml/route.ts`, `src/components/PostList.tsx`, `src/components/ArticleBody.tsx`
-- Create content: `content/blog/hsn-codes-electrical-panels-switchgear.md`, `content/blog/certificates-by-country-electrical-equipment.md`, `content/blog/oil-filled-vs-dry-type-transformer-export.md` (all `draft: true`, `author: GoodBiz`, each with `faq` × 3 and `family`/`countries` links)
+- Create content: `content/blog/hsn-codes-electrical-panels-switchgear.md`, `content/blog/certificates-by-country-electrical-equipment.md`, `content/blog/oil-filled-vs-dry-type-transformer-export.md` (all `draft: true`, `author: GoodBiz Power Systems`, each with `faq` × 3 and `family`/`countries` links)
 - Modify: `src/components/SiteHeader.tsx` (nav "Blog"), `src/components/SiteFooter.tsx` ("Blog" under For buyers), `src/app/globals.css` (blog styles, tokens only)
 
 **Interfaces:**
@@ -152,7 +152,7 @@ test("slug must match file-name pattern", …)    // a fixture "Bad Name.md" →
 - [ ] **Step 2: Run** `npx vitest run src/lib/feed.test.ts` — Expected: FAIL.
 - [ ] **Step 3: Implement** `buildRss`; `feed.xml/route.ts` with `export const dynamic = "force-static"` returning `content-type: application/rss+xml; charset=utf-8`.
 - [ ] **Step 4: Build the pages.** `/blog`: H1 `Notes for buyers`, one-sentence intro, tag links (`/blog/tag/<slug>`), `PostList` as banded rows like the product explorer (date, title, description, reading time, primary tag); designed empty state `No posts yet. The first one is on its way.` with a link to `/products#hsn`. `/blog/[slug]`: `generateStaticParams` from `getAllPosts()`, `notFound()` otherwise; title, dates (`Published`/`Updated`), author, reading time, cover (`next/image` only for local paths, plain `<img>` for absolute URLs), table of contents when ≥ 3 h2, body, FAQ (Task 6's `FaqList` — until then render a plain `<dl>`), related block (family page and configurator `?family=`; country links are added in Task 7), previous/next. Drafts render a "Draft" label and `robots: { index: false }`. `/blog/tag/[tag]`: lists posts for that slug; `robots.index = count >= 2`.
-- [ ] **Step 5: Write the three starter posts** per spec §11, facts taken only from `src/data/hsn.json`, `products.ts` and `countries.ts`; no manufacturing claims; post 2 says GoodBiz arranges the certificate with the shipment.
+- [ ] **Step 5: Write the three starter posts** per spec §11, facts taken only from `src/data/hsn.json`, `products.ts` and `countries.ts`; no manufacturing claims; post 2 says GoodBiz Power Systems arranges the certificate with the shipment.
 - [ ] **Step 6: Run** `npm test`, `npm run build` (Expected: `/blog`, `/feed.xml` static; with `SHOW_DRAFTS=1 npm run build` the three posts appear in the route list), then `npm run dev` and inspect `/blog` and one post with the design inspector — Expected: 0 FAIL.
 - [ ] **Step 7: Commit** `git add -A && git commit -m "feat: blog index, articles, tags, RSS and starter drafts"`
 
@@ -204,7 +204,7 @@ test("products carry no brand or manufacturer", () => {
   const s = JSON.stringify(familyLd(families[0]));
   expect(s).not.toMatch(/"brand"|"manufacturer"|"aggregateRating"|"review"|"price"/);
 });
-test("offers name GoodBiz as seller", …)        // every Product.offers.seller.name === site.name
+test("offers name GoodBiz Power Systems as seller", …)        // every Product.offers.seller.name === site.name
 test("HSN appears as additionalProperty", …)    // propertyID "HSN" value equals variant.hsn
 test("organization describes an exporter", …)   // description matches /export/i and not /manufactur/i
 test("blogPosting author is Organization when author === site.name, else Person", …)
@@ -230,7 +230,7 @@ test("every family has 4–6 FAQs answered in ≤ 3 sentences", …)
 
 **Interfaces:**
 - Consumes: `countries`, `Country`, `families`, `Faq`, `countryPageLd`, `faqLd`, `breadcrumbLd`, `JsonLd`, `FaqList`, `pageMeta`.
-- Produces: `countrySlug(c: Country): string`; `getCountryBySlug(slug: string): Country | undefined`; `countryFaq(c: Country): Faq[]` (4 items: voltage/frequency, standards, certificate — stating GoodBiz arranges it, design ambient); `familyLineFor(c: Country, fam: Family): string` (one sentence naming the family with that country's rated voltage, frequency and standard); `countryDescription(c: Country): string` (120–160 chars).
+- Produces: `countrySlug(c: Country): string`; `getCountryBySlug(slug: string): Country | undefined`; `countryFaq(c: Country): Faq[]` (4 items: voltage/frequency, standards, certificate — stating GoodBiz Power Systems arranges it, design ambient); `familyLineFor(c: Country, fam: Family): string` (one sentence naming the family with that country's rated voltage, frequency and standard); `countryDescription(c: Country): string` (120–160 chars).
 
 - [ ] **Step 1: Write the failing tests:** `countrySlug` gives `saudi-arabia`, `united-arab-emirates`, `united-states`; all slugs unique; `getCountryBySlug("nigeria")?.code === "NG"`; `countryFaq(SA)` has 4 entries and one answer contains `SASO / SABER certificate` and `arrange`; no FAQ answer matches `/manufactur|our factory/i`; `countryDescription` length in 120–160 for every country; `familyLineFor(NG, transformers)` contains `50 Hz`.
 - [ ] **Step 2: Run** `npx vitest run src/lib/countries.test.ts` — Expected: FAIL.
@@ -250,9 +250,9 @@ test("every family has 4–6 FAQs answered in ≤ 3 sentences", …)
 - Produces:
   - `sitemapEntries(input: { posts: Post[]; tags: { slug: string; count: number }[] }): MetadataRoute.Sitemap` — static routes, families, countries, `/export`, `/blog`, posts **without** `canonical` (`lastModified` = `updated ?? date`), tags with `count >= 2`.
   - `AI_BOTS: readonly string[]` = `["GPTBot","OAI-SearchBot","ChatGPT-User","PerplexityBot","ClaudeBot","Claude-Web","Google-Extended","Applebot-Extended","Bingbot"]`; `robotsConfig(): MetadataRoute.Robots` (allow `/` for `*` and each bot, `sitemap: absoluteUrl("/sitemap.xml")`, `host: site.url`).
-  - `buildLlmsTxt(posts: Post[]): string` (llmstxt.org format: `# GoodBiz`, `> one-line summary`, sections Products, Countries, Guides, Contact) and `buildLlmsFullTxt(): string` (families with every variant's rating, standard and HSN; all countries' grid facts).
+  - `buildLlmsTxt(posts: Post[]): string` (llmstxt.org format: `# GoodBiz Power Systems`, `> one-line summary`, sections Products, Countries, Guides, Contact) and `buildLlmsFullTxt(): string` (families with every variant's rating, standard and HSN; all countries' grid facts).
 
-- [ ] **Step 1: Write the failing tests:** sitemap excludes a post with `canonical`, excludes drafts (they are never passed in), excludes a tag with count 1, includes `/export/saudi-arabia`, all URLs start with `site.url`; robots lists every `AI_BOTS` entry with `allow: "/"` and the sitemap URL; llms.txt starts with `# GoodBiz`, contains `85371000` in the full file only, contains no `/manufactur/i`.
+- [ ] **Step 1: Write the failing tests:** sitemap excludes a post with `canonical`, excludes drafts (they are never passed in), excludes a tag with count 1, includes `/export/saudi-arabia`, all URLs start with `site.url`; robots lists every `AI_BOTS` entry with `allow: "/"` and the sitemap URL; llms.txt starts with `# GoodBiz Power Systems`, contains `85371000` in the full file only, contains no `/manufactur/i`.
 - [ ] **Step 2: Run** `npx vitest run src/lib/discovery.test.ts` — Expected: FAIL.
 - [ ] **Step 3: Implement** the libs and the four route files (`dynamic = "force-static"`, `text/plain; charset=utf-8` for the llms routes).
 - [ ] **Step 4: Run** `npm test && npm run build`; `curl -s localhost:3010/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/feed.xml` on `npm start` — Expected: 200 for each, sitemap lists country and family URLs.

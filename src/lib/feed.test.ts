@@ -8,7 +8,7 @@ function post(over: Partial<Post>): Post {
     title: "A",
     description: "d",
     date: "2026-10-01",
-    author: "GoodBiz",
+    author: "GoodBiz Power Systems",
     tags: ["t"],
     faq: [],
     draft: false,

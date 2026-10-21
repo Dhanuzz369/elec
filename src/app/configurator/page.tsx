@@ -8,7 +8,7 @@ import { pageMeta } from "@/lib/meta";
 export const metadata: Metadata = pageMeta({
   title: "Configure your requirement",
   description:
-    "Tell GoodBiz your project, country and ratings. We pre-fill the grid voltage, frequency, standards and certificates for your country and source to match.",
+    "Tell GoodBiz Power Systems your project, country and ratings. We pre-fill your grid voltage, frequency, standards and certificates, then source to match.",
   path: "/configurator",
 });
 

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { brands } from "@/data/brands";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
 import { HeroStage } from "@/components/HeroStage";
-import { Bullet } from "@/components/Motif";
+import { Bullet, TransformerSymbol } from "@/components/Motif";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
   title: "Electrical equipment sourced for your grid",
-  description: "GoodBiz exports LT panels, MCC, transformers, RMUs, MV switchgear and enclosures from India, sourced to your country's voltage, standards and certificates.",
+  description: "GoodBiz Power Systems exports LT panels, transformers, RMUs, MV switchgear and enclosures from India, matched to your country's grid and certificates.",
   path: "/",
 });
 
@@ -100,7 +101,7 @@ export default function Home() {
             Who we are
           </h2>
           <p className="about-statement" data-reveal>
-            GoodBiz is an India-based export house for electrical equipment, sourcing from India&apos;s
+            GoodBiz Power Systems is an India-based export house for electrical equipment, sourcing from India&apos;s
             manufacturers for buyers worldwide.
           </p>
           <p className="about-body" data-reveal>
@@ -142,9 +143,16 @@ export default function Home() {
           {families.map((f) => (
             <li key={f.slug} data-reveal>
               <Link href={`/products/${f.slug}`} className="export-row">
+                <span className="export-thumb" aria-hidden="true">
+                  {f.gallery?.length ? (
+                    <Image src={f.gallery[0].src} alt="" width={240} height={160} sizes="120px" />
+                  ) : (
+                    <TransformerSymbol strokeWidth={1.6} />
+                  )}
+                </span>
                 <strong>{f.name}</strong>
-                <span>{f.variants.map((v) => v.name).join(" · ")}</span>
-                <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
+                <span className="export-desc">{f.variants.map((v) => v.name).join(" · ")}</span>
+                <svg className="export-arrow" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
                   <path d="M8 24h32M28 12l12 12-12 12" />
                 </svg>
               </Link>
@@ -173,7 +181,7 @@ export default function Home() {
       <section className="field-notes why" aria-labelledby="why-title">
         <div data-stagger>
           <h2 id="why-title" data-reveal>
-            Why buyers choose GoodBiz
+            Why buyers choose us
           </h2>
           <ul className="why-list" data-reveal>
             {REASONS.map((r) => (

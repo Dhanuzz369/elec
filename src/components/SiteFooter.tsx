@@ -15,13 +15,16 @@ const BLOCKS = [
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="footer-mark" role="img" aria-label="GoodBiz" data-stagger>
+      <div className="footer-mark" role="img" aria-label={site.name} data-stagger>
         {BLOCKS.map((b, i) => (
           <span key={i} aria-hidden="true" data-reveal style={{ height: `${b.h}%`, background: b.bg, color: b.fg }}>
             {b.ch}
           </span>
         ))}
       </div>
+      <p className="footer-mark-sub" aria-hidden="true">
+        {site.name.slice(site.shortName.length).trim()}
+      </p>
 
       <div className="footer-cols">
         <nav aria-label="Panels and switchgear">
@@ -91,11 +94,11 @@ export function SiteFooter() {
         <a href="https://commons.wikimedia.org/w/index.php?curid=124731292">“Japanese Transmission tower 2022-05”</a> by
         Minirexs, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. All via Wikimedia
         Commons unless noted; shown in greyscale. These pictures show the kind of sites our equipment serves, not
-        GoodBiz products.
+        GoodBiz Power Systems products.
       </p>
 
       <div className="footer-last">
-        <span>© {new Date().getFullYear()} GoodBiz. Sourced in India, shipped worldwide.</span>
+        <span>© {new Date().getFullYear()} GoodBiz Power Systems. Sourced in India, shipped worldwide.</span>
         <Link href="/configurator" className="btn">
           Get a quote
         </Link>

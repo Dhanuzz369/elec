@@ -3,8 +3,10 @@
 // Fields marked PLACEHOLDER must be filled before launch.
 
 export const site = {
-  name: "GoodBiz",
-  legalName: "GoodBiz", // PLACEHOLDER — required before launch
+  name: "GoodBiz Power Systems",
+  // The first word, used where the full name is set in two sizes (header, footer mark).
+  shortName: "GoodBiz",
+  legalName: "GoodBiz Power Systems", // PLACEHOLDER — required before launch
   url: "https://www.goodbiz.example", // PLACEHOLDER — required before launch, no trailing slash
   email: "export@goodbiz.example", // PLACEHOLDER — required before launch
   phone: "+91 00000 00000", // PLACEHOLDER — required before launch
@@ -22,7 +24,7 @@ export const site = {
   foundingDate: undefined as string | undefined,
   sameAs: [] as string[], // LinkedIn, IndiaMART and other official profiles when they exist
   description:
-    "GoodBiz is an Indian exporter and supplier of LT panels, MV switchgear, RMUs, transformers, breakers and enclosures, sourced from partner manufacturers to each destination country's standards.",
+    "GoodBiz Power Systems is an Indian exporter and supplier of LT panels, MV switchgear, RMUs, transformers, breakers and enclosures, sourced from partner manufacturers to each destination country's standards.",
   googleSiteVerification: undefined as string | undefined,
 };
 

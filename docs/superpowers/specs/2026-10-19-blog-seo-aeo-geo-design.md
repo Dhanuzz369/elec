@@ -1,11 +1,11 @@
-# GoodBiz: blog and search visibility (SEO, AEO, GEO)
+# GoodBiz Power Systems: blog and search visibility (SEO, AEO, GEO)
 
 Date: 2026-10-19
 Project: `goodbiz/` (Next.js 15 App Router, React 19, Three.js, static export-friendly)
 
 ## Intent
 
-GoodBiz exports LV/MV/HV electrical equipment (panels, transformers, RMUs, switchgear, enclosures) from India, built to each destination country's standards. Buyers are contractors and plant engineers abroad who search by product, rating, HSN code and country. The owner wants the site to be found first through any kind of search: classic search engines (SEO), answer boxes and voice answers (AEO), and AI assistants such as ChatGPT, Perplexity, Gemini and Google AI Overviews (GEO, generative engine optimisation).
+GoodBiz Power Systems exports LV/MV/HV electrical equipment (panels, transformers, RMUs, switchgear, enclosures) from India, built to each destination country's standards. Buyers are contractors and plant engineers abroad who search by product, rating, HSN code and country. The owner wants the site to be found first through any kind of search: classic search engines (SEO), answer boxes and voice answers (AEO), and AI assistants such as ChatGPT, Perplexity, Gemini and Google AI Overviews (GEO, generative engine optimisation).
 
 They also want a blog with a new post every week. Posts will be published by an automation the owner builds later, shared across their four websites, so the blog must accept posts without anyone editing code.
 
@@ -14,7 +14,7 @@ They also want a blog with a new post every week. Posts will be published by an 
 1. A blog at `/blog` with an index, topic filtering and article pages, fed by Markdown files.
 2. A documented post-file format that an external automation can write to.
 3. Complete technical SEO on every page: unique title, unique meta description, canonical URL, Open Graph and Twitter cards, a generated share image, sitemap, robots, RSS.
-4. Structured data (schema.org JSON-LD) across the site so search engines and AI assistants can read who GoodBiz is, what it sells and what each article says.
+4. Structured data (schema.org JSON-LD) across the site so search engines and AI assistants can read who GoodBiz Power Systems is, what it sells and what each article says.
 5. Answer-ready content: question-and-answer blocks on product pages and country pages, marked up as FAQPage.
 6. Country landing pages, one per destination in `src/data/countries.ts`, because buyers search with their country.
 7. GEO extras: `llms.txt`, AI crawlers allowed in robots, quotable fact-dense copy.
@@ -31,7 +31,7 @@ They also want a blog with a new post every week. Posts will be published by an 
 ## Anti-goals (would be a failure even if it "works")
 
 - Keyword-stuffed or obviously generated copy; meta descriptions that repeat the title.
-- Invented proof: no fake reviews, ratings (`AggregateRating`), customer logos, certifications GoodBiz does not hold, or made-up project counts.
+- Invented proof: no fake reviews, ratings (`AggregateRating`), customer logos, certifications GoodBiz Power Systems does not hold, or made-up project counts.
 - Structured data that does not match visible page content (Google treats this as spam).
 - Breaking the existing design system (house rules from the taste-skill build: no eyebrows, no gradients, headlines at most two lines, tokens in `globals.css`).
 - Making the site slower: no client-side Markdown parsing, no heavy SEO libraries.
@@ -44,8 +44,8 @@ They also want a blog with a new post every week. Posts will be published by an 
 
 ## Decided by the owner
 
-- **GoodBiz sources every product from partner manufacturers.** It is an exporter and supplier, not a maker. Nothing on the site or in structured data may say GoodBiz manufactures, builds, winds or tests equipment in its own factory.
-- **GoodBiz arranges the destination certificates** (SASO/SABER, SONCAP, PVoC, UL listing, RCM, UKCA and the others in `countries.ts`) with each shipment. Pages may say so.
+- **GoodBiz Power Systems sources every product from partner manufacturers.** It is an exporter and supplier, not a maker. Nothing on the site or in structured data may say GoodBiz Power Systems manufactures, builds, winds or tests equipment in its own factory.
+- **GoodBiz Power Systems arranges the destination certificates** (SASO/SABER, SONCAP, PVoC, UL listing, RCM, UKCA and the others in `countries.ts`) with each shipment. Pages may say so.
 - Weekly blog, posted by a future automation across four sites.
 - Full SEO, AEO and GEO, including a meta description on every page.
 - Starter content and the blog/SEO plan as played back in chat were accepted.
@@ -56,8 +56,8 @@ They also want a blog with a new post every week. Posts will be published by an 
 
 ```ts
 export const site = {
-  name: "GoodBiz",
-  legalName: "GoodBiz",                       // PLACEHOLDER
+  name: "GoodBiz Power Systems",
+  legalName: "GoodBiz Power Systems",                       // PLACEHOLDER
   url: "https://www.goodbiz.example",         // PLACEHOLDER, no trailing slash
   email: "export@goodbiz.example",            // PLACEHOLDER
   phone: "+91 00000 00000",                   // PLACEHOLDER
@@ -126,9 +126,9 @@ Copy must say the values are typical and the project specification wins, as the 
 
 Use Next.js `metadata` / `generateMetadata` with `metadataBase = site.url`:
 
-- `title` (template `%s · GoodBiz`), unique `description` (120–160 chars, never just the title), `alternates.canonical`, `openGraph` (type, url, title, description, images, siteName, locale `en`), `twitter` (`summary_large_image`), `robots`.
+- `title` (template `%s · GoodBiz Power Systems`), unique `description` (120–160 chars, never just the title), `alternates.canonical`, `openGraph` (type, url, title, description, images, siteName, locale `en`), `twitter` (`summary_large_image`), `robots`.
 - Product family pages: description built from the family's summary plus its HSN code range.
-- Generated share images via `opengraph-image.tsx` (Next `ImageResponse`) per route group: the motif, the page title, GoodBiz wordmark, in the site palette. 1200×630.
+- Generated share images via `opengraph-image.tsx` (Next `ImageResponse`) per route group: the motif, the page title, GoodBiz Power Systems wordmark, in the site palette. 1200×630.
 - `icon` and `apple-icon` from the two-circle motif.
 - `google-site-verification` meta only when set in `site.ts`.
 
@@ -140,7 +140,7 @@ One small `JsonLd` server component that renders `<script type="application/ld+j
 | --- | --- |
 | All pages (layout) | `Organization` (name, url, logo, email, telephone, address, sameAs, `description` as an exporter and supplier, `areaServed`, `knowsAbout` for the product families and certificates) and `WebSite` |
 | Every page below home | `BreadcrumbList` |
-| `/products/[slug]` | `ItemList` of `Product` per variant (name, description, category, `additionalProperty` for rating, standard and HSN code). **No `brand` or `manufacturer`** (GoodBiz is not the maker). Each product carries an `offers` `Offer` with `seller` = the Organization, `availability` = `PreOrder`/made to order, `areaServed` = the countries list, and no price. `FAQPage` for its Q&A |
+| `/products/[slug]` | `ItemList` of `Product` per variant (name, description, category, `additionalProperty` for rating, standard and HSN code). **No `brand` or `manufacturer`** (GoodBiz Power Systems is not the maker). Each product carries an `offers` `Offer` with `seller` = the Organization, `availability` = `PreOrder`/made to order, `areaServed` = the countries list, and no price. `FAQPage` for its Q&A |
 | `/products` | `ItemList` of families; `Dataset`-free, HSN table as `DefinedTermSet` of `DefinedTerm` (code + description) |
 | `/export/[country]` | `WebPage` with `about` = Country (`Place`), `FAQPage` |
 | `/blog/[slug]` | `BlogPosting` (headline, description, datePublished, dateModified, author, publisher = Organization, image, mainEntityOfPage, keywords, about) + `FAQPage` when `faq` present |
@@ -157,7 +157,7 @@ No `Offer` prices, `AggregateRating` or `Review` (we have none; inventing them i
 ### 8. GEO: AI assistants
 
 - `/robots.txt` (from `app/robots.ts`): allow all, explicitly allow `GPTBot`, `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `Claude-Web`, `Google-Extended`, `Applebot-Extended`, `Bingbot`; point to the sitemap.
-- `/llms.txt`: plain-text summary of who GoodBiz is, product families with ratings and HSN codes, countries served, and links to key pages and the latest posts. Generated at build from the same data so it never drifts. Also `/llms-full.txt` with the full product and HSN tables.
+- `/llms.txt`: plain-text summary of who GoodBiz Power Systems is, product families with ratings and HSN codes, countries served, and links to key pages and the latest posts. Generated at build from the same data so it never drifts. Also `/llms-full.txt` with the full product and HSN tables.
 - Copy style on product, country and blog pages: short factual sentences that state the entity, the number and the standard together, so a quoted sentence still makes sense on its own.
 - Every page shows a visible "last updated" date where it matters (blog, HSN finder, country pages).
 
@@ -180,9 +180,9 @@ The current copy implies manufacturing. Rewrite these to the exporter/supplier t
 | `products/[slug]` CTA | "We build to match and ship it." | "We source to match and ship it." |
 | `products.ts` summaries | "wound in copper or aluminium, tested to IEC…", "Low-voltage panels built to your single-line diagram…", etc. | describe the product and what the buyer gets ("supplied with…", "built by our partner manufacturers to your SLD") |
 | `SiteFooter.tsx` | "Built in India, shipped worldwide." | "Sourced in India, shipped worldwide." |
-| `Configurator.tsx` plate | "GoodBiz · Made in India", "as it would leave our factory" | "Supplied by GoodBiz · Origin India", "as it would ship to {country}" |
-| `brands.ts` comment | "brands GoodBiz actually builds with" | "brands GoodBiz sources" |
-| Country pages, FAQs, starter post 2 | — | state that GoodBiz arranges the destination certificate with the shipment |
+| `Configurator.tsx` plate | "GoodBiz Power Systems · Made in India", "as it would leave our factory" | "Supplied by GoodBiz Power Systems · Origin India", "as it would ship to {country}" |
+| `brands.ts` comment | "brands GoodBiz Power Systems actually builds with" | "brands GoodBiz Power Systems sources" |
+| Country pages, FAQs, starter post 2 | — | state that GoodBiz Power Systems arranges the destination certificate with the shipment |
 
 ### 11. Starter posts (drafts)
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { families } from "@/data/products";
+import { site } from "@/data/site";
 import { TransformerSymbol } from "./Motif";
 
 export function SiteHeader() {
@@ -34,9 +35,12 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link href="/" className="wordmark" aria-label="GoodBiz home">
+      <Link href="/" className="wordmark" aria-label={`${site.name} home`}>
         <TransformerSymbol />
-        GoodBiz
+        <span className="wordmark-text">
+          {site.shortName}
+          <small>{site.name.slice(site.shortName.length).trim()}</small>
+        </span>
       </Link>
       <nav className="nav" aria-label="Main">
         <div className="nav-products" ref={ref}>

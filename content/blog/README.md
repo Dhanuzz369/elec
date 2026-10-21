@@ -19,7 +19,7 @@ The file starts with a YAML block between `---` lines.
 | `description` | yes | text | 120–160 characters; the meta description and the summary in lists. Never the same as the title |
 | `date` | yes | `YYYY-MM-DD` | publish date, a real calendar day (`2026-02-30` fails). A future date stays hidden until a rebuild on or after that day in India time |
 | `updated` | no | `YYYY-MM-DD` | last meaningful edit; shown on the page and used as `dateModified` |
-| `author` | yes | text | a person's name, or `GoodBiz` for the company |
+| `author` | yes | text | a person's name, or `GoodBiz Power Systems` for the company |
 | `tags` | yes | list of text | first tag is the main topic. `Export Compliance` and `export compliance` are the same tag. Each tag needs at least one Latin letter or digit, because it becomes a web address |
 | `family` | no | product family slug | one of `lt-panels`, `mv-switchgear-rmu`, `transformers`, `substations`, `breakers-contactors`, `enclosures-junction-boxes`, `parts`, `switchyard-cables-ups` |
 | `countries` | no | list of country codes | codes from `src/data/countries.ts`, e.g. `[SA, NG, KE]` |
@@ -40,7 +40,7 @@ Plain Markdown (CommonMark) plus tables. Use `##` and `###` for headings; the pa
 title: HSN codes for MCC panels
 description: The Indian 8-digit HSN code for motor control centre panels, what the 8537 heading covers, and the mistakes that delay customs clearance.
 date: 2026-11-02
-author: GoodBiz
+author: GoodBiz Power Systems
 tags: [HSN codes, Export compliance]
 family: lt-panels
 countries: [SA, AE]
@@ -73,7 +73,7 @@ Before the site goes live:
 
 1. Fill every `PLACEHOLDER` in `src/data/site.ts`: domain, legal name, email, phone, WhatsApp, registered address. Add official profiles (LinkedIn, IndiaMART) to `sameAs`.
 2. Review the three starter posts in this folder and change `draft: true` to `draft: false` on each one you approve.
-3. Replace the sample brand list in `src/data/brands.ts` with the brands GoodBiz really sources.
+3. Replace the sample brand list in `src/data/brands.ts` with the brands GoodBiz Power Systems really sources.
 4. Set up a daily rebuild (a scheduled deploy hook on the host) so dated posts go live on their day.
 5. Verify the domain in Google Search Console and Bing Webmaster Tools; put the Google token in `googleSiteVerification` in `src/data/site.ts`.
 6. Submit `https://<your-domain>/sitemap.xml` in both tools.

@@ -21,7 +21,7 @@ const post = (over: Partial<Post> = {}): Post => ({
   title: "A title",
   description: "d",
   date: "2026-10-10",
-  author: "GoodBiz",
+  author: "GoodBiz Power Systems",
   tags: ["HSN codes"],
   faq: [],
   draft: false,
@@ -37,7 +37,7 @@ test("products carry no brand, manufacturer, rating, review or price", () => {
   }
 });
 
-test("every product offer names GoodBiz as seller", () => {
+test("every product offer names GoodBiz Power Systems as seller", () => {
   const list = familyLd(families[0]) as { itemListElement: { item: { offers: { seller: { name: string } } } }[] };
   expect(list.itemListElement).toHaveLength(families[0].variants.length);
   for (const el of list.itemListElement) expect(el.item.offers.seller.name).toBe(site.name);

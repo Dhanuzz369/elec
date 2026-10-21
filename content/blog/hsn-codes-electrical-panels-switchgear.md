@@ -2,7 +2,7 @@
 title: HSN codes for panels and switchgear
 description: The Indian 8-digit HSN codes for LT panels, MV switchgear, RMUs, breakers, enclosures and parts, and the common mistakes that delay customs clearance.
 date: 2026-10-19
-author: GoodBiz
+author: GoodBiz Power Systems
 tags: [HSN codes, Export compliance]
 family: lt-panels
 countries: [SA, AE, NG]
@@ -66,4 +66,4 @@ Empty cabinets are not panels until they are fitted, so they go under 8538:
 
 ## Check before you ship
 
-These lines follow the Indian Customs Tariff as published in 2026. Always confirm the final line with your customs broker, and look up any product in the [HSN finder](/products#hsn). When you send an enquiry through the [configurator](/configurator), GoodBiz puts the correct code on the quotation for each line item.
+These lines follow the Indian Customs Tariff as published in 2026. Always confirm the final line with your customs broker, and look up any product in the [HSN finder](/products#hsn). When you send an enquiry through the [configurator](/configurator), GoodBiz Power Systems puts the correct code on the quotation for each line item.

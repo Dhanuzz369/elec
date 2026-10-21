@@ -43,7 +43,7 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
     ["Medium voltage", c.mv],
     ["Frequency", `${c.hz} Hz`],
     ["Standards", c.standard],
-    ["Certificate", `${c.conformity}, arranged by GoodBiz`],
+    ["Certificate", `${c.conformity}, arranged by GoodBiz Power Systems`],
     ["Design ambient", `${c.ambient} °C`],
     ["Nameplates", c.plate],
   ];

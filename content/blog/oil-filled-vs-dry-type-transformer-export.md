@@ -2,7 +2,7 @@
 title: Oil-filled or dry-type transformer?
 description: How to choose between an oil-filled and a dry-type transformer for an export project, by site, rating, fire risk and climate, with the HSN code for each.
 date: 2026-10-19
-author: GoodBiz
+author: GoodBiz Power Systems
 tags: [Transformers]
 family: transformers
 countries: [SA, NG, KE]
@@ -51,4 +51,4 @@ A dry-type (cast resin) transformer has windings cast in epoxy, with no liquid.
 
 For export, the rating is only half the specification. Give the primary and secondary voltage, frequency (50 or 60 Hz), vector group, standard (IEC 60076 or the local equivalent), design ambient and nameplate language. Saudi Arabia runs at 60 Hz with a 13.8 kV or 33 kV primary; Nigeria and Kenya run at 50 Hz with 11 kV or 33 kV.
 
-GoodBiz sources both types from IEC-tested partner manufacturers and arranges the destination certificate with the shipment. See the [transformer range](/products/transformers) or set your country and rating in the [configurator](/configurator?family=transformers).
+GoodBiz Power Systems sources both types from IEC-tested partner manufacturers and arranges the destination certificate with the shipment. See the [transformer range](/products/transformers) or set your country and rating in the [configurator](/configurator?family=transformers).

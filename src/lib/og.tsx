@@ -15,7 +15,7 @@ function Motif({ size, stroke, color }: { size: number; stroke: number; color: s
   );
 }
 
-export function renderOg(title: string, label = "GoodBiz") {
+export function renderOg(title: string, label = "GoodBiz Power Systems") {
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", background: C.bg, position: "relative" }}>

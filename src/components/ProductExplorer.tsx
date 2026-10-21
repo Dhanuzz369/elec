@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { families } from "@/data/products";
@@ -61,6 +62,16 @@ export function ProductExplorer() {
             Open {fam.name}
           </Link>
         </div>
+        {fam.gallery && (
+          <div className="panel-photos">
+            {fam.gallery.map((p) => (
+              <figure key={p.src}>
+                <Image src={p.src} alt={p.alt} width={1536} height={1024} sizes="(max-width: 860px) 33vw, 20vw" />
+                <figcaption>{p.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
         <div className="bands">
           {fam.variants.map((v) => (
             <div key={v.name} className="band">

@@ -1,8 +1,8 @@
 ---
 title: Which certificate each country needs
-description: "SASO in Saudi Arabia, SONCAP in Nigeria, PVoC in Kenya, UL in the US: which certificate each market asks for, and how GoodBiz arranges it."
+description: "SASO in Saudi Arabia, SONCAP in Nigeria, PVoC in Kenya, UL in the US: which certificate each market asks for, and how GoodBiz Power Systems arranges it."
 date: 2026-10-19
-author: GoodBiz
+author: GoodBiz Power Systems
 tags: [Export compliance, Certificates]
 countries: [SA, AE, QA, NG, KE, TZ, US, AU, GB]
 cover: /images/free-container-ship-port-image.webp
@@ -10,14 +10,14 @@ coverAlt: Containers stacked on a ship at a port
 draft: true
 faq:
   - q: Which certificate do I need to import electrical panels into Saudi Arabia?
-    a: "A SASO conformity certificate issued through the SABER platform, with the equipment built to IEC 61439 and Saudi Electricity Company specifications. GoodBiz arranges it with the shipment."
+    a: "A SASO conformity certificate issued through the SABER platform, with the equipment built to IEC 61439 and Saudi Electricity Company specifications. GoodBiz Power Systems arranges it with the shipment."
   - q: What is SONCAP?
     a: "The Standards Organisation of Nigeria Conformity Assessment Programme. Regulated electrical goods need a SONCAP certificate to clear Nigerian customs."
-  - q: Does GoodBiz arrange the destination certificate?
-    a: "Yes. GoodBiz arranges the conformity certificate or approval paperwork each destination requires and ships it with the equipment."
+  - q: Does GoodBiz Power Systems arrange the destination certificate?
+    a: "Yes. GoodBiz Power Systems arranges the conformity certificate or approval paperwork each destination requires and ships it with the equipment."
 ---
 
-The same MCC panel can clear customs in Dubai and sit for weeks in Lagos, only because a certificate is missing. Each destination has its own conformity scheme on top of the technical standard. Here is what the main markets ask for. GoodBiz arranges the certificate for each shipment, so it travels with the equipment.
+The same MCC panel can clear customs in Dubai and sit for weeks in Lagos, only because a certificate is missing. Each destination has its own conformity scheme on top of the technical standard. Here is what the main markets ask for. GoodBiz Power Systems arranges the certificate for each shipment, so it travels with the equipment.
 
 ## The Gulf
 

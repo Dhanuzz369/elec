@@ -500,7 +500,7 @@ export function Configurator() {
         </p>
         <div className="plate" aria-live="polite">
           <div className="plate-head">
-            <span>Supplied by GoodBiz · Origin India</span>
+            <span>Supplied by GoodBiz Power Systems · Origin India</span>
             <TransformerSymbol />
           </div>
           <table>

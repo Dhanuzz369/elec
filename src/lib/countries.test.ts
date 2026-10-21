@@ -27,7 +27,7 @@ test("looks a country up by slug", () => {
   expect(getCountryBySlug("atlantis")).toBeUndefined();
 });
 
-test("Saudi FAQ names the certificate and says GoodBiz arranges it", () => {
+test("Saudi FAQ names the certificate and says GoodBiz Power Systems arranges it", () => {
   const faq = countryFaq(byCode("SA"));
   expect(faq).toHaveLength(4);
   expect(faq.some((f) => f.a.includes("SASO / SABER certificate") && /arrange/i.test(f.a))).toBe(true);
@@ -65,5 +65,5 @@ test("certificate reads naturally mid-sentence without lowercasing acronyms", ()
 });
 
 test("no country description is cut mid-sentence", () => {
-  for (const c of countries) expect(countryDescription(c)).toMatch(/(arranged by GoodBiz|by sea or air)\.$/);
+  for (const c of countries) expect(countryDescription(c)).toMatch(/(arranged by GoodBiz Power Systems|by sea or air)\.$/);
 });

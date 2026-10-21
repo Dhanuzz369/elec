@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { families, getFamily } from "@/data/products";
@@ -49,6 +50,18 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
             </a>
           </div>
         </div>
+        {fam.gallery?.length ? (
+          <figure className="product-stage" data-reveal>
+            <Image
+              src={fam.gallery[0].src}
+              alt={fam.gallery[0].alt}
+              width={1536}
+              height={1024}
+              sizes="(max-width: 860px) 100vw, 42vw"
+              priority
+            />
+          </figure>
+        ) : (
         <div className="family-visual" data-reveal-circle>
           {fam.image ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -59,7 +72,24 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
             <TransformerSymbol strokeWidth={0.8} />
           )}
         </div>
+        )}
       </section>
+
+      {fam.gallery && fam.gallery.length > 1 && (
+        <section className="gallery" aria-labelledby="gallery-title">
+          <h2 id="gallery-title" data-reveal>
+            From our range
+          </h2>
+          <div className="gallery-grid" data-stagger>
+            {fam.gallery.map((p) => (
+              <figure key={p.src} data-reveal>
+                <Image src={p.src} alt={p.alt} width={1536} height={1024} sizes="(max-width: 860px) 100vw, 33vw" />
+                <figcaption>{p.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="range" data-stagger>
         {fam.range.map((r) => (

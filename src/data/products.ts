@@ -24,6 +24,8 @@ export type Family = {
   options: string[];
   faq: Faq[];
   image?: { src: string; alt: string; credit: string };
+  // GoodBiz Power Systems' own product photographs, shown in colour.
+  gallery?: { src: string; alt: string; caption: string }[];
 };
 
 export const families: Family[] = [
@@ -51,7 +53,7 @@ export const families: Family[] = [
     options: ["Copper or aluminium busbars", "IP31 to IP54", "Front or rear access", "Fixed or withdrawable feeders"],
     faq: [
       { q: "What is the HSN code for an MCC or PCC panel?", a: "85371000. India uses one 8-digit line for boards and panels for 1000 V or less, so PCC, MCC, APFC, ATS, PLC panels and distribution boards all ship under it." },
-      { q: "What is the largest LT panel GoodBiz supplies?", a: "Power distribution panels up to 6300 A main busbar, with copper or aluminium busbars. MCCs go up to 4000 A." },
+      { q: "What is the largest LT panel GoodBiz Power Systems supplies?", a: "Power distribution panels up to 6300 A main busbar, with copper or aluminium busbars. MCCs go up to 4000 A." },
       { q: "Which standard are the LT panels built to?", a: "IEC 61439-1/2 as standard, with IS/IEC 61439 or BS EN 61439 on request. Arc-fault testing to IEC 61641 is available when the specification asks for it." },
       { q: "Can I choose the breaker brand inside the panel?", a: "Yes. Panels are built by our partner manufacturers with the ACB, MCCB and relay brand your specification or approved vendor list names." },
       { q: "Which enclosure ratings are available for LT panels?", a: "IP31 to IP54, front or rear access, with fixed or withdrawable feeders and Form 4b separation on request." },
@@ -119,11 +121,23 @@ export const families: Family[] = [
       { q: "Can the rating plate be in the site's language?", a: "Yes. Rating plates can be bilingual, for example Arabic and English for Saudi Arabia and Kuwait." },
       { q: "Copper or aluminium windings?", a: "Both are available. State your preference in the enquiry, along with mineral or ester oil and the cooling class, ONAN or ONAF." },
     ],
-    image: {
-      src: "/images/a-power-transformer-mounted-on-a-wooden.jpg",
-      alt: "A pole-mounted distribution transformer with three insulators against the sky",
-      credit: "Moses Cursor Ssebunya, CC0",
-    },
+    gallery: [
+      {
+        src: "/images/products/transformer-oil-onan.webp",
+        alt: "Oil-filled distribution transformer with conservator tank, three HV bushings, LV bushings and radiator banks",
+        caption: "Oil-filled distribution, ONAN",
+      },
+      {
+        src: "/images/products/transformer-power-onaf.webp",
+        alt: "Oil-filled power transformer with tall HV bushings and radiator banks fitted with cooling fans",
+        caption: "Power transformer, ONAF",
+      },
+      {
+        src: "/images/products/transformer-dry-cast-resin.webp",
+        alt: "Dry-type cast-resin transformer with three red resin coils and copper terminal pads on a steel frame",
+        caption: "Dry-type, cast resin",
+      },
+    ],
   },
   {
     slug: "substations",
@@ -182,7 +196,7 @@ export const families: Family[] = [
       { q: "What are the HSN codes for ACB, MCCB and MCB?", a: "85362010 for air circuit breakers, 85362020 for MCCBs and 85362030 for MCBs, all for 1000 V or less." },
       { q: "What is the HSN code for an RCCB or RCBO?", a: "85362040, the Indian line for earth-leakage and residual current breakers." },
       { q: "What is the HSN code for an industrial contactor?", a: "Contactors are commonly declared under 85364900. Some exporters use 85365010, so confirm the line with your customs broker." },
-      { q: "Which brands of breakers can GoodBiz supply?", a: "The brand your specification names. Breakers are sourced from that brand and supplied loose or fitted into panels, with test certificates for each lot." },
+      { q: "Which brands of breakers can GoodBiz Power Systems supply?", a: "The brand your specification names. Breakers are sourced from that brand and supplied loose or fitted into panels, with test certificates for each lot." },
     ],
   },
   {
@@ -214,7 +228,7 @@ export const families: Family[] = [
   },
   {
     slug: "parts",
-    name: "Panel & switchgear parts",
+    name: "Busbars & panel parts",
     short: "Busbars, supports, terminals and spares.",
     summary:
       "The parts that keep panels and switchgear running: busbar systems, insulators, terminals and the spares your maintenance team asks for.",
@@ -232,6 +246,23 @@ export const families: Family[] = [
     standards: ["IEC 61439", "IEC 62271", "Drawing or sample matched"],
     builtFor: ["Panel builders", "Maintenance teams", "Retrofit projects"],
     options: ["Silver or tin plating", "Heat-shrink sleeving", "Kits per panel", "Mixed-lot shipping"],
+    gallery: [
+      {
+        src: "/images/products/busbars-copper-supports.webp",
+        alt: "Three copper busbars bolted to red SMC busbar supports, with two tinned flexible busbar links",
+        caption: "Copper busbars on SMC supports",
+      },
+      {
+        src: "/images/products/insulators-epoxy-shrouds.webp",
+        alt: "Red epoxy post insulators of two heights, a cream support insulator and two red insulating shrouds",
+        caption: "Epoxy insulators and shrouds",
+      },
+      {
+        src: "/images/products/terminals-lugs-ducts.webp",
+        alt: "DIN-rail terminal blocks with earth terminals, copper and tinned cable lugs, and slotted wiring ducts",
+        caption: "Terminals, lugs and wiring ducts",
+      },
+    ],
     faq: [
       { q: "What is the HSN code for switchgear parts?", a: "85389000 covers parts for boards and switchgear under headings 8535 to 8537, such as busbars, insulators, shutters and mechanisms." },
       { q: "What is the HSN code for terminals and connectors?", a: "85369090 for terminal blocks, connectors and lugs for 1000 V or less." },

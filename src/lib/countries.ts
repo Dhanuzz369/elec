@@ -32,7 +32,7 @@ export function conformityInSentence(c: Country): string {
 
 export function countryDescription(c: Country): string {
   const grid = `${c.lv}, ${c.hz} Hz`;
-  const tail = `with the ${conformityInSentence(c)} arranged by GoodBiz.`;
+  const tail = `with the ${conformityInSentence(c)} arranged by GoodBiz Power Systems.`;
   // Shed detail in order (standards list, then product names) before cutting a sentence in half.
   const options = [
     `Electrical panels, transformers, RMUs and switchgear for ${c.name}: ${grid}, ${c.standard}, ${tail}`,
@@ -52,11 +52,11 @@ export function countryFaq(c: Country): Faq[] {
     },
     {
       q: `Which standards apply to electrical panels and switchgear for ${c.name}?`,
-      a: `${c.standard}. GoodBiz sources panels, switchgear and transformers to these standards from partner manufacturers.`,
+      a: `${c.standard}. GoodBiz Power Systems sources panels, switchgear and transformers to these standards from partner manufacturers.`,
     },
     {
       q: `Which certificate do I need to import electrical equipment into ${c.name}?`,
-      a: `${c.conformity}. GoodBiz arranges it with the shipment, so it travels with the equipment.`,
+      a: `${c.conformity}. GoodBiz Power Systems arranges it with the shipment, so it travels with the equipment.`,
     },
     {
       q: `What design ambient temperature should I specify for ${c.name}?`,

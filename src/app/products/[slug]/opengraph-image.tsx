@@ -1,7 +1,7 @@
 import { families, getFamily } from "@/data/products";
 import { OG_SIZE, renderOg } from "@/lib/og";
 
-export const alt = "GoodBiz product family";
+export const alt = "GoodBiz Power Systems product family";
 export const size = OG_SIZE;
 export const contentType = "image/png";
 

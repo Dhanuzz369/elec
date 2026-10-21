@@ -1,4 +1,4 @@
-/* GoodBiz — one motif: the transformer's two linked circles.
+/* GoodBiz Power Systems — one motif: the transformer's two linked circles.
    Pastel green ground, seafoam fields, deep forest ink as the contrast. Square corners; round only where the motif is. */
 
 :root {
@@ -2347,7 +2347,7 @@ fieldset {
   font-size: clamp(1.375rem, 1rem + 1vw, 2.25rem);
   line-height: 1.25;
   letter-spacing: -0.01em;
-  max-width: 34ch;
+  max-width: 44ch;
 }
 
 .about-body {
@@ -2405,7 +2405,7 @@ fieldset {
 
 .export-row {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) 40px;
+  grid-template-columns: 96px minmax(0, 5fr) minmax(0, 7fr) 40px;
   gap: 32px;
   align-items: center;
   padding: 22px 24px;
@@ -2425,11 +2425,11 @@ fieldset {
   letter-spacing: -0.01em;
 }
 
-.export-row span {
+.export-desc {
   color: var(--ink);
 }
 
-.export-row svg {
+.export-arrow {
   width: 32px;
   height: 32px;
   transition: transform 200ms var(--ease-out);
@@ -2444,7 +2444,7 @@ fieldset {
   .export-list li:nth-child(even) .export-row:hover {
     background: var(--accent);
   }
-  .export-row:hover svg {
+  .export-row:hover .export-arrow {
     transform: translateX(4px);
   }
 }
@@ -2500,21 +2500,166 @@ fieldset {
     grid-template-columns: 1fr;
   }
   .export-row {
-    grid-template-columns: minmax(0, 1fr) 28px;
-    gap: 8px 16px;
-    padding: 18px;
+    grid-template-columns: 72px minmax(0, 1fr) 24px;
+    gap: 6px 14px;
+    padding: 16px;
+    align-items: start;
   }
-  .export-row span {
-    grid-column: 1;
+  .export-row strong {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .export-desc {
+    grid-column: 2;
     grid-row: 2;
   }
-  .export-row svg {
-    grid-column: 2;
+  .export-arrow {
+    grid-column: 3;
     grid-row: 1 / span 2;
+    align-self: center;
     width: 24px;
     height: 24px;
   }
   .industries li {
     font-size: var(--step-body);
+  }
+}
+
+/* ---------- Two-size brand name ---------- */
+
+.wordmark-text {
+  display: grid;
+  line-height: 1;
+}
+
+.wordmark-text small {
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-top: 3px;
+}
+
+.footer-mark-sub {
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: clamp(2rem, 1rem + 4.2vw, 5.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* ---------- Product photographs (GoodBiz Power Systems' own, shown in colour) ---------- */
+
+.product-stage {
+  margin: 0;
+  background: var(--field-1);
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.product-stage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gallery {
+  padding: var(--section) var(--margin) 0;
+}
+
+.gallery h2 {
+  font-size: var(--step-head);
+  margin-bottom: 32px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.gallery-grid figure {
+  margin: 0;
+  background: var(--field-1);
+  display: grid;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  transition: transform 600ms var(--ease-out);
+}
+
+.gallery-grid figcaption {
+  padding: 14px 18px 18px;
+  font-weight: 500;
+  background: var(--surface);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-grid figure:hover img {
+    transform: scale(1.03);
+  }
+}
+
+@media (max-width: 860px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.export-thumb {
+  width: 96px;
+  aspect-ratio: 3 / 2;
+  background: var(--field-1);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--action);
+}
+
+.export-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.export-thumb svg {
+  width: 44%;
+}
+
+.panel-photos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.panel-photos figure {
+  margin: 0;
+  background: var(--field-1);
+}
+
+.panel-photos img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+.panel-photos figcaption {
+  padding: 8px 12px 10px;
+  background: var(--surface);
+  font-size: 1rem;
+}
+
+@media (max-width: 860px) {
+  .export-thumb {
+    width: 72px;
+    grid-row: 1 / span 2;
   }
 }
