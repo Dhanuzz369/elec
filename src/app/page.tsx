@@ -4,7 +4,7 @@ import Link from "next/link";
 import { brands } from "@/data/brands";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
-import { HeroStage } from "@/components/HeroStage";
+import { HeroMosaic } from "@/components/HeroMosaic";
 import { QuoteCta } from "@/components/QuoteCta";
 import { Bullet, TransformerSymbol } from "@/components/Motif";
 import { pageMeta } from "@/lib/meta";
@@ -57,43 +57,25 @@ const INDUSTRIES = [
 export default function Home() {
   return (
     <>
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-card">
-          <div className="busbars" aria-hidden="true">
-            {Array.from({ length: 40 }).map((_, i) => (
-              <span key={i} />
-            ))}
-          </div>
-          <div className="hero-card-body" data-stagger>
-            <h1 id="hero-title" data-reveal>
-              Fit for your grid
-            </h1>
-            <p data-reveal>
-              Your export partner for electrical panels, switchgear, transformers and enclosures, sourced from
-              India&apos;s manufacturers to the voltage, standards and paperwork of your country.
-            </p>
-            <div className="hero-actions" data-reveal>
-              <Link href="/configurator" className="btn">
-                Configure your requirement
-              </Link>
-              <Link href="/products" className="btn btn--paper">
-                See all products
-              </Link>
-            </div>
-          </div>
-          <div className="hero-links">
-            <Link href="/products/lt-panels" className="link">
-              LT & MCC panels
+      <section className="hero-wall" aria-labelledby="hero-title">
+        <HeroMosaic />
+        <div className="hero-wall-text" data-stagger>
+          <h1 id="hero-title" data-reveal>
+            Fit for your grid
+          </h1>
+          <p data-reveal>
+            Your export partner for electrical panels, switchgear, transformers and enclosures, sourced from
+            India&apos;s manufacturers to the voltage, standards and paperwork of your country.
+          </p>
+          <div className="hero-actions" data-reveal>
+            <Link href="/configurator" className="btn btn--large">
+              Configure your requirement
             </Link>
-            <Link href="/products/transformers" className="link">
-              Transformers
-            </Link>
-            <Link href="/products/mv-switchgear-rmu" className="link">
-              MV switchgear & RMU
+            <Link href="/products" className="btn btn--paper btn--large">
+              See all products
             </Link>
           </div>
         </div>
-        <HeroStage />
       </section>
 
       <section className="about" aria-labelledby="about-title">
