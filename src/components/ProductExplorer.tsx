@@ -64,7 +64,7 @@ export function ProductExplorer() {
         </div>
         {fam.gallery && (
           <div className="panel-photos">
-            {fam.gallery.map((p) => (
+            {fam.gallery.slice(0, 3).map((p) => (
               <figure key={p.src}>
                 <Image src={p.src} alt={p.alt} width={1536} height={1024} sizes="(max-width: 860px) 33vw, 20vw" />
                 <figcaption>{p.caption}</figcaption>

@@ -37,7 +37,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
     <>
       <section className="family-hero" aria-labelledby="family-title">
         <div data-stagger>
-          <h1 id="family-title" data-reveal>
+          <h1 id="family-title" data-reveal data-long={fam.name.length > 16 || undefined}>
             {fam.name}
           </h1>
           <p data-reveal>{fam.summary}</p>

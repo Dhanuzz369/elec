@@ -51,6 +51,33 @@ export const families: Family[] = [
     standards: ["IEC 61439-1/2", "IS/IEC 61439", "BS EN 61439", "IEC 61641 arc tested, on request"],
     builtFor: ["Process plants", "Commercial buildings", "Data centres", "Water and wastewater"],
     options: ["Copper or aluminium busbars", "IP31 to IP54", "Front or rear access", "Fixed or withdrawable feeders"],
+    gallery: [
+      {
+        src: "/images/products/lt-pcc-acb-incomers.webp",
+        alt: "Power control centre (PCC) line-up with two air circuit breaker incomers, digital meters and a section of outgoing feeder drawers",
+        caption: "Power control centre with ACB incomers",
+      },
+      {
+        src: "/images/products/lt-mcc-drawout-feeders.webp",
+        alt: "Motor control centre with an ACB incomer, rows of draw-out motor feeder modules and a drive section with a keypad",
+        caption: "Motor control centre, draw-out feeders",
+      },
+      {
+        src: "/images/products/lt-plc-panel-hmi.webp",
+        alt: "Open PLC automation panel with PLC rack, power supply, relays and terminal blocks, and an HMI touchscreen on the door",
+        caption: "PLC panel with door-mounted HMI",
+      },
+      {
+        src: "/images/products/lt-ats-changeover.webp",
+        alt: "Open ATS panel with two mechanically interlocked changeover switches, colour-coded busbars and a controller on the door",
+        caption: "ATS and changeover panel",
+      },
+      {
+        src: "/images/products/lt-distribution-board.webp",
+        alt: "Wall-mounted distribution board with an MCCB incomer and three rows of MCB outgoing feeders",
+        caption: "MCCB-incomer distribution board",
+      },
+    ],
     faq: [
       { q: "What is the HSN code for an MCC or PCC panel?", a: "85371000. India uses one 8-digit line for boards and panels for 1000 V or less, so PCC, MCC, APFC, ATS, PLC panels and distribution boards all ship under it." },
       { q: "What is the largest LT panel GoodBiz Power Systems supplies?", a: "Power distribution panels up to 6300 A main busbar, with copper or aluminium busbars. MCCs go up to 4000 A." },
@@ -219,6 +246,38 @@ export const families: Family[] = [
     standards: ["IEC 62208", "IEC 60529", "IK08–IK10"],
     builtFor: ["Panel builders", "Instrumentation contractors", "Telecom and solar sites"],
     options: ["CRCA, galvanised or SS316", "Cut-outs and gland plates", "Mounting plates", "Canopies and plinths"],
+    gallery: [
+      {
+        src: "/images/products/enclosure-modular-distribution.webp",
+        alt: "Modular multi-door distribution cabinet with meter windows, MCB viewing windows and quarter-turn door locks",
+        caption: "Modular distribution cabinet",
+      },
+      {
+        src: "/images/products/enclosure-outdoor-feeder-pillar.webp",
+        alt: "Outdoor feeder pillar on a steel stand with a rain canopy, MCB rows and industrial sockets on the side",
+        caption: "Outdoor feeder pillar with canopy",
+      },
+      {
+        src: "/images/products/enclosure-compartment-cabinet.webp",
+        alt: "Compartmentalised floor-standing cabinet with separate doors for incomer, metering and outgoing sections",
+        caption: "Compartmentalised floor cabinet",
+      },
+      {
+        src: "/images/products/enclosure-metering-cabinet.webp",
+        alt: "Multi-compartment metering cabinet with meter viewing windows, MCB windows and a large viewing panel",
+        caption: "Multi-meter cabinet",
+      },
+      {
+        src: "/images/products/enclosure-pedestal-cabinet.webp",
+        alt: "Pedestal-mounted metering and distribution cabinet on a steel stand, with meter windows and an MCB viewing window",
+        caption: "Pedestal metering cabinet",
+      },
+      {
+        src: "/images/products/enclosure-multi-section-lineup.webp",
+        alt: "Long multi-section cabinet line-up with incomer sections and rows of feeder compartments with viewing windows",
+        caption: "Multi-section cabinet line-up",
+      },
+    ],
     faq: [
       { q: "What is the HSN code for an empty panel enclosure?", a: "85381010 for unfitted cabinets for industrial use and 85381090 for other unfitted boards and cabinets." },
       { q: "What is the HSN code for a junction box?", a: "85369030, the Indian line for junction boxes for 1000 V or less." },
