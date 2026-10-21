@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { getFamily } from "@/data/products";
+import { families, getFamily } from "@/data/products";
 
 const onDisk = (src: string) => existsSync(path.join(process.cwd(), "public", src));
 
@@ -62,4 +62,15 @@ test("every gallery photo exists and has alt text and a caption", () => {
       expect(p.caption.length).toBeGreaterThan(3);
     }
   }
+});
+
+test("the range is the six product families GoodBiz Power Systems supplies", () => {
+  expect(families.map((f) => f.slug)).toEqual([
+    "lt-panels",
+    "mv-switchgear-rmu",
+    "transformers",
+    "breakers-contactors",
+    "enclosures-junction-boxes",
+    "parts",
+  ]);
 });

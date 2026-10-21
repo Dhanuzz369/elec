@@ -28,16 +28,16 @@ export function SiteFooter() {
 
       <div className="footer-cols">
         <nav aria-label="Panels and switchgear">
-          <strong>Panels & switchgear</strong>
-          {families.slice(0, 4).map((f) => (
+          <strong>Power equipment</strong>
+          {families.slice(0, 3).map((f) => (
             <Link key={f.slug} href={`/products/${f.slug}`} className="link">
               {f.name}
             </Link>
           ))}
         </nav>
         <nav aria-label="Components and supply">
-          <strong>Components & supply</strong>
-          {families.slice(4).map((f) => (
+          <strong>Components & enclosures</strong>
+          {families.slice(3).map((f) => (
             <Link key={f.slug} href={`/products/${f.slug}`} className="link">
               {f.name}
             </Link>

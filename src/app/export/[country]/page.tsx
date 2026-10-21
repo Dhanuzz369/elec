@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaqList } from "@/components/FaqList";
+import { QuoteCta } from "@/components/QuoteCta";
 import { JsonLd } from "@/components/JsonLd";
 import { Bullet } from "@/components/Motif";
 import { countries } from "@/data/countries";
@@ -102,20 +103,12 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
 
       <FaqList faq={faq} />
 
-      <Link href={`/configurator?country=${c.code}`} className="cta-band" aria-label={`Configure a requirement for ${c.name}`}>
-        <div className="cta-top">
-          <p>
-            Pick your equipment and rating. The rating plate fills in for {c.name}, and we source to match and
-            ship it.
-          </p>
-          <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M12 36 36 12M16 12h20v20" />
-          </svg>
-        </div>
-        <span className="cta-word" aria-hidden="true" data-reveal>
-          configure
-        </span>
-      </Link>
+      <QuoteCta
+        title={`Shipping to ${c.name}?`}
+        text={`Pick your equipment and ratings. The rating plate fills in for ${c.name}, and we source to match and ship it.`}
+        href={`/configurator?country=${c.code}`}
+        action={`Configure for ${c.name}`}
+      />
 
       <JsonLd
         data={[

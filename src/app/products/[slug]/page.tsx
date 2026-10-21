@@ -6,6 +6,7 @@ import { families, getFamily } from "@/data/products";
 import { Bullet, TransformerDrawing, TransformerSymbol } from "@/components/Motif";
 import { pageMeta, trimDescription } from "@/lib/meta";
 import { FaqList } from "@/components/FaqList";
+import { QuoteCta } from "@/components/QuoteCta";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbLd, faqLd, familyLd } from "@/lib/jsonld";
 
@@ -170,17 +171,12 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
         </svg>
       </Link>
 
-      <Link href={`/configurator?family=${fam.slug}`} className="cta-band" aria-label={`Request ${fam.name}`}>
-        <div className="cta-top">
-          <p>Tell us the country and the rating. We source to match and ship it.</p>
-          <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M12 36 36 12M16 12h20v20" />
-          </svg>
-        </div>
-        <span className="cta-word" aria-hidden="true">
-          request
-        </span>
-      </Link>
+      <QuoteCta
+        title={`Need ${/^[A-Z][a-z]/.test(fam.name) ? fam.name[0].toLowerCase() + fam.name.slice(1) : fam.name}?`}
+        text="Tell us the country and the rating. We source to match, arrange the certificates and ship it."
+        href={`/configurator?family=${fam.slug}`}
+        action={`Request ${fam.name}`}
+      />
     </>
   );
 }

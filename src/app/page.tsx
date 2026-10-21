@@ -5,6 +5,7 @@ import { brands } from "@/data/brands";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
 import { HeroStage } from "@/components/HeroStage";
+import { QuoteCta } from "@/components/QuoteCta";
 import { Bullet, TransformerSymbol } from "@/components/Motif";
 import { pageMeta } from "@/lib/meta";
 
@@ -37,7 +38,7 @@ const REASONS = [
   },
   {
     title: "Order sizes that fit",
-    text: "From a single panel or a box of breakers to a full substation package.",
+    text: "From a single panel or a box of breakers to a full project package.",
   },
 ];
 
@@ -113,7 +114,7 @@ export default function Home() {
         <dl className="about-facts" data-stagger>
           <div data-reveal>
             <dt className="num">{families.length}</dt>
-            <dd>product families, LT to 220 kV</dd>
+            <dd>product families, LT panels to 33 kV</dd>
           </div>
           <div data-reveal>
             <dt className="num">{countries.length}</dt>
@@ -171,8 +172,16 @@ export default function Home() {
             </p>
           </div>
           {brands.map((b) => (
-            <div key={b} className="brand-tile" data-reveal>
-              {b}
+            <div key={b.name} className="brand-tile" data-logo={b.logo ? true : undefined} data-reveal>
+              {b.logo ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={b.logo} alt={`${b.name} logo`} width={72} height={72} />
+                  <span>{b.name}</span>
+                </>
+              ) : (
+                b.name
+              )}
             </div>
           ))}
         </div>
@@ -231,20 +240,12 @@ export default function Home() {
         </ul>
       </section>
 
-      <Link href="/configurator" className="cta-band" aria-label="Configure your requirement">
-        <div className="cta-top">
-          <p>
-            Are you a contractor looking for electrical solutions? Tell us the project and the country; we source
-            to match, arrange the certificates and ship it.
-          </p>
-          <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
-            <path d="M12 36 36 12M16 12h20v20" />
-          </svg>
-        </div>
-        <span className="cta-word" aria-hidden="true" data-reveal>
-          configure
-        </span>
-      </Link>
+      <QuoteCta
+        title="Looking for electrical solutions?"
+        text="Contractors and plant owners: tell us the project and the country. We source to match, arrange the certificates and ship it."
+        href="/configurator"
+        action="Configure your requirement"
+      />
     </>
   );
 }

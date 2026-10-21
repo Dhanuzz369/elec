@@ -19,7 +19,7 @@ const PROJECTS = [
 const IP = ["IP31", "IP42", "IP54", "IP55", "IP65"];
 const INCOTERMS = ["FOB Indian port", "CIF destination port", "DAP site", "EXW factory"];
 const STEPS = ["Project", "Country & site", "Ratings", "Contact"];
-const MV_FAMILIES = new Set(["mv-switchgear-rmu", "transformers", "substations", "switchyard-cables-ups"]);
+const MV_FAMILIES = new Set(["mv-switchgear-rmu", "transformers"]);
 
 type Form = {
   project: string;

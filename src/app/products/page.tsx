@@ -36,7 +36,7 @@ const HSN_FAQ = [
 export const metadata: Metadata = pageMeta({
   title: "Products and HSN codes",
   description:
-    "LT panels, MCC, MV switchgear, RMUs, transformers, compact substations, breakers, enclosures, parts, cables and UPS, with 8-digit HSN codes.",
+    "LT panels, MCC, MV switchgear, RMUs, transformers, breakers, enclosures, junction boxes, busbars and panel parts from India, with 8-digit HSN codes.",
   path: "/products",
 });
 
@@ -46,7 +46,7 @@ export default function ProductsPage() {
       <header className="page-head">
         <div data-stagger>
           <h1 data-reveal>
-            Eight product families
+            Six product families
           </h1>
           <p data-reveal>
             A complete range of LT and MV electrical equipment, sourced from India&apos;s manufacturers and shipped

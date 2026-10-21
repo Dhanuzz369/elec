@@ -21,7 +21,7 @@ The file starts with a YAML block between `---` lines.
 | `updated` | no | `YYYY-MM-DD` | last meaningful edit; shown on the page and used as `dateModified` |
 | `author` | yes | text | a person's name, or `GoodBiz Power Systems` for the company |
 | `tags` | yes | list of text | first tag is the main topic. `Export Compliance` and `export compliance` are the same tag. Each tag needs at least one Latin letter or digit, because it becomes a web address |
-| `family` | no | product family slug | one of `lt-panels`, `mv-switchgear-rmu`, `transformers`, `substations`, `breakers-contactors`, `enclosures-junction-boxes`, `parts`, `switchyard-cables-ups` |
+| `family` | no | product family slug | one of `lt-panels`, `mv-switchgear-rmu`, `transformers`, `breakers-contactors`, `enclosures-junction-boxes`, `parts` |
 | `countries` | no | list of country codes | codes from `src/data/countries.ts`, e.g. `[SA, NG, KE]` |
 | `cover` | no | path or URL | must start with `/` (a file under `/public`, e.g. `/images/x.jpg`) or `https://`. Strongly recommended: it is the list thumbnail and the article picture |
 | `coverAlt` | when `cover` is set | text | describes the picture |

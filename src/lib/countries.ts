@@ -6,7 +6,7 @@ import type { Faq } from "@/lib/posts";
 // Copy for the country export pages, generated from the grid data in
 // src/data/countries.ts so each page states facts for that country only.
 
-export const MV_FAMILIES = new Set(["mv-switchgear-rmu", "transformers", "substations", "switchyard-cables-ups"]);
+export const MV_FAMILIES = new Set(["mv-switchgear-rmu", "transformers"]);
 
 export function countrySlug(c: Country): string {
   return c.name

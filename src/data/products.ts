@@ -199,37 +199,6 @@ export const families: Family[] = [
     ],
   },
   {
-    slug: "substations",
-    name: "Compact & package substations",
-    short: "Factory-built substations up to 2500 kVA at 11, 22 and 33 kV.",
-    summary:
-      "MV switchgear, transformer and LV board in one enclosure, wired and tested at the manufacturer's works so the site only needs a plinth and cables.",
-    range: [
-      { value: "2500 kVA", label: "transformer" },
-      { value: "11 · 22 · 33 kV", label: "class" },
-      { value: "1 lift", label: "site installation" },
-    ],
-    variants: [
-      { name: "Compact secondary substations", note: "RMU, transformer and LV board in one kiosk", rating: "up to 2500 kVA", hsn: "85372000" },
-      { name: "Package substations", note: "Skid or containerised, tailored layouts", rating: "to order", hsn: "85372000" },
-      { name: "Solar inverter stations", note: "Inverter-duty transformer with RMU", rating: "up to 6.6 MVA", hsn: "85372000" },
-    ],
-    standards: ["IEC 62271-202", "IEC 60076", "IEC 61439"],
-    builtFor: ["Housing and townships", "Solar parks", "Industrial estates", "Temporary power"],
-    options: ["Walk-in or non-walk-in", "GRP, steel or concrete housing", "Internal arc classified", "Metering compartment"],
-    faq: [
-      { q: "What is a compact substation?", a: "A factory-assembled unit with an RMU, a transformer and an LV board in one enclosure, wired and tested at the manufacturer's works so the site needs only a plinth and cables." },
-      { q: "What ratings do the compact substations cover?", a: "Up to 2500 kVA at 11 kV, 22 kV and 33 kV class, built to IEC 62271-202." },
-      { q: "Which HSN code applies to a compact substation?", a: "There is no separate tariff line. It is usually declared under 85372000 when the switchgear is the main function, or under the transformer line when the transformer is." },
-      { q: "Are solar inverter stations available?", a: "Yes. Inverter-duty transformers with an RMU in one skid are supplied up to 6.6 MVA." },
-    ],
-    image: {
-      src: "/images/electrical-substation-in-cerepova-daugavpils.jpg",
-      alt: "An outdoor electrical substation in winter with gantries and lightning masts",
-      credit: "mihalich.barak, CC BY 3.0",
-    },
-  },
-  {
     slug: "breakers-contactors",
     name: "Breakers & contactors",
     short: "ACB, MCCB, MCB and industrial contactors.",
@@ -360,39 +329,6 @@ export const families: Family[] = [
       { q: "Can spares be matched to an existing panel?", a: "Yes. Spares are matched to your drawing or sample, and supplied as kits per panel when needed." },
       { q: "Are busbars supplied plated?", a: "Copper busbars can be supplied bare, tin-plated or silver-plated, punched to drawing and sleeved." },
     ],
-  },
-  {
-    slug: "switchyard-cables-ups",
-    name: "Switchyard, cables & UPS",
-    short: "Outdoor switchyard to 220 kV, HT and LT cables, UPS and batteries.",
-    summary:
-      "Everything around the panels: outdoor switchyard equipment, power cables in copper and aluminium, and the UPS, batteries and chargers that keep control power alive.",
-    range: [
-      { value: "220 kV", label: "switchyard" },
-      { value: "HT · LT", label: "cables, Al and Cu" },
-      { value: "UPS", label: "batteries and chargers" },
-    ],
-    variants: [
-      { name: "Outdoor switchyard equipment", note: "Breakers, isolators, CTs, PTs, arresters", rating: "up to 220 kV", hsn: "85352912" },
-      { name: "HT / MV power cables", note: "XLPE, armoured, Al or Cu", rating: "up to 33 kV", hsn: "85446020" },
-      { name: "LV power and control cables", note: "PVC or XLPE, armoured", rating: "≤ 1.1 kV", hsn: "85444920" },
-      { name: "UPS systems", note: "Online, industrial grade", rating: "1–800 kVA", hsn: "85044090" },
-      { name: "Batteries and chargers", note: "VRLA, Ni-Cd, lithium; float-boost chargers", rating: "to order", hsn: "85072000" },
-    ],
-    standards: ["IEC 62271", "IEC 60502", "IEC 62040", "IEC 60896"],
-    builtFor: ["Utility substations", "Power plants", "Process plants"],
-    options: ["Drum lengths to order", "Fire-survival cables", "Battery racks and DCDBs", "Site-wise packing"],
-    faq: [
-      { q: "What is the HSN code for HT power cable?", a: "85446020 for XLPE or PVC insulated cable above 1000 V. LV power and control cable without connectors is 85444920." },
-      { q: "What is the HSN code for a 220 kV circuit breaker?", a: "85352912 for a 220 kV SF6 circuit breaker. Lightning arresters for the switchyard are 85354010." },
-      { q: "What is the HSN code for a UPS?", a: "A UPS is usually declared under 85044090. Battery chargers are 85044030 and lead-acid batteries 85072000." },
-      { q: "Which switchyard equipment can be supplied?", a: "Breakers, isolators, CTs, PTs and lightning arresters up to 220 kV, sourced to IEC 62271." },
-    ],
-    image: {
-      src: "/images/chilime-switchyard.jpg",
-      alt: "An outdoor hydropower switchyard with lattice gantries in a mountain valley",
-      credit: "Lipiram, CC BY 3.0",
-    },
   },
 ];
 
