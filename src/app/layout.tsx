@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { site } from "@/data/site";
+import { HOME_TITLE } from "@/lib/meta";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { RevealObserver } from "@/components/RevealObserver";
@@ -10,7 +11,7 @@ import { organizationLd, websiteLd } from "@/lib/jsonld";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "GoodBiz Power Systems · Electrical equipment sourced for your grid",
+    default: HOME_TITLE,
     template: "%s · GoodBiz Power Systems",
   },
   description: "GoodBiz Power Systems exports LT panels, transformers, RMUs, MV switchgear and enclosures from India, matched to your country's grid and certificates.",

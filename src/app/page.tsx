@@ -7,13 +7,16 @@ import { families } from "@/data/products";
 import { HeroMosaic } from "@/components/HeroMosaic";
 import { QuoteCta } from "@/components/QuoteCta";
 import { Bullet, TransformerSymbol } from "@/components/Motif";
-import { pageMeta } from "@/lib/meta";
+import { HOME_TITLE, pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = pageMeta({
-  title: "Electrical equipment sourced for your grid",
+export const metadata: Metadata = {
+  ...pageMeta({
+  title: HOME_TITLE,
   description: "GoodBiz Power Systems exports LT panels, transformers, RMUs, MV switchgear and enclosures from India, matched to your country's grid and certificates.",
   path: "/",
-});
+  }),
+  title: { absolute: HOME_TITLE },
+};
 
 const REASONS = [
   {

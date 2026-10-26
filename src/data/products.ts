@@ -17,6 +17,8 @@ export type Family = {
   name: string;
   short: string;
   summary: string;
+  // Written for search results: 120–160 characters, one finished sentence.
+  metaDescription: string;
   range: { value: string; label: string }[];
   variants: Variant[];
   standards: string[];
@@ -33,6 +35,8 @@ export const families: Family[] = [
     slug: "lt-panels",
     name: "LT panels",
     short: "MCC, PCC, APFC, ATS and PLC panels up to 6300 A.",
+    metaDescription:
+      "LT panels exported from India: PCC, MCC, APFC, ATS and PLC panels up to 6300 A, built to IEC 61439 by partner manufacturers. HSN 85371000.",
     summary:
       "Low-voltage panels built by our partner manufacturers to your single-line diagram, with copper or aluminium busbars and the breaker brand your site already stocks.",
     range: [
@@ -90,6 +94,8 @@ export const families: Family[] = [
     slug: "mv-switchgear-rmu",
     name: "MV switchgear & RMU",
     short: "AIS and GIS panels and ring main units, 11 to 33 kV.",
+    metaDescription:
+      "MV switchgear and ring main units from India, 11 to 33 kV, AIS and GIS, built to IEC 62271 and matched to your utility. HSN 85372000.",
     summary:
       "Medium-voltage switchboards and ring main units for utilities, renewables and industrial substations, with VCB or SF6 breaking.",
     range: [
@@ -156,6 +162,8 @@ export const families: Family[] = [
     slug: "transformers",
     name: "Transformers",
     short: "Oil-filled and dry-type: distribution, power and converter duty.",
+    metaDescription:
+      "Oil-filled and dry-type transformers from India, distribution to power class, built to IEC 60076 with copper or aluminium windings. HSN 8504.",
     summary:
       "Distribution, power and converter transformers with copper or aluminium windings, sourced from IEC-tested manufacturers and supplied with the oil, radiators and rating plate your grid expects.",
     range: [
@@ -202,6 +210,8 @@ export const families: Family[] = [
     slug: "breakers-contactors",
     name: "Breakers & contactors",
     short: "ACB, MCCB, MCB and industrial contactors.",
+    metaDescription:
+      "ACB, MCCB, MCB, RCCB and contactors from the brand your specification names, sourced in India to IEC 60947 and shipped worldwide. HSN 8536.",
     summary:
       "Protection and switching devices supplied loose or fitted into panels, sourced from the brand your specification names.",
     range: [
@@ -231,6 +241,8 @@ export const families: Family[] = [
     slug: "enclosures-junction-boxes",
     name: "Enclosures & junction boxes",
     short: "Empty panel cabinets, industrial enclosures and junction boxes.",
+    metaDescription:
+      "Empty panel cabinets, wall-mount enclosures, junction boxes and outdoor kiosks from India, IP54 to IP66, in any RAL shade. HSN 8538 and 8536.",
     summary:
       "Unfitted cabinets and boxes for panel builders and site contractors, powder-coated to your RAL shade and cut to your gland plan.",
     range: [
@@ -290,6 +302,8 @@ export const families: Family[] = [
     slug: "parts",
     name: "Busbars & panel parts",
     short: "Busbars, supports, terminals and spares.",
+    metaDescription:
+      "Copper and aluminium busbars, SMC insulators, terminals and switchgear spares from India, matched to your drawing or sample. HSN 85389000.",
     summary:
       "The parts that keep panels and switchgear running: busbar systems, insulators, terminals and the spares your maintenance team asks for.",
     range: [

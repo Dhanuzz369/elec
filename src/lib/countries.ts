@@ -19,9 +19,11 @@ export function getCountryBySlug(slug: string): Country | undefined {
   return countries.find((c) => countrySlug(c) === slug);
 }
 
+// Each family is quoted against its own product standard (IEC 60076 for
+// transformers, 60947 for breakers…), never the country's panel standard.
 export function familyLineFor(c: Country, fam: Family): string {
   const grid = MV_FAMILIES.has(fam.slug) ? `${c.mv} and ${c.lv}` : c.lv;
-  return `${fam.name} for ${c.name}: ${grid}, ${c.hz} Hz, to ${c.standard}.`;
+  return `${fam.name} for ${c.name}: ${grid}, ${c.hz} Hz, to ${fam.standards[0]}.`;
 }
 
 // "Utility approval list" reads as "the utility approval list" mid-sentence;

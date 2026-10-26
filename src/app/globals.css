@@ -2919,6 +2919,10 @@ fieldset {
   .mosaic-col:nth-child(n + 4) {
     display: none;
   }
+  /* Taller tiles keep two copies of a column longer than the phone hero. */
+  .mosaic-tile {
+    aspect-ratio: 4 / 5;
+  }
   .mosaic-col:nth-child(2) {
     margin-top: -60px;
   }

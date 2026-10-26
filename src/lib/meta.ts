@@ -4,6 +4,9 @@ import { site } from "@/data/site";
 // One way to describe a page to search engines and link previews. Share images
 // come from the nearest opengraph-image.tsx unless `image` is given.
 
+// The home page names the business first; every other page uses "%s · GoodBiz Power Systems".
+export const HOME_TITLE = "GoodBiz Power Systems · Panels & Transformers from India";
+
 export const DESCRIPTION_MIN = 120;
 export const DESCRIPTION_MAX = 160;
 

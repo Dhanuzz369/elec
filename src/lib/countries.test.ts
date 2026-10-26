@@ -67,3 +67,21 @@ test("certificate reads naturally mid-sentence without lowercasing acronyms", ()
 test("no country description is cut mid-sentence", () => {
   for (const c of countries) expect(countryDescription(c)).toMatch(/(arranged by GoodBiz Power Systems|by sea or air)\.$/);
 });
+
+test("each family line cites that family's own standard, in every country", () => {
+  const expected: Record<string, RegExp> = {
+    "lt-panels": /IEC 61439/,
+    "mv-switchgear-rmu": /IEC 62271/,
+    transformers: /IEC 60076/,
+    "breakers-contactors": /IEC 60947/,
+    "enclosures-junction-boxes": /IEC 62208/,
+  };
+  for (const c of countries) {
+    for (const [slug, re] of Object.entries(expected)) {
+      const line = familyLineFor(c, getFamily(slug)!);
+      expect(line, line).toMatch(re);
+    }
+    expect(familyLineFor(c, getFamily("transformers")!)).not.toMatch(/61439|62271/);
+    expect(familyLineFor(c, getFamily("breakers-contactors")!)).not.toMatch(/61439|62271/);
+  }
+});

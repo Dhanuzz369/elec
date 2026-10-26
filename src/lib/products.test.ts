@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { families, getFamily } from "@/data/products";
@@ -73,4 +74,23 @@ test("the range is the six product families GoodBiz Power Systems supplies", () 
     "enclosures-junction-boxes",
     "parts",
   ]);
+});
+
+test("every family has a hand-written meta description that ends on a full sentence", () => {
+  const seen = new Set<string>();
+  for (const f of families) {
+    const d = f.metaDescription;
+    expect(d, f.slug).toBeTruthy();
+    expect(d.length, `${f.slug}: ${d.length}`).toBeGreaterThanOrEqual(120);
+    expect(d.length, `${f.slug}: ${d.length}`).toBeLessThanOrEqual(160);
+    expect(d, f.slug).toMatch(/[a-z0-9)]\.$/i);
+    expect(d, f.slug).not.toMatch(/\b(to|your|the|and|of|for|with)\.$/i);
+    expect(seen.has(d)).toBe(false);
+    seen.add(d);
+  }
+});
+
+test("the family page uses the hand-written description without trimming", () => {
+  const src = readFileSync(path.join(process.cwd(), "src/app/products/[slug]/page.tsx"), "utf8");
+  expect(src).toContain("description: fam.metaDescription");
 });

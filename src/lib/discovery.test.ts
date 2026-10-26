@@ -76,3 +76,7 @@ test("the full file carries every HSN code, the short one does not", () => {
   expect(buildLlmsFullTxt()).toContain("85371000");
   expect(buildLlmsTxt(posts)).not.toContain("85371000");
 });
+
+test("robots has no Host line (Google ignores it)", () => {
+  expect(robotsConfig().host).toBeUndefined();
+});

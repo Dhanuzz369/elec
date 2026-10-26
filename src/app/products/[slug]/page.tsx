@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { families, getFamily } from "@/data/products";
 import { Bullet, TransformerDrawing, TransformerSymbol } from "@/components/Motif";
-import { pageMeta, trimDescription } from "@/lib/meta";
+import { pageMeta } from "@/lib/meta";
 import { FaqList } from "@/components/FaqList";
 import { QuoteCta } from "@/components/QuoteCta";
 import { JsonLd } from "@/components/JsonLd";
@@ -18,10 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const fam = getFamily(slug);
   if (!fam) return {};
-  const codes = [...new Set(fam.variants.map((v) => v.hsn))].slice(0, 3).join(", ");
   return pageMeta({
     title: `${fam.name}: product lines and HSN codes`,
-    description: trimDescription(`${fam.name} for export from India, HSN ${codes}. ${fam.short} ${fam.summary}`),
+    description: fam.metaDescription,
     path: `/products/${fam.slug}`,
   });
 }
