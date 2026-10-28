@@ -1,6 +1,6 @@
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
-import { absoluteUrl, site } from "@/data/site";
+import { absoluteUrl, site, publishable } from "@/data/site";
 import { countrySlug } from "@/lib/countries";
 import { postUrl } from "@/lib/feed";
 import type { Post } from "@/lib/posts";
@@ -16,7 +16,7 @@ export function buildLlmsTxt(posts: Post[]): string {
     "",
     `> ${site.description}`,
     "",
-    `${site.name} quotes each order to the destination country's voltage, frequency, standards and certificate, arranges that certificate with the shipment, and lists the Indian 8-digit HSN code for every line item. Enquiries: ${site.email}.`,
+    `${site.name} quotes each order to the destination country's voltage, frequency, standards and certificate, arranges that certificate with the shipment, and lists the Indian 8-digit HSN code for every line item. Enquiries: ${publishable(site.email) ?? absoluteUrl("/quote")}.`,
     "",
     "## Products",
     "",
