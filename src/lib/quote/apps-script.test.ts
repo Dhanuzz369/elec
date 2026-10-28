@@ -3,7 +3,7 @@ import { createRequire } from "node:module";
 // The Apps Script helpers are plain script (no imports) so the same file can be
 // pasted into the Power sheet; Node loads it through require.
 const require = createRequire(import.meta.url);
-const { COLUMNS, alertsDue, escapeCell, mergeRow, parseRequest } = require("../../../apps-script/Sheet.js");
+const { COLUMNS, alertsDue, escapeCell, isLeadId, mergeRow, parseRequest } = require("../../../apps-script/Sheet.js");
 
 const col = (row: string[], name: string) => row[COLUMNS.indexOf(name)];
 
@@ -77,4 +77,20 @@ describe("parseRequest", () => {
   test("JSON that is not an object falls back to the form", () => {
     expect(parseRequest({ parameter: {}, postData: { contents: "42" } }).form).toBe(true);
   });
+});
+
+test("cells read back from the sheet are escaped again before writing", () => {
+  // getDisplayValues drops the apostrophe, so a stored "'=1+1" comes back as "=1+1".
+  const existing = mergeRow(null, { leadId: "L", stage: "contact" }, "T1");
+  existing[COLUMNS.indexOf("company")] = "=1+1";
+  expect(col(mergeRow(existing, { leadId: "L", stage: "product" }, "T2"), "company")).toBe("'=1+1");
+});
+
+test("lead ids must look like ids, so a post cannot target the header row", () => {
+  expect(isLeadId("0b8a3f0e-5c1d-4c1e-9a77-2f3d1c9e8b10")).toBe(true);
+  expect(isLeadId("lq3x9k-4f8a2b1c9d")).toBe(true);
+  expect(isLeadId("leadId")).toBe(false);
+  expect(isLeadId("=A1")).toBe(false);
+  expect(isLeadId("")).toBe(false);
+  expect(isLeadId("a".repeat(100))).toBe(false);
 });

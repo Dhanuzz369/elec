@@ -27,6 +27,13 @@ function escapeCell(value) {
   return /^[=+\-@\t\r]/.test(s) ? "'" + s : s;
 }
 
+// Ids come from crypto.randomUUID (or the site's fallback) and Utilities.getUuid:
+// letters, digits and hyphens. Anything else, such as "leadId", is refused so a
+// post can never match the header row.
+function isLeadId(id) {
+  return typeof id === "string" && /^(?=.*\d)(?=.*-)[A-Za-z0-9-]{8,64}$/.test(id);
+}
+
 function stageRank(stage) {
   return STAGES.indexOf(stage);
 }
@@ -34,7 +41,8 @@ function stageRank(stage) {
 // One row per leadId: filled cells are never emptied, firstSeen is kept and the
 // stage only moves forward, so a late in-between send cannot undo "submitted".
 function mergeRow(existing, incoming, now) {
-  var row = existing ? existing.slice() : COLUMNS.map(function () { return ""; });
+  // Cells read back with getDisplayValues have lost their apostrophe, so escape them again.
+  var row = existing ? existing.map(escapeCell) : COLUMNS.map(function () { return ""; });
   while (row.length < COLUMNS.length) row.push("");
   COLUMNS.forEach(function (name, i) {
     if (PROTECTED.indexOf(name) !== -1 || name === "stage") return;
@@ -83,5 +91,5 @@ function parseRequest(e) {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = { COLUMNS: COLUMNS, STAGES: STAGES, escapeCell: escapeCell, mergeRow: mergeRow, alertsDue: alertsDue, markAlerted: markAlerted, parseRequest: parseRequest };
+  module.exports = { COLUMNS: COLUMNS, STAGES: STAGES, escapeCell: escapeCell, isLeadId: isLeadId, mergeRow: mergeRow, alertsDue: alertsDue, markAlerted: markAlerted, parseRequest: parseRequest };
 }

@@ -19,14 +19,15 @@ function doPost(e) {
 
   // Bots that tick the hidden box, and posts with no id, get a polite answer and nothing else.
   var spam = data.website && String(data.website) !== "false";
-  if (!data.leadId || spam) return reply_(request.form);
+  if (!isLeadId(data.leadId) || spam) return reply_(request.form);
 
   var lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
     var sheet = leadsSheet_();
-    var id = escapeCell(data.leadId);
-    var found = sheet.getRange("A:A").createTextFinder(id).matchEntireCell(true).findNext();
+    // Search data rows only (row 2 down), exact and case-sensitive.
+    var ids = sheet.getRange(2, 1, Math.max(sheet.getLastRow() - 1, 1), 1);
+    var found = ids.createTextFinder(data.leadId).matchEntireCell(true).matchCase(true).findNext();
     var rowIndex = found ? found.getRow() : sheet.getLastRow() + 1;
     var existing = found ? sheet.getRange(rowIndex, 1, 1, COLUMNS.length).getDisplayValues()[0] : null;
 
