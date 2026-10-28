@@ -35,8 +35,10 @@ export const site = {
     country: "IN",
   },
   // Google Apps Script web app that saves leads to the "Power" sheet (docs/lead-sheet-setup.md).
-  // Empty until set: the quote form then offers WhatsApp and email instead.
-  leadEndpoint: process.env.NEXT_PUBLIC_LEAD_ENDPOINT?.trim() ?? "",
+  // Not a secret: visitors' browsers post to it. NEXT_PUBLIC_LEAD_ENDPOINT overrides it (the browser tests use a fake one).
+  leadEndpoint:
+    process.env.NEXT_PUBLIC_LEAD_ENDPOINT?.trim() ||
+    "https://script.google.com/macros/s/AKfycbyQHcpOdgt6dOpQV5ZHilU4XSRudZ9ZA9lr1ldSpRIWcxpSLajfyIDsBjf065w3y3u-qA/exec",
   logo: "/logo.png",
   // Posts go live on their date in this time zone (builds usually run in UTC).
   timeZone: "Asia/Kolkata",

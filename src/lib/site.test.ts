@@ -47,8 +47,8 @@ test("whatsapp link can carry a pre-written message", () => {
   expect(whatsappHref("a b")).toBe(`https://wa.me/${site.whatsapp}?text=a%20b`);
 });
 
-test("lead endpoint is empty unless configured", () => {
-  expect(typeof site.leadEndpoint).toBe("string");
+test("leads go to the Power sheet's Apps Script web app", () => {
+  expect(site.leadEndpoint).toMatch(/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/);
 });
 
 test("real contact details are set", () => {

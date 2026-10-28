@@ -2,8 +2,8 @@
 
 The website's quote forms send every lead to a Google Sheet through a small
 Apps Script web app, and the script emails **power@goodbizglobal.com** when a
-lead arrives and again when the request is finished. Until the web app URL is
-set, the forms still work: visitors get "Send on WhatsApp" and "Send by email"
+lead arrives and again when the request is finished. If the web app is ever
+unreachable, the forms still work: visitors get "Send on WhatsApp" and "Send by email"
 buttons instead.
 
 Do every step while signed in to the **goodbizglobal.com** Google Workspace
@@ -56,10 +56,10 @@ afterwards.
 
 ## 5. Connect the website
 
-1. In Vercel, open the project → **Settings → Environment Variables**.
-2. Add `NEXT_PUBLIC_LEAD_ENDPOINT` = the `/exec` URL, for Production and Preview.
-3. **Redeploy** (the value is built into the pages, so a redeploy is required).
-4. Fill in the form at `/quote` on the live site and check the sheet and inbox.
+The live URL is built into the site in `src/data/site.ts` (`leadEndpoint`), so
+no Vercel setting is needed. If you ever create a *new* deployment (new URL),
+replace it there and push. `NEXT_PUBLIC_LEAD_ENDPOINT` in Vercel, if set,
+overrides it.
 
 ## Changing the script later
 
