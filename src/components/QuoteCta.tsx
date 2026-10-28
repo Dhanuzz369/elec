@@ -8,6 +8,7 @@ type Props = {
   href: string;
   action: string;
   steps?: string[];
+  secondary?: { href: string; label: string };
 };
 
 const DEFAULT_STEPS = [
@@ -17,7 +18,7 @@ const DEFAULT_STEPS = [
 ];
 
 // The closing call to action: what to do, what happens next, and one clear button.
-export function QuoteCta({ title, text, href, action, steps = DEFAULT_STEPS }: Props) {
+export function QuoteCta({ title, text, href, action, steps = DEFAULT_STEPS, secondary }: Props) {
   return (
     <section className="quote-cta" aria-labelledby="quote-cta-title">
       <div className="quote-cta-copy" data-stagger>
@@ -41,6 +42,11 @@ export function QuoteCta({ title, text, href, action, steps = DEFAULT_STEPS }: P
             <path d="M4 12h15M13 6l6 6-6 6" />
           </svg>
         </Link>
+        {secondary && (
+          <Link href={secondary.href} className="btn btn--quiet">
+            {secondary.label}
+          </Link>
+        )}
         <a href={whatsappHref()} className="btn btn--quiet">
           Ask on WhatsApp
         </a>

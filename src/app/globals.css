@@ -1716,6 +1716,17 @@ fieldset {
   display: none;
 }
 
+/* Small phones: the header row must fit 375 px or the whole page widens and pans sideways. */
+@media (max-width: 400px) {
+  .site-header,
+  .nav {
+    gap: 12px;
+  }
+  .nav .btn {
+    padding: 0 1.1em;
+  }
+}
+
 @media (max-width: 860px) {
   .nav-mobile {
     display: inline;
@@ -2948,5 +2959,495 @@ fieldset {
 @media (prefers-reduced-motion: reduce) {
   .mosaic-col {
     animation: none;
+  }
+}
+
+/* ---------- Quick quote form ---------- */
+
+.quote-page {
+  padding: clamp(32px, 6vw, 96px) var(--margin) var(--section);
+  display: grid;
+  gap: clamp(24px, 4vw, 48px);
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.quote-head h1 {
+  font-size: var(--step-head);
+}
+
+.quote-head p {
+  margin-top: 12px;
+  max-width: 48ch;
+  color: var(--muted);
+}
+
+.qf {
+  background: var(--surface);
+  padding: clamp(20px, 4vw, 48px);
+  scroll-margin-top: 88px;
+}
+
+.qf-step {
+  display: grid;
+  gap: 16px;
+}
+
+.qf-step + .qf-step {
+  margin-top: 40px;
+}
+
+.qf-step[hidden] {
+  display: none;
+}
+
+.qf[data-ready] .qf-step + .qf-step {
+  margin-top: 0;
+}
+
+.qf-step h2 {
+  font-size: var(--step-lead);
+  font-weight: 500;
+  line-height: 1.2;
+  outline: none;
+}
+
+/* Before the form wakes up, show only the first step so nothing flashes. */
+@media (scripting: enabled) {
+  .qf:not([data-ready]) .qf-step:not([data-step="contact"]) {
+    display: none;
+  }
+  .qf-nojs {
+    display: none;
+  }
+}
+
+/* Without JavaScript the whole form is one page with a single submit button. */
+@media (scripting: none) {
+  .qf-progress,
+  .qf-back,
+  .qf-js {
+    display: none;
+  }
+}
+
+/* Progress */
+.qf-progress {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: var(--step-small);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.qf-bar {
+  display: block;
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.qf-bar i {
+  display: block;
+  height: 100%;
+  background: var(--action);
+  border-radius: inherit;
+  transform-origin: left center;
+  transition: transform 320ms var(--ease-in-out);
+}
+
+.qf-bar i:dir(rtl) {
+  transform-origin: right center;
+}
+
+/* Step transition: slide from the direction of travel, mirrored for right-to-left. */
+.qf[data-dir] .qf-step[data-active] {
+  --qf-from: 16px;
+  animation: qf-in 240ms var(--ease-out);
+}
+
+.qf[data-dir="back"] .qf-step[data-active] {
+  --qf-from: -16px;
+}
+
+.qf[data-dir] .qf-step[data-active]:dir(rtl) {
+  --qf-from: -16px;
+}
+
+.qf[data-dir="back"] .qf-step[data-active]:dir(rtl) {
+  --qf-from: 16px;
+}
+
+@keyframes qf-in {
+  from {
+    opacity: 0;
+    translate: var(--qf-from) 0;
+  }
+}
+
+@keyframes qf-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Fields */
+.qf-field {
+  display: grid;
+  gap: 6px;
+}
+
+.qf-field label {
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.qf-field input,
+.qf-field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+  background: var(--field-1);
+  color: var(--field-1-ink);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  font: inherit;
+  font-size: 16px;
+  transition: border-color 150ms ease;
+}
+
+.qf-field textarea {
+  min-height: 128px;
+  resize: vertical;
+}
+
+.qf-field input:focus,
+.qf-field textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.qf-field input[aria-invalid="true"] {
+  border-color: #a3321f;
+}
+
+.qf-hint,
+.qf-privacy {
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.qf-privacy {
+  margin-top: -8px;
+}
+
+.qf-error {
+  color: #a3321f;
+  font-size: var(--step-small);
+}
+
+.qf-error:empty {
+  display: none;
+}
+
+/* Honeypot: off screen, out of the tab order and hidden from assistive tech. */
+.qf-hp {
+  position: absolute;
+  inset-inline-start: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Choices */
+.qf-choices {
+  display: grid;
+  gap: 8px;
+}
+
+.qf-choices--card {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.qf-choices--pill {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.qf-choices--pill > .qf-other,
+.qf-choices--pill > .qf-error {
+  flex-basis: 100%;
+}
+
+.qf-choices--card > .qf-other,
+.qf-choices--card > .qf-error {
+  grid-column: 1 / -1;
+}
+
+.qf-choice {
+  position: relative;
+  display: grid;
+  align-content: start;
+  cursor: pointer;
+  background: var(--field-1);
+  color: var(--field-1-ink);
+  border: 1px solid var(--line);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition:
+    transform 160ms var(--ease-out),
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.qf-choice:active {
+  transform: scale(0.97);
+}
+
+.qf-choice input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.qf-choice:has(:focus-visible) {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Cards: photo above a short label */
+.qf-choices--card .qf-choice {
+  min-height: 52px;
+}
+
+.qf-photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  background: var(--surface-2);
+  color: var(--action);
+  overflow: hidden;
+}
+
+.qf-photo img {
+  object-fit: cover;
+}
+
+.qf-photo svg {
+  width: 40%;
+  height: auto;
+}
+
+.qf-choices--card .qf-choice-label {
+  padding: 8px 8px 10px;
+  font-size: var(--step-small);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.qf-choice--wide {
+  grid-column: 1 / -1;
+  place-content: center;
+  min-height: 52px;
+}
+
+.qf-choices--card .qf-choice:has(:checked) {
+  border-color: var(--action);
+  box-shadow: 0 0 0 3px var(--accent);
+}
+
+/* Pills fill with the brand colour */
+.qf-choices--pill .qf-choice {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: var(--step-small);
+}
+
+.qf-choices--pill .qf-choice:has(:checked) {
+  background: var(--action);
+  border-color: var(--action);
+  color: var(--action-ink);
+}
+
+/* Delivery terms: a card with a one-line explanation */
+.qf-choices--term .qf-choice {
+  gap: 2px;
+  min-height: 52px;
+  padding: 12px 16px;
+}
+
+.qf-choices--term .qf-choice-label {
+  font-weight: 500;
+}
+
+.qf-choice-hint {
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.qf-choices--term .qf-choice:has(:checked) {
+  border-color: var(--action);
+  box-shadow: 0 0 0 3px var(--accent);
+}
+
+/* "Something else" / "Another amount" text box opens under its choice */
+.qf-other {
+  display: none;
+  margin-top: 8px;
+}
+
+.qf-choices:has(input[value="other"]:checked) > .qf-other {
+  display: grid;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .qf-choice:hover {
+    border-color: var(--accent-deep);
+  }
+  .qf-choices--pill .qf-choice:has(:checked):hover {
+    background: var(--action-hover);
+  }
+}
+
+/* Country type-ahead */
+.qf-combo {
+  position: relative;
+}
+
+.qf-suggest {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--field-1);
+  border: 1px solid var(--line);
+  border-top: 0;
+}
+
+.qf-suggest[hidden] {
+  display: none;
+}
+
+.qf-suggest li {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.qf-suggest li + li {
+  border-top: 1px solid var(--surface);
+}
+
+.qf-suggest li[aria-selected="true"] {
+  background: var(--surface);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .qf-suggest li:hover {
+    background: var(--surface);
+  }
+}
+
+/* Navigation */
+.qf-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.qf-next {
+  margin-inline-start: auto;
+}
+
+/* Fallback when sending fails */
+.qf-fallback {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.qf-fallback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Success: the check draws itself once */
+.qf-done {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+
+.qf-done h2 {
+  font-size: var(--step-lead);
+  font-weight: 500;
+  outline: none;
+}
+
+.qf-check {
+  width: 56px;
+  height: 56px;
+  fill: none;
+  stroke: var(--action);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.qf-check circle {
+  stroke: var(--accent-deep);
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  animation: qf-draw 480ms var(--ease-out) forwards;
+}
+
+.qf-check path {
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: qf-draw 320ms var(--ease-out) 360ms forwards;
+}
+
+@keyframes qf-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .qf-choices--card {
+    gap: 6px;
+  }
+  .qf-choices--card .qf-choice-label {
+    padding: 6px 4px 8px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qf[data-dir] .qf-step[data-active] {
+    animation: qf-fade 150ms ease;
+  }
+  .qf-bar i {
+    transition-duration: 150ms;
+  }
+  .qf-check circle,
+  .qf-check path {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }

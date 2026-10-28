@@ -99,7 +99,7 @@ export function SiteFooter() {
 
       <div className="footer-last">
         <span>© {new Date().getFullYear()} GoodBiz Power Systems. Sourced in India, shipped worldwide.</span>
-        <Link href="/configurator" className="btn">
+        <Link href="/quote" className="btn">
           Get a quote
         </Link>
       </div>

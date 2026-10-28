@@ -44,3 +44,7 @@ next-env.d.ts
 .superpowers/
 .taste-skill/
 .impeccable/
+
+# playwright
+/test-results
+/playwright-report

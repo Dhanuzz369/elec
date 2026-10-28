@@ -37,7 +37,7 @@ test("sitemap leaves out thin tag pages", () => {
 });
 
 test("sitemap covers products, countries and core pages", () => {
-  for (const path of ["/", "/products", "/configurator", "/blog", "/export", "/export/saudi-arabia", "/products/transformers"]) {
+  for (const path of ["/", "/products", "/configurator", "/quote", "/blog", "/export", "/export/saudi-arabia", "/products/transformers"]) {
     expect(urls()).toContain(path === "/" ? `${site.url}/` : `${site.url}${path}`);
   }
 });
