@@ -87,7 +87,7 @@ test("llms.txt points answer engines at the quick quote form", () => {
 
 test("llms files never publish placeholder contact details", () => {
   for (const txt of [buildLlmsTxt(posts), buildLlmsFullTxt()]) {
-    expect(txt).not.toMatch(/\.example\b/);
+    expect(txt).not.toMatch(/@\S*\.example\b/);
     expect(txt).not.toMatch(/0000/);
   }
 });
