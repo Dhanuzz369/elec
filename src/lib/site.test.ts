@@ -37,3 +37,11 @@ test("locally, the future domain is the fallback", () => {
 test("the placeholder domain is gone", () => {
   expect(site.url).not.toContain("goodbiz.example");
 });
+
+test("whatsapp link can carry a pre-written message", () => {
+  expect(whatsappHref("a b")).toBe(`https://wa.me/${site.whatsapp}?text=a%20b`);
+});
+
+test("lead endpoint is empty unless configured", () => {
+  expect(typeof site.leadEndpoint).toBe("string");
+});

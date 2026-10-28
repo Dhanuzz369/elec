@@ -36,6 +36,9 @@ export const site = {
     postalCode: "", // PLACEHOLDER — required before launch
     country: "IN",
   },
+  // Google Apps Script web app that saves leads to the "Power" sheet (docs/lead-sheet-setup.md).
+  // Empty until set: the quote form then offers WhatsApp and email instead.
+  leadEndpoint: process.env.NEXT_PUBLIC_LEAD_ENDPOINT?.trim() ?? "",
   logo: "/logo.png",
   // Posts go live on their date in this time zone (builds usually run in UTC).
   timeZone: "Asia/Kolkata",
@@ -58,6 +61,6 @@ export function mailtoHref(subject?: string, body?: string): string {
   return `mailto:${site.email}${params.length ? `?${params.join("&")}` : ""}`;
 }
 
-export function whatsappHref(): string {
-  return `https://wa.me/${site.whatsapp}`;
+export function whatsappHref(text?: string): string {
+  return `https://wa.me/${site.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 }
