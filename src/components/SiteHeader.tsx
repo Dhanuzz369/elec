@@ -75,7 +75,7 @@ export function SiteHeader() {
         <Link href="/products" className="link nav-hide">
           All products
         </Link>
-        <Link href="/configurator" className="btn">
+        <Link href="/quote" className="btn">
           Get a quote
         </Link>
       </nav>

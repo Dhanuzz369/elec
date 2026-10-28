@@ -71,8 +71,8 @@ describe("sendLead", () => {
   });
 
   test("times out", async () => {
-    const hang = vi.fn((_url: string, init: RequestInit) => {
-      return new Promise<Response>((_, reject) => init.signal?.addEventListener("abort", () => reject(new Error("aborted"))));
+    const hang = vi.fn((_url: RequestInfo | URL, init?: RequestInit) => {
+      return new Promise<Response>((_, reject) => init?.signal?.addEventListener("abort", () => reject(new Error("aborted"))));
     });
     expect(await sendLead(payload(), { endpoint: ENDPOINT, final: true, fetchImpl: hang, storage: null, timeoutMs: 20 })).toBe(false);
   });

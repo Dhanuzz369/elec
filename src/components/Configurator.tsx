@@ -4,7 +4,9 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { countries, defaultCountry } from "@/data/countries";
 import { families } from "@/data/products";
-import { mailtoHref } from "@/data/site";
+import { mailtoHref, site, whatsappHref } from "@/data/site";
+import type { LeadPayload } from "@/lib/quote/payload";
+import { getLeadId, sendLead } from "@/lib/quote/send";
 import { TransformerSymbol } from "./Motif";
 
 const PROJECTS = [
@@ -65,7 +67,10 @@ function fromCountry(code: string) {
 export function Configurator() {
   const params = useSearchParams();
   const [step, setStep] = useState(0);
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState<false | "sheet" | "email">(false);
+  const [sending, setSending] = useState(false);
+  const inFlight = useRef(false);
+  const [written, setWritten] = useState("");
   const [form, setForm] = useState<Form>(() => ({
     project: "",
     equipment: [],
@@ -156,7 +161,7 @@ export function Configurator() {
 
   const canNext = step === 0 ? form.equipment.length > 0 : step === 3 ? !!(form.name && form.email) : true;
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (step < 3) {
       if (canNext) setStep(step + 1);
@@ -179,8 +184,51 @@ export function Configurator() {
       "(Please attach your SLD, BOQ or specification to this email.)",
     ];
     const subject = `Enquiry: ${equipmentNames.join(", ")} for ${country.name}`;
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setSending(true);
+    // Saved to the lead sheet first; if that fails the written email opens as before.
+    const storage = (() => {
+      try {
+        return window.sessionStorage;
+      } catch {
+        return null;
+      }
+    })();
+    const lead: LeadPayload = {
+      leadId: getLeadId(storage),
+      stage: "submitted",
+      source: "configurator",
+      name: form.name.trim(),
+      company: form.company.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      product: equipmentNames.join(", "),
+      productOther: "",
+      variety: "",
+      quantity: form.quantity,
+      quantityOther: "",
+      country: country.name,
+      port: form.port,
+      terms: form.incoterm,
+      notes: form.notes,
+      // Everything above the contact block: equipment, country, plate ratings, terms and notes.
+      details: lines.slice(0, -6).join("\n"),
+      page: window.location.pathname + window.location.search,
+      prefilled: "no",
+      lang: document.documentElement.lang || "en",
+      userAgent: navigator.userAgent,
+    };
+    const ok = await sendLead(lead, { endpoint: site.leadEndpoint, final: true, storage });
+    inFlight.current = false;
+    setSending(false);
+    if (ok) {
+      setSent("sheet");
+      return;
+    }
+    setWritten(lines.join("\n"));
     window.location.href = mailtoHref(subject, lines.join("\n"));
-    setSent(true);
+    setSent("email");
   }
 
   return (
@@ -209,11 +257,26 @@ export function Configurator() {
 
         {sent ? (
           <div className="sent">
-            <h2 style={{ fontSize: "var(--step-lead)" }}>Your email app should now be open</h2>
-            <p>
-              The enquiry is written for you. Attach your single-line diagram, BOQ or specification and send it;
-              our export desk replies within one working day.
-            </p>
+            {sent === "sheet" ? (
+              <>
+                <h2 style={{ fontSize: "var(--step-lead)" }}>Thanks, we&apos;ve got your request</h2>
+                <p>
+                  Our export desk replies within one working day. To share a single-line diagram, BOQ or specification,
+                  reply to our email with it attached.
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 style={{ fontSize: "var(--step-lead)" }}>Your email app should now be open</h2>
+                <p>
+                  The enquiry is written for you. Attach your single-line diagram, BOQ or specification and send it;
+                  our export desk replies within one working day.
+                </p>
+                <a className="btn" href={whatsappHref(written)}>
+                  Send on WhatsApp instead
+                </a>
+              </>
+            )}
             <button type="button" className="btn btn--quiet" onClick={() => setSent(false)}>
               Back to the form
             </button>
@@ -481,8 +544,8 @@ export function Configurator() {
               ) : (
                 <span />
               )}
-              <button type="submit" className="btn" disabled={!canNext} aria-disabled={!canNext}>
-                {step < 3 ? "Next" : "Send enquiry by email"}
+              <button type="submit" className="btn" disabled={!canNext || sending} aria-disabled={!canNext || sending}>
+                {step < 3 ? "Next" : sending ? "Sending…" : "Send enquiry"}
               </button>
             </div>
             {!canNext && (

@@ -42,7 +42,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
           </h1>
           <p data-reveal>{fam.summary}</p>
           <div className="hero-actions" data-reveal>
-            <Link href={`/configurator?family=${fam.slug}`} className="btn">
+            <Link href={`/quote?product=${fam.slug}`} className="btn">
               Request {fam.name}
             </Link>
             <a href="#lines" className="btn btn--quiet">
@@ -173,8 +173,9 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
       <QuoteCta
         title={`Need ${/^[A-Z][a-z]/.test(fam.name) ? fam.name[0].toLowerCase() + fam.name.slice(1) : fam.name}?`}
         text="Tell us the country and the rating. We source to match, arrange the certificates and ship it."
-        href={`/configurator?family=${fam.slug}`}
+        href={`/quote?product=${fam.slug}`}
         action={`Request ${fam.name}`}
+        secondary={{ href: `/configurator?family=${fam.slug}`, label: "Configure in detail" }}
       />
     </>
   );

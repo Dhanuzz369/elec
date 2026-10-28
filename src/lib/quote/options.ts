@@ -17,7 +17,7 @@ export function slugify(s: string): string {
 
 export function productChoices(): Choice[] {
   return [
-    ...families.map((f) => ({ id: f.slug, label: f.name, image: f.image?.src ?? f.gallery?.[0]?.src })),
+    ...families.map((f) => ({ id: f.slug, label: f.name, image: f.gallery?.[0]?.src ?? f.image?.src })),
     { id: OTHER, label: "Something else" },
   ];
 }

@@ -10,7 +10,7 @@ const en = {
   steps: {
     contact: "How can we reach you?",
     product: "What do you need?",
-    variety: "Which {family}?",
+    variety: "Which type of {family}?",
     quantity: "How many?",
     destination: "Where should it ship?",
     terms: "Delivery terms?",
@@ -59,7 +59,7 @@ const en = {
   },
   fallback: {
     title: "We couldn't send that just now",
-    text: "Your answers are below and nothing is lost. Send them to us in one tap:",
+    text: "Nothing you typed is lost. Send it to us in one tap:",
     whatsapp: "Send on WhatsApp",
     email: "Send by email",
   },
