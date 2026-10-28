@@ -24,14 +24,14 @@ export const site = {
   shortName: "GoodBiz",
   legalName: "GoodBiz Power Systems", // PLACEHOLDER — required before launch
   url: resolveSiteUrl({ NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL }),
-  email: "export@goodbiz.example", // PLACEHOLDER — required before launch
-  phone: "+91 00000 00000", // PLACEHOLDER — required before launch
-  whatsapp: "910000000000", // PLACEHOLDER — required before launch, digits only
+  email: "power@goodbizglobal.com",
+  phone: "+91 88847 99369",
+  whatsapp: "918884799369", // digits only, for wa.me links
   address: {
-    street: "", // PLACEHOLDER — required before launch
-    city: "", // PLACEHOLDER — required before launch
-    region: "", // PLACEHOLDER — required before launch
-    postalCode: "", // PLACEHOLDER — required before launch
+    street: "",
+    city: "Bangalore",
+    region: "Karnataka",
+    postalCode: "",
     country: "IN",
   },
   // Google Apps Script web app that saves leads to the "Power" sheet (docs/lead-sheet-setup.md).

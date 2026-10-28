@@ -138,3 +138,11 @@ test("placeholder contact details are never published in structured data", () =>
   expect(text).not.toMatch(/\.example\b/);
   expect(text).not.toMatch(/0000/);
 });
+
+test("the organization carries its real contact details", () => {
+  const org = organizationLd() as { email?: string; telephone?: string; address: { addressLocality?: string; addressRegion?: string } };
+  expect(org.email).toBe("power@goodbizglobal.com");
+  expect(org.telephone).toBe("+91 88847 99369");
+  expect(org.address.addressLocality).toBe("Bangalore");
+  expect(org.address.addressRegion).toBe("Karnataka");
+});

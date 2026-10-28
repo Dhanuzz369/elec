@@ -69,33 +69,9 @@ export function SiteFooter() {
           <a className="link" href={whatsappHref()}>
             WhatsApp {site.phone}
           </a>
-          <span>India · shipping worldwide by sea and air</span>
+          <span>Bangalore, Karnataka, India · shipping worldwide by sea and air</span>
         </div>
       </div>
-
-      <p className="credits">
-        Pictures: <a href="https://commons.wikimedia.org/w/index.php?curid=76620069">“Chilime Switchyard”</a> by
-        Lipiram, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>;{" "}
-        <a href="https://commons.wikimedia.org/w/index.php?curid=12794488">
-          “Electrical substation in Čerepova, Daugavpils”
-        </a>{" "}
-        by mihalich.barak, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>;{" "}
-        <a href="https://commons.wikimedia.org/w/index.php?curid=80318888">“High voltage switchgear”</a> by
-        Novoklimov, <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en/">CC0</a>;{" "}
-        <a href="https://commons.wikimedia.org/w/index.php?curid=195871846">“High-voltage switchgear 29”</a> and{" "}
-        <a href="https://commons.wikimedia.org/w/index.php?curid=157627995">“High-voltage switchgear 01”</a> by
-        Novoklimov, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>;{" "}
-        <a href="https://wordpress.org/photos/photo/2146876aa9/">“A power transformer mounted on a wooden utility pole”</a>{" "}
-        by Moses Cursor Ssebunya, <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>;{" "}
-        <a href="https://www.rawpixel.com/image/5925310/photo-image-background-public-domain-free">
-          “Container ship port”
-        </a>
-        , <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, via rawpixel;{" "}
-        <a href="https://commons.wikimedia.org/w/index.php?curid=124731292">“Japanese Transmission tower 2022-05”</a> by
-        Minirexs, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. All via Wikimedia
-        Commons unless noted; shown in greyscale. These pictures show the kind of sites our equipment serves, not
-        GoodBiz Power Systems products.
-      </p>
 
       <div className="footer-last">
         <span>© {new Date().getFullYear()} GoodBiz Power Systems. Sourced in India, shipped worldwide.</span>

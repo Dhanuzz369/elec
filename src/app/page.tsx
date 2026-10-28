@@ -202,10 +202,10 @@ export default function Home() {
           <figure data-reveal-circle>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/electrical-substation-in-cerepova-daugavpils.jpg"
-              alt="An outdoor substation with gantries and lightning masts"
-              width={1920}
-              height={1280}
+              src="/images/products/lt-pcc-acb-incomers.webp"
+              alt="LT power distribution panels with air circuit breaker incomers"
+              width={1536}
+              height={1024}
               loading="lazy"
             />
           </figure>

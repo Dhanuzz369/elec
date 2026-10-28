@@ -50,3 +50,11 @@ test("whatsapp link can carry a pre-written message", () => {
 test("lead endpoint is empty unless configured", () => {
   expect(typeof site.leadEndpoint).toBe("string");
 });
+
+test("real contact details are set", () => {
+  expect(site.email).toBe("power@goodbizglobal.com");
+  expect(site.phone).toBe("+91 88847 99369");
+  expect(site.whatsapp).toBe("918884799369");
+  expect(site.address).toMatchObject({ city: "Bangalore", region: "Karnataka", country: "IN" });
+  expect(whatsappHref()).toBe("https://wa.me/918884799369");
+});

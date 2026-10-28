@@ -152,11 +152,6 @@ export const families: Family[] = [
       { q: "Which standards apply to MV switchgear and RMUs?", a: "IEC 62271-100, IEC 62271-200 and IEC 62271-1, with internal arc classification IAC AFLR on request." },
       { q: "Can RMUs be supplied SCADA-ready?", a: "Yes. RMUs and switchboards can be supplied with an RTU, numerical protection relays and motorised operation for remote switching." },
     ],
-    image: {
-      src: "/images/high-voltage-switchgear-29.jpg",
-      alt: "Outdoor circuit breakers and busbars in a substation",
-      credit: "Novoklimov, CC BY 4.0",
-    },
   },
   {
     slug: "transformers",

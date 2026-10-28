@@ -808,16 +808,7 @@ textarea {
   font-size: 1rem;
 }
 
-.credits {
-  margin-top: 40px;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-width: 72ch;
-}
 
-.credits a {
-  text-decoration: underline;
-}
 
 @media (max-width: 860px) {
   .footer-mark {
