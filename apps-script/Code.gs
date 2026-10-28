@@ -32,14 +32,26 @@ function doPost(e) {
     var existing = found ? sheet.getRange(rowIndex, 1, 1, COLUMNS.length).getDisplayValues()[0] : null;
 
     var row = mergeRow(existing, data, new Date().toISOString());
-    var alerts = alertsDue(row);
-    alerts.forEach(function (stage) {
-      sendAlert_(stage, row);
-    });
-    markAlerted(row, alerts);
 
+    // Save first: a mail failure (daily quota, bad address) must never cost the lead.
     // Plain text format stops Sheets turning phone numbers and dates into something else.
     sheet.getRange(rowIndex, 1, 1, COLUMNS.length).setNumberFormat("@").setValues([row]);
+
+    // Only alerts that actually went out are recorded, so a failed one is tried again on the next send.
+    var sent = alertsDue(row).filter(function (stage) {
+      try {
+        sendAlert_(stage, row);
+        return true;
+      } catch (err) {
+        console.error("Lead alert failed: " + err);
+        return false;
+      }
+    });
+    if (sent.length) {
+      markAlerted(row, sent);
+      var alertedCol = COLUMNS.indexOf("alerted");
+      sheet.getRange(rowIndex, alertedCol + 1, 1, 1).setValues([[row[alertedCol]]]);
+    }
   } finally {
     lock.releaseLock();
   }

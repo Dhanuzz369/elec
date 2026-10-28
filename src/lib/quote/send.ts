@@ -39,20 +39,26 @@ export function getLeadId(storage: Storage | null): string {
 export async function sendLead(p: LeadPayload, opts: SendOptions): Promise<boolean> {
   const { endpoint, final, timeoutMs = TIMEOUT_MS, fetchImpl = fetch, storage = null } = opts;
   if (!endpoint) return false;
-  if (storage) safe(() => storage.setItem(PENDING_KEY, JSON.stringify(p)));
+  const body = JSON.stringify(p);
+  if (storage) safe(() => storage.setItem(PENDING_KEY, body));
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const res = await fetchImpl(endpoint, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(p),
+      body,
       keepalive: !final,
       signal: controller.signal,
     });
     const data = (await res.json()) as { ok?: unknown };
     if (data?.ok !== true) return false;
-    if (storage) safe(() => storage.removeItem(PENDING_KEY));
+    if (storage) {
+      // Sends overlap; only clear the stored copy if it is still the one this send wrote.
+      if (safe(() => storage.getItem(PENDING_KEY)) === body) safe(() => storage.removeItem(PENDING_KEY));
+      // A finished request ends the visit's lead: the next request gets its own row and alert.
+      if (final && p.stage === "submitted") safe(() => storage.removeItem(ID_KEY));
+    }
     return true;
   } catch {
     return false;

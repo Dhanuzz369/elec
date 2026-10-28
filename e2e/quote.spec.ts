@@ -138,6 +138,19 @@ test("refresh keeps the lead id", async ({ page }) => {
   expect(contacts[0].leadId).toBe(contacts[1].leadId);
 });
 
+test("a second request in the same tab gets its own lead", async ({ page }) => {
+  const leads = await mockEndpoint(page);
+  await walkToNotes(page);
+  await page.getByTestId("quote-next").click();
+  await expect(page.getByTestId("quote-success")).toBeVisible({ timeout: 6000 });
+  await walkToNotes(page);
+  await page.getByTestId("quote-next").click();
+  await expect(page.getByTestId("quote-success")).toBeVisible({ timeout: 6000 });
+  const submitted = leads.filter((l) => l.stage === "submitted");
+  expect(submitted).toHaveLength(2);
+  expect(submitted[0].leadId).not.toBe(submitted[1].leadId);
+});
+
 test("double-click sends once", async ({ page }) => {
   const leads = await mockEndpoint(page);
   await walkToNotes(page);

@@ -132,3 +132,30 @@ describe("payload", () => {
     expect(decodeURIComponent(links.email)).toContain("Quote request: LT panels for Kenya");
   });
 });
+
+describe("review fixes", () => {
+  test("a finished request starts a new lead id for the next one", async () => {
+    const storage = memoryStorage();
+    const first = getLeadId(storage);
+    const ok = vi.fn(async () => json({ ok: true }));
+    await sendLead({ ...payload(), leadId: first, stage: "quantity" }, { endpoint: ENDPOINT, final: false, fetchImpl: ok, storage });
+    expect(getLeadId(storage)).toBe(first);
+    await sendLead({ ...payload(), leadId: first, stage: "submitted" }, { endpoint: ENDPOINT, final: true, fetchImpl: ok, storage });
+    expect(getLeadId(storage)).not.toBe(first);
+  });
+
+  test("a slow earlier success does not delete a later unsent copy", async () => {
+    const storage = memoryStorage();
+    let releaseSlow: (r: Response) => void = () => {};
+    const slow = new Promise<Response>((r) => (releaseSlow = r));
+    const fetchImpl = vi
+      .fn()
+      .mockReturnValueOnce(slow)
+      .mockResolvedValueOnce(json({ ok: false }, 500));
+    const early = sendLead({ ...payload(), stage: "product" }, { endpoint: ENDPOINT, final: false, fetchImpl, storage });
+    await sendLead({ ...payload(), stage: "quantity" }, { endpoint: ENDPOINT, final: false, fetchImpl, storage });
+    releaseSlow(json({ ok: true }));
+    await early;
+    expect(JSON.parse(storage.getItem("goodbiz-lead-pending")!).stage).toBe("quantity");
+  });
+});
