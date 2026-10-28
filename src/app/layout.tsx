@@ -18,7 +18,10 @@ export const metadata: Metadata = {
   applicationName: site.name,
   openGraph: { siteName: site.name, locale: "en", type: "website" },
   twitter: { card: "summary_large_image" },
-  ...(site.googleSiteVerification && { verification: { google: site.googleSiteVerification } }),
+  verification: {
+    ...(site.googleSiteVerification && { google: site.googleSiteVerification }),
+    ...(site.bingSiteVerification && { other: { "msvalidate.01": site.bingSiteVerification } }),
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

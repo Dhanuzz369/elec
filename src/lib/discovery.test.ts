@@ -80,3 +80,7 @@ test("the full file carries every HSN code, the short one does not", () => {
 test("robots has no Host line (Google ignores it)", () => {
   expect(robotsConfig().host).toBeUndefined();
 });
+
+test("llms.txt points answer engines at the quick quote form", () => {
+  expect(buildLlmsTxt(posts)).toContain(`${site.url}/quote`);
+});

@@ -24,10 +24,15 @@ test("an explicit NEXT_PUBLIC_SITE_URL wins and loses its trailing slash", () =>
   );
 });
 
-test("on Vercel without an override, the production host is used", () => {
-  expect(resolveSiteUrl({ VERCEL_PROJECT_PRODUCTION_URL: "goodbizelec-navy.vercel.app" })).toBe(
-    "https://goodbizelec-navy.vercel.app",
+test("a vercel.app production host never becomes the canonical address", () => {
+  expect(resolveSiteUrl({ VERCEL_PROJECT_PRODUCTION_URL: "goodbizelec-navy.vercel.app" })).toBe("https://www.goodbizpower.com");
+  expect(resolveSiteUrl({ NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL: "goodbizelec-navy.vercel.app" })).toBe(
+    "https://www.goodbizpower.com",
   );
+});
+
+test("the live site is www.goodbizpower.com", () => {
+  expect(site.url).toBe("https://www.goodbizpower.com");
 });
 
 test("locally, the future domain is the fallback", () => {

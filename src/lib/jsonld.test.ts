@@ -132,3 +132,9 @@ test("every family has 4 to 6 FAQs answered in at most three sentences", () => {
     }
   }
 });
+
+test("placeholder contact details are never published in structured data", () => {
+  const text = JSON.stringify(organizationLd());
+  expect(text).not.toMatch(/\.example\b/);
+  expect(text).not.toMatch(/0000/);
+});

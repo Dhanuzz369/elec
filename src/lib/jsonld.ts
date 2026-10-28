@@ -1,6 +1,6 @@
 import { countries, type Country } from "@/data/countries";
 import { families, type Family } from "@/data/products";
-import { absoluteUrl, site } from "@/data/site";
+import { absoluteUrl, publishable, site } from "@/data/site";
 import type { Faq, Post } from "@/lib/posts";
 
 // schema.org builders. Every claim here must also be visible on the page.
@@ -34,8 +34,8 @@ export function organizationLd(): Node {
     url: site.url,
     logo: absoluteUrl(site.logo),
     description: site.description,
-    email: site.email,
-    telephone: site.phone,
+    ...(publishable(site.email) && { email: site.email }),
+    ...(publishable(site.phone) && { telephone: site.phone }),
     address: postalAddress(),
     ...(site.foundingDate && { foundingDate: site.foundingDate }),
     ...(site.sameAs.length && { sameAs: site.sameAs }),
@@ -48,8 +48,9 @@ export function organizationLd(): Node {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: site.email,
-      telephone: site.phone,
+      ...(publishable(site.email) && { email: site.email }),
+      ...(publishable(site.phone) && { telephone: site.phone }),
+      url: absoluteUrl("/quote"),
       areaServed: countries.map((c) => c.code),
       availableLanguage: ["English"],
     },
