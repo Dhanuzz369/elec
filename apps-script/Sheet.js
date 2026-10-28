@@ -84,7 +84,7 @@ function parseRequest(e) {
   try {
     var data = JSON.parse(contents);
     if (data && typeof data === "object" && !Array.isArray(data)) return { data: data, form: false };
-  } catch (err) {
+  } catch (_) { // eslint-disable-line @typescript-eslint/no-unused-vars
     // not JSON: fall through to the form fields
   }
   return { data: (e && e.parameter) || {}, form: true };
