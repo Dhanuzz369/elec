@@ -161,3 +161,10 @@ test("organization knows the four project types", () => {
   const knows = (organizationLd() as { knowsAbout: string[] }).knowsAbout;
   for (const p of projectTypes) expect(knows).toContain(`Electrical supply for ${p.name.toLowerCase()}`);
 });
+
+test("the company description carries the track record", () => {
+  const { description } = organizationLd() as { description: string };
+  expect(description).toMatch(/25\+ years in power distribution/);
+  expect(description).toMatch(/BESCOM/);
+  expect(description).toMatch(/KPTCL/);
+});

@@ -90,7 +90,7 @@ test("the highlight sits exactly on the chosen row", async ({ page }, info) => {
           return [fill.style.getPropertyValue("--t"), fill.style.getPropertyValue("--rh")].join();
         }),
       )
-      .toBe(await tab.evaluate((t) => [`${t.offsetTop}px`, `${t.offsetHeight}px`].join()));
+      .toBe(await tab.evaluate((t: HTMLElement) => [`${t.offsetTop}px`, `${t.offsetHeight}px`].join()));
   }
 });
 
@@ -102,4 +102,10 @@ test("every project photo actually loads when chosen", async ({ page }) => {
       .poll(() => active(page).locator(".ap-photo img").evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth))
       .toBeGreaterThan(0);
   }
+});
+
+test("the About page marks up its questions and answers", async ({ page }) => {
+  await page.goto("/about");
+  const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
+  expect(ld.join()).toContain('"FAQPage"');
 });

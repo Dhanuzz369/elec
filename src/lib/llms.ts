@@ -1,5 +1,6 @@
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
+import { TRACK_RECORD, projectTypes } from "@/data/projects";
 import { absoluteUrl, site, publishable } from "@/data/site";
 import { countrySlug } from "@/lib/countries";
 import { postUrl } from "@/lib/feed";
@@ -52,6 +53,10 @@ export function buildLlmsTxt(posts: Post[]): string {
 
 export function buildLlmsFullTxt(): string {
   const out = [`# ${site.name}: full product, HSN and country data`, "", `> ${site.description}`, ""];
+  out.push("## About", "", `${site.name} has ${TRACK_RECORD}. It recommends the right products and brands for each kind of project and supplies all of it in one order, tested before shipping. More: ${absoluteUrl("/about")}`, "");
+  for (const p of projectTypes) {
+    out.push(`### ${p.name}`, "", p.summary, "", `Typically needs: ${p.needs.map((n) => n.name).join(", ")}.`, `What to watch for: ${p.watch.join("; ")}.`, "");
+  }
   for (const f of families) {
     out.push(`## ${f.name}`, "", f.summary, "", "| Product | Typical rating | HSN (India) |", "| --- | --- | --- |");
     for (const v of f.variants) out.push(`| ${v.name} (${v.note}) | ${v.rating} | ${v.hsn} |`);

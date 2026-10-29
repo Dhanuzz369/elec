@@ -3,7 +3,8 @@ import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectTypes } from "@/components/about/ProjectTypes";
 import { whatsappHref } from "@/data/site";
-import { aboutPageLd, breadcrumbLd } from "@/lib/jsonld";
+import { aboutFaq } from "@/data/projects";
+import { aboutPageLd, breadcrumbLd, faqLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -157,6 +158,7 @@ export default function AboutPage() {
       </section>
 
       <JsonLd data={aboutPageLd()} />
+      <JsonLd data={[faqLd(aboutFaq())]} />
       <JsonLd
         data={breadcrumbLd([
           { name: "Home", path: "/" },

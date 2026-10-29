@@ -45,7 +45,7 @@ export const site = {
   foundingDate: undefined as string | undefined,
   sameAs: [] as string[], // LinkedIn, IndiaMART and other official profiles when they exist
   description:
-    "GoodBiz Power Systems is an Indian exporter and supplier of LT panels, MV switchgear, RMUs, transformers, breakers and enclosures, sourced from partner manufacturers to each destination country's standards.",
+    "GoodBiz Power Systems is an Indian exporter and supplier of LT panels, MV switchgear, RMUs, transformers, breakers and enclosures, sourced from partner manufacturers to each destination country's standards. Behind it are 25+ years in power distribution: projects for KPTCL, and licensed EPC work for BESCOM and other public discoms.",
   // Search Console and Bing Webmaster Tools tokens, set in Vercel (docs/search-console-setup.md).
   googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim() || undefined,
   bingSiteVerification: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION?.trim() || undefined,

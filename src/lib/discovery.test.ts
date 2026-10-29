@@ -97,3 +97,10 @@ test("llms.txt points to the About page with the track record", () => {
   expect(txt).toContain(`[About GoodBiz Power Systems](${site.url}/about)`);
   expect(txt).toMatch(/25\+ years in power distribution.*KPTCL.*licensed EPC.*BESCOM/);
 });
+
+test("llms-full.txt has the track record and every project type", () => {
+  const txt = buildLlmsFullTxt();
+  expect(txt).toContain("## About");
+  expect(txt).toMatch(/BESCOM/);
+  for (const name of ["Residential apartments", "Commercial buildings", "IT parks", "Industries"]) expect(txt).toContain(`### ${name}`);
+});

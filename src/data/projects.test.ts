@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { families } from "@/data/products";
-import { projectTypes } from "@/data/projects";
+import { aboutFaq, projectTypes } from "@/data/projects";
 
 const pub = (src: string) => path.join(process.cwd(), "public", src);
 
@@ -39,4 +39,14 @@ test("project photos are free to use without credit", () => {
 
 test("watch lines are not India-only rules", () => {
   expect(JSON.stringify(projectTypes)).not.toMatch(/BESCOM|KPTCL|discom/i);
+});
+
+test("the About questions answer with what is on the page", () => {
+  const faq = aboutFaq();
+  expect(faq).toHaveLength(projectTypes.length + 1);
+  expect(faq[0].a).toMatch(/25\+ years in power distribution/);
+  projectTypes.forEach((p, i) => {
+    for (const n of p.needs) expect(faq[i + 1].a).toContain(n.name);
+    for (const w of p.watch) expect(faq[i + 1].a).toContain(w);
+  });
 });

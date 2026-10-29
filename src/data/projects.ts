@@ -7,6 +7,7 @@ export type ProjectNeed = { name: string; image?: string; href?: string };
 export type ProjectType = {
   id: "apartments" | "commercial" | "it-parks" | "industries";
   name: string;
+  question: string;
   summary: string;
   photo: { src: string; width: number; height: number };
   needs: ProjectNeed[];
@@ -20,6 +21,7 @@ export const projectTypes: ProjectType[] = [
   {
     id: "apartments",
     name: "Residential apartments",
+    question: "What electrical equipment does a residential apartment project need?",
     summary: "Hundreds of homes on one supply: safe, metered and quiet.",
     photo: { src: "/images/projects/apartments.webp", width: 1600, height: 1067 },
     needs: [
@@ -38,6 +40,7 @@ export const projectTypes: ProjectType[] = [
   {
     id: "commercial",
     name: "Commercial buildings",
+    question: "What electrical equipment does a commercial building need?",
     summary: "Offices, malls and hotels where tenants change and loads grow.",
     photo: { src: "/images/projects/commercial.webp", width: 1600, height: 1067 },
     needs: [
@@ -56,6 +59,7 @@ export const projectTypes: ProjectType[] = [
   {
     id: "it-parks",
     name: "IT parks",
+    question: "What electrical equipment does an IT park need?",
     summary: "Campuses that run day and night, where a minute down costs more than the panel.",
     photo: { src: "/images/projects/it-parks.webp", width: 1600, height: 1095 },
     needs: [
@@ -74,6 +78,7 @@ export const projectTypes: ProjectType[] = [
   {
     id: "industries",
     name: "Industries",
+    question: "What electrical equipment does an industrial plant need?",
     summary: "Motors, heat and dust: equipment that has to survive the shop floor.",
     photo: { src: "/images/projects/industries.webp", width: 1600, height: 1064 },
     needs: [
@@ -90,3 +95,20 @@ export const projectTypes: ProjectType[] = [
     ],
   },
 ];
+
+export const TRACK_RECORD =
+  "25+ years in power distribution with its group companies: projects for KPTCL, and licensed EPC work for BESCOM and other public discoms";
+
+// Questions buyers and answer engines ask, answered only with what the About page shows.
+export function aboutFaq(): { q: string; a: string }[] {
+  return [
+    {
+      q: "Who is GoodBiz Power Systems?",
+      a: `An Indian exporter and supplier of electrical equipment with ${TRACK_RECORD}. It recommends the right products for each project and supplies everything from the RMU to the last enclosure in one order. It does not manufacture; it sources from partner manufacturers and tests every order before it ships.`,
+    },
+    ...projectTypes.map((p) => ({
+      q: p.question,
+      a: `${p.name} typically need: ${p.needs.map((n) => n.name).join(", ")}. What to watch for: ${p.watch.join("; ")}. GoodBiz Power Systems supplies all of it in one order.`,
+    })),
+  ];
+}
