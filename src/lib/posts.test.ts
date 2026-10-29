@@ -126,3 +126,11 @@ test("publish day follows India time, not UTC", async () => {
   const posts = await getAllPosts({ dir: DIR, now: new Date("2026-10-09T20:00:00Z"), includeDrafts: false });
   expect(posts.map((p) => p.slug)).toContain("valid-post");
 });
+
+// Audit tools flag links without a title; post links take their own text as the title.
+test("links in a post carry a title", async () => {
+  const post = await getPost("valid-post", { dir: DIR, now });
+  const links = post!.html.match(/<a\b[^>]*>/g) ?? [];
+  expect(links.length).toBeGreaterThan(0);
+  for (const a of links) expect(a).toMatch(/title="[^"]+"/);
+});

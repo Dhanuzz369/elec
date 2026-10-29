@@ -1,14 +1,14 @@
 ---
 title: HSN codes for panels and switchgear
 description: The Indian 8-digit HSN codes for LT panels, MV switchgear, RMUs, breakers, enclosures and parts, and the common mistakes that delay customs clearance.
-date: 2026-10-19
+date: 2026-10-29
 author: GoodBiz Power Systems
 tags: [HSN codes, Export compliance]
 family: lt-panels
 countries: [SA, AE, NG]
-cover: /images/high-voltage-switchgear-29.jpg
-coverAlt: Outdoor circuit breakers and busbars in a substation
-draft: true
+cover: /images/products/lt-pcc-acb-incomers.webp
+coverAlt: Power control centre line-up with two air circuit breaker incomers and outgoing feeder drawers
+draft: false
 faq:
   - q: What is the HSN code for an MCC or PCC panel?
     a: "85371000. India uses one 8-digit line for boards and panels for 1000 V or less, so MCC, PCC, APFC, ATS and PLC panels all go under it."

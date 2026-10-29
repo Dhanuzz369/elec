@@ -210,6 +210,20 @@ async function render(markdown: string) {
     };
     walk(tree);
   };
+  // Links take their own text as a title, as every other link on the site has one.
+  const titleLinks = () => (tree: Root) => {
+    const walk = (node: Root | Element) => {
+      for (const child of node.children) {
+        if (child.type !== "element") continue;
+        if (child.tagName === "a" && !child.properties.title) {
+          const text = textOf(child).trim();
+          if (text) child.properties.title = text;
+        }
+        walk(child);
+      }
+    };
+    walk(tree);
+  };
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
@@ -217,6 +231,7 @@ async function render(markdown: string) {
     .use(rehypeSlug)
     .use(rehypeSanitize, schema)
     .use(collect)
+    .use(titleLinks)
     .use(rehypeStringify)
     .process(markdown);
   return { html: String(file), headings };

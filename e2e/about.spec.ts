@@ -118,9 +118,8 @@ test("the privacy policy is linked from the footer and the quote form", async ({
   await expect(page.getByRole("heading", { level: 1 })).toContainText(/privacy/i);
 });
 
-test.describe("blog while it has no posts", () => {
-  test("is kept out of search", async ({ page }) => {
-    await page.goto("/blog");
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
-  });
+test("the blog lists its guides and is open to search", async ({ page }) => {
+  await page.goto("/blog");
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+  await expect(page.locator('a[href^="/blog/"].post-row')).toHaveCount(3);
 });

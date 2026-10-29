@@ -1,21 +1,21 @@
 ---
 title: Oil-filled or dry-type transformer?
 description: How to choose between an oil-filled and a dry-type transformer for an export project, by site, rating, fire risk and climate, with the HSN code for each.
-date: 2026-10-19
+date: 2026-10-29
 author: GoodBiz Power Systems
 tags: [Transformers]
 family: transformers
 countries: [SA, NG, KE]
 cover: /images/a-power-transformer-mounted-on-a-wooden.jpg
 coverAlt: A pole-mounted distribution transformer against the sky
-draft: true
+draft: false
 faq:
   - q: When should I choose a dry-type transformer?
     a: "Choose dry-type (cast resin) for indoor installation close to people, such as buildings, hospitals and data centres, where fire risk and oil containment matter more than cost."
   - q: Which is better for a hot outdoor site?
     a: "Oil-filled transformers with ONAN or ONAF cooling usually handle hot outdoor sites better and cost less per kVA. Specify the design ambient, for example 50 °C in the Gulf."
   - q: What are the HSN codes for transformers?
-    a: "Oil-filled up to 650 kVA is 85042100, 650 kVA to 10 MVA is 85042200, and above 10 MVA is 85042310 to 85042340. Dry-type is 85043300 up to 500 kVA and 85043400 above."
+    a: "Oil-filled up to 650 kVA is 85042100, 650 kVA to 10 MVA is 85042200, and above 10 MVA is 85042310 to 85042340. Dry-type is 85043300 from 16 kVA to 500 kVA and 85043400 above 500 kVA."
 ---
 
 Both types do the same job. The right choice depends on where the transformer will stand, how hot it gets there, and what the local fire rules say.
@@ -51,4 +51,4 @@ A dry-type (cast resin) transformer has windings cast in epoxy, with no liquid.
 
 For export, the rating is only half the specification. Give the primary and secondary voltage, frequency (50 or 60 Hz), vector group, standard (IEC 60076 or the local equivalent), design ambient and nameplate language. Saudi Arabia runs at 60 Hz with a 13.8 kV or 33 kV primary; Nigeria and Kenya run at 50 Hz with 11 kV or 33 kV.
 
-GoodBiz Power Systems sources both types from IEC-tested partner manufacturers and arranges the destination certificate with the shipment. See the [transformer range](/products/transformers) or set your country and rating in the [configurator](/configurator?family=transformers).
+GoodBiz Power Systems sources both types from IEC-tested partner manufacturers, tests every order before it ships, and sends the drawings, test reports and certificate paperwork your destination asks for. See the [transformer range](/products/transformers) or set your country and rating in the [configurator](/configurator?family=transformers).

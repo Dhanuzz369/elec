@@ -33,3 +33,5 @@ Use 8537.
 ## Common mistakes
 
 85371090 does not exist.
+
+Look up any code in the [HSN code finder](/hsn-code-finder).
