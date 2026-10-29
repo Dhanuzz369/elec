@@ -15,3 +15,6 @@ export const PAGE_UPDATED: Record<string, string> = {
 // Every product family page and every country page shares one template and data file.
 export const FAMILIES_UPDATED = "2026-10-29";
 export const COUNTRIES_UPDATED = "2026-10-29";
+
+// Shown in the footer, so the date in the structured data is also visible on the page.
+export const SITE_UPDATED = [...Object.values(PAGE_UPDATED), FAMILIES_UPDATED, COUNTRIES_UPDATED].sort().at(-1)!;

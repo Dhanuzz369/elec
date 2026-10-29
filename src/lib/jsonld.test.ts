@@ -15,6 +15,7 @@ import {
   familyLd,
   hsnTermSetLd,
   organizationLd,
+  websiteLd,
   webPageLd,
 } from "@/lib/jsonld";
 import type { Post } from "@/lib/posts";
@@ -217,4 +218,14 @@ test("the organization states no legal name until the registered one is known", 
   const org = organizationLd() as { legalName?: string; knowsAbout: string[] };
   expect(org.legalName).toBeUndefined();
   expect(org.knowsAbout.length).toBeLessThanOrEqual(15);
+});
+
+test("the site offers a search action into the HSN code finder", () => {
+  expect(websiteLd()).toMatchObject({
+    potentialAction: {
+      "@type": "SearchAction",
+      target: { "@type": "EntryPoint", urlTemplate: `${site.url}/hsn-code-finder?q={search_term_string}` },
+      "query-input": "required name=search_term_string",
+    },
+  });
 });

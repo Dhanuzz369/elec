@@ -9,7 +9,9 @@ import { HeroMosaic } from "@/components/HeroMosaic";
 import { QuoteCta } from "@/components/QuoteCta";
 import { Bullet, TransformerSymbol } from "@/components/Motif";
 import { JsonLd } from "@/components/JsonLd";
-import { webPageLd } from "@/lib/jsonld";
+import { faqLd, webPageLd } from "@/lib/jsonld";
+import { FaqList } from "@/components/FaqList";
+import { SITE_FAQ } from "@/data/site-faq";
 import { HOME_TITLE, pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = {
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
 const REASONS = [
   {
     title: "One partner, many products",
-    text: "Panels, switchgear, transformers and enclosures from several manufacturers, consolidated into one order and one shipment.",
+    text: "Switchgear, transformers and enclosures from several manufacturers, consolidated into one order and one shipment.",
   },
   {
     title: "The brands your project names",
@@ -82,8 +84,8 @@ export default function Home() {
         <div className="hero-wall-text">
           <h1 id="hero-title">Panels and transformers, fit for your grid</h1>
           <p>
-            Your export partner for electrical panels, switchgear, transformers and enclosures, sourced from
-            India&apos;s manufacturers to the voltage, standards and paperwork of your country.
+            GoodBiz Power Systems is an Indian export partner for switchgear, transformers, enclosures and LT and
+            MV panels, sourced from India&apos;s manufacturers to the voltage, standards and paperwork of your country.
           </p>
           <div className="hero-actions">
             <Link href="/configurator" className="btn btn--large" title="Configure your requirement by country, ratings and standards">
@@ -254,13 +256,15 @@ export default function Home() {
         </ul>
       </section>
 
+      <FaqList faq={SITE_FAQ} title="Questions buyers ask first" id="home-faq" />
+
       <QuoteCta
         title="Looking for electrical solutions?"
         text="Contractors and plant owners: tell us the project and the country. We source to match, handle the certificates and ship it."
         href="/configurator"
         action="Configure your requirement"
       />
-      <JsonLd data={webPageLd({ path: "/", name: HOME_TITLE, extra: { about: { "@id": `${site.url}/#organization` } } })} />
+      <JsonLd data={[webPageLd({ path: "/", name: HOME_TITLE, extra: { about: { "@id": `${site.url}/#organization` } } }), faqLd(SITE_FAQ)]} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { families } from "@/data/products";
 import { defaultHsnEntries, hsnEntries } from "@/lib/hsn";
 
@@ -11,6 +11,13 @@ const familyName = (slug: string) => families.find((f) => f.slug === slug)?.name
 
 export function HsnFinder() {
   const [q, setQ] = useState("");
+
+  // Opened from a search action (/hsn-code-finder?q=8537), start on that query. Read
+  // from window.location so the page stays static and works without JavaScript.
+  useEffect(() => {
+    const initial = new URLSearchParams(window.location.search).get("q")?.trim().slice(0, 60);
+    if (initial) setQ(initial);
+  }, []);
   const query = useDeferredValue(q.trim().toLowerCase());
 
   const results = useMemo(() => {

@@ -59,7 +59,8 @@ export function pageMeta(input: PageMetaInput): Metadata {
     title,
     description,
     keywords,
-    alternates: { canonical: url },
+    // Every page points feed readers and AI crawlers to the RSS feed.
+    alternates: { canonical: url, types: { "application/rss+xml": [{ url: "/feed.xml", title: `${site.name} guides` }] } },
     openGraph: {
       type,
       url,

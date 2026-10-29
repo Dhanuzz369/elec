@@ -88,3 +88,11 @@ test("the blog promises no schedule it doesn't keep", () => {
   const blog = readFileSync(path.join(process.cwd(), "src/app/blog/page.tsx"), "utf8");
   expect(blog).not.toMatch(/weekly|every week/i);
 });
+
+// Answer engines lift the first sentence under the H1 as the definition of the company.
+test("the home intro opens by defining GoodBiz Power Systems", () => {
+  const src = readFileSync(path.join(process.cwd(), "src/app/page.tsx"), "utf8");
+  const hero = src.slice(src.indexOf('className="hero-wall-text"'), src.indexOf("</section>"));
+  const intro = hero.slice(hero.indexOf("<p>") + 3, hero.indexOf("</p>")).replace(/\s+/g, " ").trim();
+  expect(intro).toMatch(/^GoodBiz Power Systems is /);
+});

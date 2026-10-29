@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { families } from "@/data/products";
+import { SITE_UPDATED } from "@/data/updated";
+import { formatDate } from "@/lib/format";
 import { mailtoHref, site, whatsappHref } from "@/data/site";
 
 const BLOCKS = [
@@ -78,7 +80,8 @@ export function SiteFooter() {
 
       <div className="footer-last">
         <span>
-          © {new Date().getFullYear()} GoodBiz Power Systems. Sourced in India, shipped worldwide. ·{" "}
+          © {new Date().getFullYear()} GoodBiz Power Systems. Sourced in India, shipped worldwide. Updated{" "}
+          <time dateTime={SITE_UPDATED}>{formatDate(SITE_UPDATED)}</time> ·{" "}
           <Link href="/privacy" className="link" title="Privacy policy">
             Privacy policy
           </Link>

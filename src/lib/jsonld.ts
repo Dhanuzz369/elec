@@ -90,6 +90,12 @@ export function websiteLd(): Node {
     url: site.url,
     publisher: orgRef,
     inLanguage: "en",
+    // Lets search engines and AI agents send a query straight into the HSN code finder.
+    potentialAction: {
+      "@type": "SearchAction",
+      target: { "@type": "EntryPoint", urlTemplate: `${site.url}/hsn-code-finder?q={search_term_string}` },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
