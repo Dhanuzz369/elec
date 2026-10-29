@@ -104,3 +104,14 @@ test("llms-full.txt has the track record and every project type", () => {
   expect(txt).toMatch(/BESCOM/);
   for (const name of ["Residential apartments", "Commercial buildings", "IT parks", "Industries"]) expect(txt).toContain(`### ${name}`);
 });
+
+test("an empty blog stays out of the sitemap and llms.txt", () => {
+  const all = sitemapEntries({ posts: [], tags: [] }).map((e) => e.url);
+  expect(all).not.toContain(`${site.url}/blog`);
+  expect(buildLlmsTxt([])).not.toContain("## Guides");
+  expect(urls()).toContain(`${site.url}/blog`);
+});
+
+test("the privacy policy is in the sitemap", () => {
+  expect(urls()).toContain(`${site.url}/privacy`);
+});

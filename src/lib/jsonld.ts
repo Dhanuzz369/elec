@@ -93,8 +93,12 @@ export function breadcrumbLd(items: { name: string; path: string }[]): Node {
   };
 }
 
+// No price is published, so products carry no Offer (an Offer without a price draws
+// Search Console warnings). Each line gets its own @id and the family photograph.
 export function familyLd(fam: Family): Node {
   const url = absoluteUrl(`/products/${fam.slug}`);
+  const photo = fam.gallery?.[0]?.src ?? fam.image?.src;
+  const lineId = (name: string) => `${url}#line-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
   return {
     "@type": "ItemList",
     name: fam.name,
@@ -106,7 +110,9 @@ export function familyLd(fam: Family): Node {
       position: i + 1,
       item: {
         "@type": "Product",
+        "@id": lineId(v.name),
         name: v.name,
+        ...(photo && { image: absoluteUrl(photo) }),
         description: `${v.note}. ${fam.summary}`,
         category: fam.name,
         url,
@@ -115,13 +121,6 @@ export function familyLd(fam: Family): Node {
           { "@type": "PropertyValue", name: "Typical rating", value: v.rating },
           { "@type": "PropertyValue", name: "Standards", value: fam.standards.join(", ") },
         ],
-        offers: {
-          "@type": "Offer",
-          availability: "https://schema.org/PreOrder",
-          seller: { "@type": "Organization", name: site.name, "@id": ORG_ID },
-          areaServed: countries.map((c) => c.name),
-          url: absoluteUrl(`/configurator?family=${fam.slug}`),
-        },
       },
     })),
   };

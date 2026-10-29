@@ -22,7 +22,9 @@ export function sitemapEntries(input: { posts: Post[]; tags: { slug: string; cou
     page("/about", 0.8),
     page("/configurator", 0.8),
     page("/export", 0.8),
-    page("/blog", 0.7),
+    page("/privacy", 0.2),
+    // An empty blog is noindex, so it only joins the sitemap once a post is live.
+    ...(input.posts.length ? [page("/blog", 0.7)] : []),
     ...families.map((f) => page(`/products/${f.slug}`, 0.9)),
     ...countries.map((c) => page(`/export/${countrySlug(c)}`, 0.8)),
     ...input.posts.filter((p) => !p.canonical).map((p) => page(`/blog/${p.slug}`, 0.6, p.updated ?? p.date)),

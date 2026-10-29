@@ -19,11 +19,51 @@ export function getCountryBySlug(slug: string): Country | undefined {
   return countries.find((c) => countrySlug(c) === slug);
 }
 
-// Each family is quoted against its own product standard (IEC 60076 for
-// transformers, 60947 for breakers…), never the country's panel standard.
+// Countries that do not build to IEC name their own standard per family; everywhere
+// else each family is quoted against its own IEC standard (60076 for transformers…).
+const NATIONAL_STANDARDS: Record<string, Record<string, string>> = {
+  US: {
+    "lt-panels": "UL 891 / UL 508A",
+    "mv-switchgear-rmu": "IEEE C37.20",
+    transformers: "IEEE C57.12",
+    "breakers-contactors": "UL 489 / UL 60947-4-1",
+    "enclosures-junction-boxes": "UL 50E / NEMA 250",
+    parts: "UL-recognised components",
+  },
+  GB: {
+    "lt-panels": "BS EN 61439",
+    "mv-switchgear-rmu": "BS EN 62271",
+    transformers: "BS EN 60076",
+    "breakers-contactors": "BS EN 60947",
+    "enclosures-junction-boxes": "BS EN 62208",
+    parts: "BS EN 61439",
+  },
+  AU: {
+    "lt-panels": "AS/NZS 61439",
+    "mv-switchgear-rmu": "AS 62271",
+    transformers: "AS 60076",
+    "breakers-contactors": "AS/NZS IEC 60947",
+    "enclosures-junction-boxes": "AS 60529 (IP rating)",
+    parts: "AS/NZS 61439",
+  },
+};
+
+export function standardFor(c: Country, fam: Family): string {
+  return NATIONAL_STANDARDS[c.code]?.[fam.slug] ?? fam.standards[0];
+}
+
 export function familyLineFor(c: Country, fam: Family): string {
   const grid = MV_FAMILIES.has(fam.slug) ? `${c.mv} and ${c.lv}` : c.lv;
-  return `${fam.name} for ${c.name}: ${grid}, ${c.hz} Hz, to ${fam.standards[0]}.`;
+  return `${fam.name} for ${c.name}: ${grid}, ${c.hz} Hz, to ${standardFor(c, fam)}.`;
+}
+
+// SASO, SONCAP and PVoC certificates are issued per shipment, so they can be arranged
+// with the order. UL listings, UKCA marks and utility approvals belong to the
+// manufacturer or the product: we source equipment that already carries them.
+const SHIPMENT_CERTIFICATES = new Set(["SA", "NG", "KE", "TZ"]);
+
+export function certificatePerShipment(c: Country): boolean {
+  return SHIPMENT_CERTIFICATES.has(c.code);
 }
 
 // "Utility approval list" reads as "the utility approval list" mid-sentence;
@@ -34,7 +74,9 @@ export function conformityInSentence(c: Country): string {
 
 export function countryDescription(c: Country): string {
   const grid = `${c.lv}, ${c.hz} Hz`;
-  const tail = `with the ${conformityInSentence(c)} arranged by GoodBiz Power Systems.`;
+  const tail = certificatePerShipment(c)
+    ? `with the ${conformityInSentence(c)} arranged by GoodBiz Power Systems.`
+    : `with equipment sourced to meet the ${conformityInSentence(c)}.`;
   // Shed detail in order (standards list, then product names) before cutting a sentence in half.
   const options = [
     `Electrical panels, transformers, RMUs and switchgear for ${c.name}: ${grid}, ${c.standard}, ${tail}`,
@@ -58,7 +100,9 @@ export function countryFaq(c: Country): Faq[] {
     },
     {
       q: `Which certificate do I need to import electrical equipment into ${c.name}?`,
-      a: `${c.conformity}. GoodBiz Power Systems arranges it with the shipment, so it travels with the equipment.`,
+      a: certificatePerShipment(c)
+        ? `${c.conformity}. GoodBiz Power Systems arranges it with the shipment, so it travels with the equipment.`
+        : `${c.conformity}. It is held by the manufacturer or the product, so GoodBiz Power Systems sources equipment that already carries it and sends the supporting documents with the order.`,
     },
     {
       q: `What design ambient temperature should I specify for ${c.name}?`,

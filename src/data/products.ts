@@ -171,7 +171,7 @@ export const families: Family[] = [
       { name: "Oil-filled power", note: "OLTC or off-circuit tap changer", rating: "650–10 000 kVA", hsn: "85042200" },
       { name: "Large power", note: "Substation and generator step-up", rating: "above 10 MVA", hsn: "85042310–40" },
       { name: "Dry-type (cast resin)", note: "Indoor, low fire risk", rating: "up to 3150 kVA", hsn: "85043300 / 85043400" },
-      { name: "Converter and inverter duty", note: "Solar, VFD and rectifier duty", rating: "to order", hsn: "85042200" },
+      { name: "Converter and inverter duty", note: "Solar, VFD and rectifier duty", rating: "to order", hsn: "85042100–40 oil / 85043300–400 dry" },
     ],
     standards: ["IEC 60076", "IS 1180", "IS 2026", "Ecodesign / EU Tier 2, on request"],
     builtFor: ["Utility distribution", "Solar parks", "Industrial plants", "Compact substations"],

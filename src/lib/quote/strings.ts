@@ -35,6 +35,7 @@ const en = {
   hints: {
     contact: "Email or WhatsApp is enough.",
     privacy: "We use these details only to reply to your request.",
+    privacyLink: "Privacy policy",
   },
   choices: {
     other: "Something else",

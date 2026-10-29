@@ -44,8 +44,8 @@ const REASONS = [
     text: "Voltage, frequency, standards, design ambient and nameplate language set for the destination grid.",
   },
   {
-    title: "Certificates arranged",
-    text: "SASO, SONCAP, PVoC, UL and the other destination certificates arranged with the shipment.",
+    title: "Certificates handled",
+    text: "SASO, SONCAP and PVoC certificates arranged with the shipment; UL, UKCA and utility approvals sourced from manufacturers that hold them.",
   },
   {
     title: "Export paperwork handled",
@@ -74,15 +74,15 @@ export default function Home() {
     <>
       <section className="hero-wall" aria-labelledby="hero-title">
         <HeroMosaic />
-        <div className="hero-wall-text" data-stagger>
-          <h1 id="hero-title" data-reveal>
-            Fit for your grid
-          </h1>
-          <p data-reveal>
+        {/* No scroll reveal here: this text is the largest element on a phone, and hiding it
+            until JavaScript runs delays the first meaningful paint. */}
+        <div className="hero-wall-text">
+          <h1 id="hero-title">Fit for your grid</h1>
+          <p>
             Your export partner for electrical panels, switchgear, transformers and enclosures, sourced from
             India&apos;s manufacturers to the voltage, standards and paperwork of your country.
           </p>
-          <div className="hero-actions" data-reveal>
+          <div className="hero-actions">
             <Link href="/configurator" className="btn btn--large" title="Configure your requirement by country, ratings and standards">
               Configure your requirement
             </Link>
@@ -249,7 +249,7 @@ export default function Home() {
 
       <QuoteCta
         title="Looking for electrical solutions?"
-        text="Contractors and plant owners: tell us the project and the country. We source to match, arrange the certificates and ship it."
+        text="Contractors and plant owners: tell us the project and the country. We source to match, handle the certificates and ship it."
         href="/configurator"
         action="Configure your requirement"
       />

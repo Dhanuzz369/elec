@@ -70,3 +70,21 @@ test("the track record is never overstated", () => {
   }
   expect(hits).toEqual([]);
 });
+
+// The hero text is the largest element on a phone; hiding it until hydration delays LCP.
+test("the home hero text is not hidden behind the scroll reveal", () => {
+  const src = readFileSync(path.join(process.cwd(), "src/app/page.tsx"), "utf8");
+  const hero = src.slice(src.indexOf('className="hero-wall-text"'), src.indexOf("</section>"));
+  expect(hero).not.toMatch(/data-reveal|data-stagger/);
+});
+
+test("the font is self-hosted, not loaded from a render-blocking stylesheet", () => {
+  const layout = readFileSync(path.join(process.cwd(), "src/app/layout.tsx"), "utf8");
+  expect(layout).not.toMatch(/fontshare/);
+  expect(layout).toMatch(/next\/font\/local/);
+});
+
+test("the blog promises no schedule it doesn't keep", () => {
+  const blog = readFileSync(path.join(process.cwd(), "src/app/blog/page.tsx"), "utf8");
+  expect(blog).not.toMatch(/weekly|every week/i);
+});

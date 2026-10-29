@@ -2,7 +2,7 @@ import { countries } from "@/data/countries";
 import { families } from "@/data/products";
 import { TRACK_RECORD, projectTypes } from "@/data/projects";
 import { absoluteUrl, site, publishable } from "@/data/site";
-import { countrySlug } from "@/lib/countries";
+import { certificatePerShipment, countrySlug } from "@/lib/countries";
 import { postUrl } from "@/lib/feed";
 import type { Post } from "@/lib/posts";
 
@@ -34,10 +34,9 @@ export function buildLlmsTxt(posts: Post[]): string {
       (c) => `- [${c.name}](${absoluteUrl(`/export/${countrySlug(c)}`)}): ${c.lv}, ${c.hz} Hz, ${c.conformity}`,
     ),
     "",
-    "## Guides",
-    "",
-    ...(posts.length ? posts.slice(0, 20).map((p) => `- [${p.title}](${postUrl(p)}): ${p.description}`) : ["- New guides every week."]),
-    "",
+    ...(posts.length
+      ? ["## Guides", "", ...posts.slice(0, 20).map((p) => `- [${p.title}](${postUrl(p)}): ${p.description}`), ""]
+      : []),
     "## Request a quote",
     "",
     `- [Get a quote](${absoluteUrl("/quote")}): a one-minute form for any product above; GoodBiz Power Systems replies within one working day`,
@@ -68,7 +67,7 @@ export function buildLlmsFullTxt(): string {
     out.push(`### ${region}`, "");
     for (const c of countries.filter((x) => x.region === region)) {
       out.push(
-        `- ${c.name}: LV ${c.lv}; MV ${c.mv}; ${c.hz} Hz; standards ${c.standard}; certificate ${c.conformity} (arranged by ${site.name}); design ambient ${c.ambient} °C; nameplates in ${c.plate}.`,
+        `- ${c.name}: LV ${c.lv}; MV ${c.mv}; ${c.hz} Hz; standards ${c.standard}; certificate ${c.conformity} (${certificatePerShipment(c) ? `arranged by ${site.name} per shipment` : "held by the manufacturer"}); design ambient ${c.ambient} °C; nameplates in ${c.plate}.`,
       );
     }
     out.push("");

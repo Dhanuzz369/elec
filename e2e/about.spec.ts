@@ -109,3 +109,18 @@ test("the About page marks up its questions and answers", async ({ page }) => {
   const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
   expect(ld.join()).toContain('"FAQPage"');
 });
+
+test("the privacy policy is linked from the footer and the quote form", async ({ page }) => {
+  await page.goto("/quote");
+  await expect(page.getByTestId("quote-form").getByRole("link", { name: /privacy/i })).toHaveAttribute("href", "/privacy");
+  await expect(page.locator("footer").getByRole("link", { name: /privacy/i })).toHaveAttribute("href", "/privacy");
+  await page.goto("/privacy");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/privacy/i);
+});
+
+test.describe("blog while it has no posts", () => {
+  test("is kept out of search", async ({ page }) => {
+    await page.goto("/blog");
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  });
+});

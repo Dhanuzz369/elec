@@ -18,7 +18,7 @@
   --field-1-ink: #0d2e25;
   --field-1-surface: #d7f1dd;
 
-  --font: "General Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font: var(--font-general-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
   --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);

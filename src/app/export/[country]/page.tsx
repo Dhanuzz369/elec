@@ -8,6 +8,7 @@ import { Bullet } from "@/components/Motif";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
 import {
+  certificatePerShipment,
   conformityInSentence,
   countryDescription,
   countryFaq,
@@ -54,7 +55,7 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
     ["Medium voltage", c.mv],
     ["Frequency", `${c.hz} Hz`],
     ["Standards", c.standard],
-    ["Certificate", `${c.conformity}, arranged by GoodBiz Power Systems`],
+    ["Certificate", certificatePerShipment(c) ? `${c.conformity}, arranged for each shipment` : `${c.conformity}, held by the manufacturer`],
     ["Design ambient", `${c.ambient} °C`],
     ["Nameplates", c.plate],
   ];
@@ -65,7 +66,10 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
         <h1 data-reveal>{c.name}</h1>
         <p data-reveal>
           Electrical equipment for {c.name}: panels, transformers, RMUs and switchgear sourced from partner manufacturers to the grid, standards and
-          paperwork of {c.name}, with the {conformityInSentence(c)} arranged for each shipment.
+          paperwork of {c.name},{" "}
+          {certificatePerShipment(c)
+            ? `with the ${conformityInSentence(c)} arranged for each shipment.`
+            : `from manufacturers whose equipment carries the ${conformityInSentence(c)}.`}
         </p>
         <div className="hero-actions" data-reveal>
           <Link href={`/configurator?country=${c.code}`} className="btn" title={`Configure electrical equipment for ${c.name}`}>

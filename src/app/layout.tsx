@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import { site } from "@/data/site";
 import { HOME_TITLE } from "@/lib/meta";
@@ -7,6 +8,18 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { RevealObserver } from "@/components/RevealObserver";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/jsonld";
+
+// General Sans (Fontshare, ITF Free Font License), self-hosted so no third-party
+// stylesheet blocks the first paint; next/font preloads it and adds a size-matched fallback.
+const generalSans = localFont({
+  src: [
+    { path: "./fonts/GeneralSans-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/GeneralSans-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/GeneralSans-Bold.woff2", weight: "700", style: "normal" },
+  ],
+  display: "swap",
+  variable: "--font-general-sans",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -37,12 +50,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="" />
-        <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={generalSans.variable}>
       <body>
         <SiteHeader />
         <main>{children}</main>

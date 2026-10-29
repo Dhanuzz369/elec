@@ -182,7 +182,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
 
       <QuoteCta
         title={`Need ${/^[A-Z][a-z]/.test(fam.name) ? fam.name[0].toLowerCase() + fam.name.slice(1) : fam.name}?`}
-        text="Tell us the country and the rating. We source to match, arrange the certificates and ship it."
+        text="Tell us the country and the rating. We source to match, handle the certificates and ship it."
         href={`/quote?product=${fam.slug}`}
         action={`Request ${fam.name}`}
         secondary={{ href: `/configurator?family=${fam.slug}`, label: "Configure in detail" }}

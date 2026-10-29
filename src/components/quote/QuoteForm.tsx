@@ -292,7 +292,12 @@ export function QuoteForm() {
         {text("email", t.fields.email, { type: "email", autoComplete: "email", inputMode: "email" })}
         {text("phone", t.fields.phone, { type: "tel", autoComplete: "tel", inputMode: "tel" })}
         <p className="qf-hint">{t.hints.contact}</p>
-        <p className="qf-privacy">{t.hints.privacy}</p>
+        <p className="qf-privacy">
+          {t.hints.privacy}{" "}
+          <Link href="/privacy" className="link" title={t.hints.privacyLink}>
+            {t.hints.privacyLink}
+          </Link>
+        </p>
         <div className="qf-hp" aria-hidden="true">
           <label>
             {t.fields.honeypot}

@@ -39,10 +39,16 @@ test("products carry no brand, manufacturer, rating, review or price", () => {
   }
 });
 
-test("every product offer names GoodBiz Power Systems as seller", () => {
-  const list = familyLd(families[0]) as { itemListElement: { item: { offers: { seller: { name: string } } } }[] };
+// No price exists, so no Offer: an Offer without a price draws Search Console warnings.
+test("product lines carry no offer, but an id and an image", () => {
+  const list = familyLd(families[0]) as { itemListElement: { item: { offers?: unknown; "@id": string; image?: string } }[] };
   expect(list.itemListElement).toHaveLength(families[0].variants.length);
-  for (const el of list.itemListElement) expect(el.item.offers.seller.name).toBe(site.name);
+  const ids = list.itemListElement.map((el) => el.item["@id"]);
+  expect(new Set(ids).size).toBe(ids.length);
+  for (const el of list.itemListElement) {
+    expect(el.item.offers).toBeUndefined();
+    expect(el.item.image).toMatch(/^https:\/\/www\.goodbizpower\.com\/images\//);
+  }
 });
 
 test("HSN code appears as an additionalProperty", () => {
