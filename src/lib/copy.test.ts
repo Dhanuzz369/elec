@@ -11,6 +11,8 @@ const BANNED = [
   /\bwe fit\b/i,
   /\bwound in\b/i,
   /built for your grid/i,
+  /\bwe manufacture\b/i,
+  /manufactured by goodbiz/i,
 ];
 
 function files(dir: string): string[] {
@@ -46,4 +48,11 @@ test("the company is called GoodBiz Power Systems everywhere", () => {
       });
   }
   expect(hits).toEqual([]);
+});
+
+test("the ban list allows honest sourcing language", () => {
+  for (const ok of ["We don't manufacture, and that's deliberate.", "sourcing from India's manufacturers"])
+    expect(BANNED.some((re) => re.test(ok))).toBe(false);
+  for (const bad of ["We manufacture panels", "Manufactured by GoodBiz Power Systems"])
+    expect(BANNED.some((re) => re.test(bad))).toBe(true);
 });

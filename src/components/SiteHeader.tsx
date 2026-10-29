@@ -72,6 +72,9 @@ export function SiteHeader() {
         <Link href="/blog" className="link">
           Blog
         </Link>
+        <Link href="/about" className="link nav-hide">
+          About
+        </Link>
         <Link href="/products" className="link nav-hide">
           All products
         </Link>

@@ -45,6 +45,9 @@ export function SiteFooter() {
         </nav>
         <nav aria-label="For buyers">
           <strong>For buyers</strong>
+          <Link href="/about" className="link">
+            About us
+          </Link>
           <Link href="/configurator" className="link">
             Configure a requirement
           </Link>

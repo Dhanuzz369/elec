@@ -95,6 +95,14 @@ export default function Home() {
             every item to the grid and certificates of their country, consolidate it into one shipment and stay
             their single contact until it is delivered.
           </p>
+          <p className="about-body" data-reveal>
+            Behind it are 25+ years as a licensed EPC contractor for BESCOM, other public discoms and KPTCL.
+          </p>
+          <div className="about-more" data-reveal>
+            <Link href="/about" className="btn btn--quiet">
+              More about us
+            </Link>
+          </div>
         </div>
         <dl className="about-facts" data-stagger>
           <div data-reveal>

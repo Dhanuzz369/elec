@@ -2357,6 +2357,10 @@ fieldset {
   max-width: 56ch;
 }
 
+.about-more {
+  margin-top: 28px;
+}
+
 .about-facts {
   margin: 0;
   display: grid;

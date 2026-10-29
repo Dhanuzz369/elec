@@ -68,3 +68,10 @@ test.describe("without JavaScript", () => {
     await expect(page.getByRole("tab")).toHaveCount(0);
   });
 });
+
+test("home and footer link to About", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "More about us" }).click();
+  await expect(page).toHaveURL(/\/about$/);
+  await expect(page.locator("footer").getByRole("link", { name: "About us" })).toHaveAttribute("href", "/about");
+});
