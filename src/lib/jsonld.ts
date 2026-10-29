@@ -1,5 +1,6 @@
 import { countries, type Country } from "@/data/countries";
 import { families, type Family } from "@/data/products";
+import { projectTypes } from "@/data/projects";
 import { absoluteUrl, publishable, site } from "@/data/site";
 import type { Faq, Post } from "@/lib/posts";
 
@@ -43,6 +44,7 @@ export function organizationLd(): Node {
     knowsAbout: [
       ...families.map((f) => f.name),
       "HSN codes for electrical equipment",
+      ...projectTypes.map((p) => `Electrical supply for ${p.name.toLowerCase()}`),
       ...[...new Set(countries.map((c) => c.conformity))],
     ],
     contactPoint: {
@@ -54,6 +56,17 @@ export function organizationLd(): Node {
       areaServed: countries.map((c) => c.code),
       availableLanguage: ["English"],
     },
+  };
+}
+
+export function aboutPageLd(): Node {
+  return {
+    "@type": "AboutPage",
+    "@id": `${absoluteUrl("/about")}#page`,
+    url: absoluteUrl("/about"),
+    name: "About us",
+    isPartOf: { "@id": SITE_ID },
+    mainEntity: orgRef,
   };
 }
 

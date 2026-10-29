@@ -19,6 +19,7 @@ export function sitemapEntries(input: { posts: Post[]; tags: { slug: string; cou
     page("/", 1),
     page("/products", 0.9),
     page("/quote", 0.9),
+    page("/about", 0.8),
     page("/configurator", 0.8),
     page("/export", 0.8),
     page("/blog", 0.7),

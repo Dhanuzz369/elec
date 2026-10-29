@@ -3,8 +3,10 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { JsonLd } from "@/components/JsonLd";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
+import { projectTypes } from "@/data/projects";
 import { site } from "@/data/site";
 import {
+  aboutPageLd,
   blogLd,
   blogPostingLd,
   breadcrumbLd,
@@ -145,4 +147,17 @@ test("the organization carries its real contact details", () => {
   expect(org.telephone).toBe("+91 88847 99369");
   expect(org.address.addressLocality).toBe("Bangalore");
   expect(org.address.addressRegion).toBe("Karnataka");
+});
+
+test("About page is about the organization", () => {
+  expect(aboutPageLd()).toMatchObject({
+    "@type": "AboutPage",
+    url: `${site.url}/about`,
+    mainEntity: { "@id": `${site.url}/#organization` },
+  });
+});
+
+test("organization knows the four project types", () => {
+  const knows = (organizationLd() as { knowsAbout: string[] }).knowsAbout;
+  for (const p of projectTypes) expect(knows).toContain(`Electrical supply for ${p.name.toLowerCase()}`);
 });

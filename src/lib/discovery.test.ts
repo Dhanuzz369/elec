@@ -37,7 +37,7 @@ test("sitemap leaves out thin tag pages", () => {
 });
 
 test("sitemap covers products, countries and core pages", () => {
-  for (const path of ["/", "/products", "/configurator", "/quote", "/blog", "/export", "/export/saudi-arabia", "/products/transformers"]) {
+  for (const path of ["/", "/products", "/configurator", "/quote", "/about", "/blog", "/export", "/export/saudi-arabia", "/products/transformers"]) {
     expect(urls()).toContain(path === "/" ? `${site.url}/` : `${site.url}${path}`);
   }
 });
@@ -90,4 +90,10 @@ test("llms files never publish placeholder contact details", () => {
     expect(txt).not.toMatch(/@\S*\.example\b/);
     expect(txt).not.toMatch(/0000/);
   }
+});
+
+test("llms.txt points to the About page with the track record", () => {
+  const txt = buildLlmsTxt([]);
+  expect(txt).toContain(`[About GoodBiz Power Systems](${site.url}/about)`);
+  expect(txt).toMatch(/25\+ years.*BESCOM.*KPTCL/);
 });
