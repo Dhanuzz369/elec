@@ -31,3 +31,14 @@ test("the HSN finder opens on the search in the address", async ({ page }) => {
   await expect(page.getByLabel("Search products or HSN codes")).toHaveValue("85042100");
   await expect(page.locator(".results").getByText("85042100").first()).toBeVisible();
 });
+
+test("an agent asking for Markdown gets Markdown; browsers still get HTML", async ({ request }) => {
+  const md = await request.get("/", { headers: { Accept: "text/markdown" } });
+  expect(md.ok()).toBe(true);
+  expect(md.headers()["content-type"]).toContain("text/markdown");
+  expect(await md.text()).toMatch(/^# GoodBiz Power Systems/);
+  const kenya = await request.get("/export/kenya", { headers: { Accept: "text/markdown, text/html;q=0.5" } });
+  expect(await kenya.text()).toContain("Port of Mombasa");
+  const html = await request.get("/export/kenya", { headers: { Accept: "text/html" } });
+  expect(html.headers()["content-type"]).toContain("text/html");
+});

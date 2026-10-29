@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList } from "@/components/FaqList";
+import { ABOUT_RANGE, ABOUT_STEPS } from "@/data/about";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectTypes } from "@/components/about/ProjectTypes";
 import { whatsappHref } from "@/data/site";
@@ -34,26 +35,6 @@ const FACTS = [
   ["Licensed EPC", "for BESCOM and public discoms"],
   ["KPTCL", "transmission projects"],
   ["One stop", "RMU to enclosure, one order"],
-];
-
-const RANGE: [string, string][] = [
-  ["RMUs and MV switchgear", "mv-switchgear-rmu"],
-  ["Transformers", "transformers"],
-  ["LT panels (PCC, MCC)", "lt-panels"],
-  ["Automation and PLC panels", "lt-panels"],
-  ["APFC and ATS panels", "lt-panels"],
-  ["Breakers and contactors", "breakers-contactors"],
-  ["Enclosures and junction boxes", "enclosures-junction-boxes"],
-  ["Busbars and parts", "parts"],
-];
-
-const STEPS = [
-  ["Understand", "Your site, load, standards and budget."],
-  ["Recommend", "The right products and brands, and why."],
-  ["Source", "From partner manufacturers, built to your specification."],
-  ["Inspect and test", "Every order is tested before it ships."],
-  ["Document", "Drawings, test reports and export paperwork."],
-  ["Ship", "One consolidated shipment to your port or site."],
 ];
 
 export default function AboutPage() {
@@ -126,7 +107,7 @@ export default function AboutPage() {
         </h2>
         <div data-reveal>
           <ul className="ap-range-list">
-            {RANGE.map(([name, slug]) => (
+            {ABOUT_RANGE.map(([name, slug]) => (
               <li key={name}>
                 <Link href={`/products/${slug}`} className="link" title={`${name}: product lines and HSN codes`}>
                   {name}
@@ -147,7 +128,7 @@ export default function AboutPage() {
           Tailored, not off the shelf
         </h2>
         <ol className="ap-steps" data-stagger>
-          {STEPS.map(([title, text], i) => (
+          {ABOUT_STEPS.map(([title, text], i) => (
             <li key={title} data-reveal>
               <span className="ap-step-n num">0{i + 1}</span>
               <strong>{title}</strong>
