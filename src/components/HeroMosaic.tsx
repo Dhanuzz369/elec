@@ -30,7 +30,8 @@ export function HeroMosaic() {
             <div key={`${p.src}-${i}`} className="mosaic-tile">
               <Image
                 src={p.src}
-                alt=""
+                alt={p.alt}
+                title={p.alt}
                 width={480}
                 height={320}
                 sizes="(max-width: 860px) 34vw, 20vw"

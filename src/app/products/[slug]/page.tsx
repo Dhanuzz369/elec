@@ -51,10 +51,10 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
           </h1>
           <p data-reveal>{fam.summary}</p>
           <div className="hero-actions" data-reveal>
-            <Link href={`/quote?product=${fam.slug}`} className="btn">
+            <Link href={`/quote?product=${fam.slug}`} className="btn" title={`Get a quote for ${fam.name}`}>
               Request {fam.name}
             </Link>
-            <a href="#lines" className="btn btn--quiet">
+            <a href="#lines" className="btn btn--quiet" title={`${fam.name} product lines`}>
               See product lines
             </a>
           </div>
@@ -64,6 +64,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
             <Image
               src={fam.gallery[0].src}
               alt={fam.gallery[0].alt}
+              title={fam.gallery[0].alt}
               width={1536}
               height={1024}
               sizes="(max-width: 860px) 100vw, 42vw"
@@ -74,7 +75,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
         <div className="family-visual" data-reveal-circle>
           {fam.image ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={fam.image.src} alt={fam.image.alt} width={1920} height={1280} />
+            <img src={fam.image.src} alt={fam.image.alt} title={fam.image.alt} width={1920} height={1280} />
           ) : fam.slug === "transformers" ? (
             <TransformerDrawing />
           ) : (
@@ -92,7 +93,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
           <div className="gallery-grid" data-stagger>
             {fam.gallery.map((p) => (
               <figure key={p.src} data-reveal>
-                <Image src={p.src} alt={p.alt} width={1536} height={1024} sizes="(max-width: 860px) 100vw, 33vw" />
+                <Image src={p.src} alt={p.alt} title={p.alt} width={1536} height={1024} sizes="(max-width: 860px) 100vw, 33vw" />
                 <figcaption>{p.caption}</figcaption>
               </figure>
             ))}
@@ -172,7 +173,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
         ]}
       />
 
-      <Link href={`/products/${next.slug}`} className="next-family">
+      <Link href={`/products/${next.slug}`} className="next-family" title={`${next.name}: product lines and HSN codes`}>
         <strong>Next: {next.name}</strong>
         <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3">
           <path d="M8 24h32M28 12l12 12-12 12" />

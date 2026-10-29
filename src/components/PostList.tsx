@@ -10,13 +10,13 @@ export function PostList({ posts }: { posts: Post[] }) {
     <ol className="post-list" data-stagger>
       {posts.map((p) => (
         <li key={p.slug} data-reveal>
-          <Link href={`/blog/${p.slug}`} className="post-row">
+          <Link href={`/blog/${p.slug}`} className="post-row" title={p.title}>
             <span className="post-row-thumb" aria-hidden="true" data-reveal-circle>
               {p.cover?.startsWith("/") ? (
-                <Image src={p.cover} alt="" width={240} height={240} sizes="120px" />
+                <Image src={p.cover} alt={p.coverAlt ?? p.title} title={p.coverAlt ?? p.title} width={240} height={240} sizes="120px" />
               ) : p.cover ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={p.cover} alt="" width={240} height={240} loading="lazy" />
+                <img src={p.cover} alt={p.coverAlt ?? p.title} title={p.coverAlt ?? p.title} width={240} height={240} loading="lazy" />
               ) : null}
             </span>
             <span className="post-row-date num">
@@ -42,7 +42,7 @@ export function TagLinks({ tags, active }: { tags: { tag: string; slug: string }
   if (!tags.length) return null;
   return (
     <nav className="tag-links" aria-label="Topics" data-reveal>
-      <Link href="/blog" className="chip" aria-current={active ? undefined : "page"}>
+      <Link href="/blog" className="chip" aria-current={active ? undefined : "page"} title="All topics">
         All topics
       </Link>
       {tags.map((t) => (
@@ -50,6 +50,7 @@ export function TagLinks({ tags, active }: { tags: { tag: string; slug: string }
           key={t.slug}
           href={`/blog/tag/${tagSlug(t.tag)}`}
           className="chip"
+          title={`Articles on ${t.tag}`}
           aria-current={active === t.slug ? "page" : undefined}
         >
           {t.tag}

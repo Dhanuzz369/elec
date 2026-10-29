@@ -68,10 +68,10 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
           paperwork of {c.name}, with the {conformityInSentence(c)} arranged for each shipment.
         </p>
         <div className="hero-actions" data-reveal>
-          <Link href={`/configurator?country=${c.code}`} className="btn">
+          <Link href={`/configurator?country=${c.code}`} className="btn" title={`Configure electrical equipment for ${c.name}`}>
             Configure for {c.name}
           </Link>
-          <Link href="/export" className="btn btn--quiet">
+          <Link href="/export" className="btn btn--quiet" title="Countries we ship electrical equipment to">
             All countries
           </Link>
         </div>
@@ -103,7 +103,7 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
           {families.map((f) => (
             <li key={f.slug} data-reveal>
               <Bullet />
-              <Link href={`/products/${f.slug}`} className="link">
+              <Link href={`/products/${f.slug}`} className="link" title={`${f.name} for ${c.name}`}>
                 {familyLineFor(c, f)}
               </Link>
             </li>

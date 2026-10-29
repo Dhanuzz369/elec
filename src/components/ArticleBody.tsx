@@ -11,7 +11,7 @@ export function ArticleBody({ post }: { post: Post }) {
           <ol>
             {toc.map((h) => (
               <li key={h.id}>
-                <a href={`#${h.id}`} className="link">
+                <a href={`#${h.id}`} className="link" title={h.text}>
                   {h.text}
                 </a>
               </li>

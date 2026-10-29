@@ -83,10 +83,10 @@ export default function Home() {
             India&apos;s manufacturers to the voltage, standards and paperwork of your country.
           </p>
           <div className="hero-actions" data-reveal>
-            <Link href="/configurator" className="btn btn--large">
+            <Link href="/configurator" className="btn btn--large" title="Configure your requirement by country, ratings and standards">
               Configure your requirement
             </Link>
-            <Link href="/products" className="btn btn--paper btn--large">
+            <Link href="/products" className="btn btn--paper btn--large" title="All products and HSN codes">
               See all products
             </Link>
           </div>
@@ -111,7 +111,7 @@ export default function Home() {
             Behind it are 25+ years in power distribution: projects for KPTCL, and licensed EPC work for BESCOM and other public discoms.
           </p>
           <div className="about-more" data-reveal>
-            <Link href="/about" className="btn btn--quiet">
+            <Link href="/about" className="btn btn--quiet" title="About GoodBiz Power Systems: 25+ years in power distribution">
               More about us
             </Link>
           </div>
@@ -141,17 +141,17 @@ export default function Home() {
           <h2 id="exports-title" data-reveal>
             What we export
           </h2>
-          <Link href="/products" className="btn btn--quiet">
+          <Link href="/products" className="btn btn--quiet" title="All products and HSN codes">
             All products and HSN codes
           </Link>
         </div>
         <ul className="export-list" data-stagger>
           {families.map((f) => (
             <li key={f.slug} data-reveal>
-              <Link href={`/products/${f.slug}`} className="export-row">
+              <Link href={`/products/${f.slug}`} className="export-row" title={`${f.name}: product lines and HSN codes`}>
                 <span className="export-thumb" aria-hidden="true">
                   {f.gallery?.length ? (
-                    <Image src={f.gallery[0].src} alt="" width={240} height={160} sizes="120px" />
+                    <Image src={f.gallery[0].src} alt={f.gallery[0].alt} title={f.gallery[0].alt} width={240} height={160} sizes="120px" />
                   ) : (
                     <TransformerSymbol strokeWidth={1.6} />
                   )}
@@ -181,7 +181,7 @@ export default function Home() {
               {b.logo ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={b.logo} alt={`${b.name} logo`} width={72} height={72} />
+                  <img src={b.logo} alt={`${b.name} logo`} title={b.name} width={72} height={72} />
                   <span>{b.name}</span>
                 </>
               ) : (
@@ -214,6 +214,7 @@ export default function Home() {
             <img
               src="/images/free-container-ship-port-image.webp"
               alt="Containers stacked on a ship at a port"
+              title="Electrical equipment shipped worldwide by sea"
               width={1024}
               height={709}
               loading="lazy"
@@ -224,6 +225,7 @@ export default function Home() {
             <img
               src="/images/products/lt-pcc-acb-incomers.webp"
               alt="LT power distribution panels with air circuit breaker incomers"
+              title="LT power distribution panels with ACB incomers"
               width={1536}
               height={1024}
               loading="lazy"

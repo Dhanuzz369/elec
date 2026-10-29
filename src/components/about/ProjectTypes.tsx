@@ -98,7 +98,8 @@ export function ProjectTypes() {
                 {/* Eager: the stacked, hidden panels never trigger lazy loading in some browsers. */}
                 <Image
                   src={p.photo.src}
-                  alt=""
+                  alt={p.photo.alt}
+                  title={p.photo.alt}
                   fill
                   sizes="(max-width: 860px) 100vw, 840px"
                   priority={i === 0}
@@ -118,7 +119,7 @@ export function ProjectTypes() {
                         <>
                           <span className="ap-thumb">
                             {n.image ? (
-                              <Image src={n.image} alt="" fill sizes="160px" />
+                              <Image src={n.image} alt={n.name} title={n.name} fill sizes="160px" />
                             ) : (
                               <TransformerSymbol className="ap-glyph" />
                             )}
@@ -128,7 +129,7 @@ export function ProjectTypes() {
                       );
                       return (
                         <li key={n.name} style={{ "--i": k } as CSSProperties}>
-                          {n.href ? <Link href={n.href}>{body}</Link> : body}
+                          {n.href ? <Link href={n.href} title={`${n.name}: see the product family`}>{body}</Link> : body}
                         </li>
                       );
                     })}
@@ -143,7 +144,7 @@ export function ProjectTypes() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/quote" className="btn">
+                  <Link href="/quote" className="btn" title={`Get a quote for ${p.name.toLowerCase()}`}>
                     Get a quote for this project
                   </Link>
                 </div>

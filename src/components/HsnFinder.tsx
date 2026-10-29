@@ -66,7 +66,7 @@ export function HsnFinder() {
                   {fam && (
                     <>
                       {" · "}
-                      <Link href={`/products/${e.family}`} className="link" style={{ color: "var(--ink)" }}>
+                      <Link href={`/products/${e.family}`} className="link" title={`${fam}: product lines and HSN codes`} style={{ color: "var(--ink)" }}>
                         {fam}
                       </Link>
                     </>

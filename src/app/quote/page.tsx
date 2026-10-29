@@ -29,7 +29,7 @@ export default function QuotePage() {
           <h1>Get a quote</h1>
           <p>
             A few taps, no forms to wade through. Need to set ratings and standards in detail? Use the{" "}
-            <Link href="/configurator" className="link">
+            <Link href="/configurator" className="link" title="Configure your requirement by country, ratings and standards">
               configurator
             </Link>{" "}
             instead.

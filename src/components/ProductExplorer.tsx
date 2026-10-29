@@ -58,7 +58,7 @@ export function ProductExplorer() {
       <div id="family-panel" role="tabpanel" aria-labelledby={`tab-${fam.slug}`} key={fam.slug} className="panel">
         <div className="panel-top">
           <p>{fam.summary}</p>
-          <Link href={`/products/${fam.slug}`} className="btn btn--quiet">
+          <Link href={`/products/${fam.slug}`} className="btn btn--quiet" title={`${fam.name}: product lines and HSN codes`}>
             Open {fam.name}
           </Link>
         </div>
@@ -66,7 +66,7 @@ export function ProductExplorer() {
           <div className="panel-photos">
             {fam.gallery.slice(0, 3).map((p) => (
               <figure key={p.src}>
-                <Image src={p.src} alt={p.alt} width={1536} height={1024} sizes="(max-width: 860px) 33vw, 20vw" />
+                <Image src={p.src} alt={p.alt} title={p.alt} width={1536} height={1024} sizes="(max-width: 860px) 33vw, 20vw" />
                 <figcaption>{p.caption}</figcaption>
               </figure>
             ))}

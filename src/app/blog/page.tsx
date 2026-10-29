@@ -35,7 +35,7 @@ export default async function BlogIndex() {
             for an export project.
           </p>
         </div>
-        <a href="/feed.xml" className="btn btn--quiet">
+        <a href="/feed.xml" className="btn btn--quiet" title="Subscribe to the blog by RSS">
           RSS feed
         </a>
       </header>
@@ -47,7 +47,7 @@ export default async function BlogIndex() {
         ) : (
           <div className="empty">
             <p>No posts yet. The first one is on its way.</p>
-            <Link href="/products#hsn" className="btn">
+            <Link href="/products#hsn" className="btn" title="Find the HSN code for electrical equipment">
               Find an HSN code meanwhile
             </Link>
           </div>

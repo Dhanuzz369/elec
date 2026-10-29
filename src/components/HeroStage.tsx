@@ -48,7 +48,9 @@ export function HeroStage() {
           <img
             key={p.src}
             src={p.src}
-            alt={i === index ? p.alt : ""}
+            alt={p.alt}
+            title={p.alt}
+            aria-hidden={i === index ? undefined : true}
             width={1920}
             height={1440}
             data-on={i === index}

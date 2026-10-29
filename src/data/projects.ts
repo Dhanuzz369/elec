@@ -9,7 +9,7 @@ export type ProjectType = {
   name: string;
   question: string;
   summary: string;
-  photo: { src: string; width: number; height: number };
+  photo: { src: string; width: number; height: number; alt: string };
   needs: ProjectNeed[];
   watch: string[];
 };
@@ -23,7 +23,7 @@ export const projectTypes: ProjectType[] = [
     name: "Residential apartments",
     question: "What electrical equipment does a residential apartment project need?",
     summary: "Hundreds of homes on one supply: safe, metered and quiet.",
-    photo: { src: "/images/projects/apartments.webp", width: 1600, height: 1067 },
+    photo: { src: "/images/projects/apartments.webp", width: 1600, height: 1067, alt: "A modern high-rise apartment building" },
     needs: [
       { name: "RMU or compact substation", image: product("enc-outdoor-grp-kiosk"), href: family("mv-switchgear-rmu") },
       { name: "Distribution transformer", image: product("transformer-oil-onan"), href: family("transformers") },
@@ -42,7 +42,7 @@ export const projectTypes: ProjectType[] = [
     name: "Commercial buildings",
     question: "What electrical equipment does a commercial building need?",
     summary: "Offices, malls and hotels where tenants change and loads grow.",
-    photo: { src: "/images/projects/commercial.webp", width: 1600, height: 1067 },
+    photo: { src: "/images/projects/commercial.webp", width: 1600, height: 1067, alt: "Glass office towers seen from street level" },
     needs: [
       { name: "Dry-type transformer", image: product("transformer-dry-cast-resin"), href: family("transformers") },
       { name: "PCC with ACB incomers", image: product("lt-pcc-acb-incomers"), href: family("lt-panels") },
@@ -61,7 +61,7 @@ export const projectTypes: ProjectType[] = [
     name: "IT parks",
     question: "What electrical equipment does an IT park need?",
     summary: "Campuses that run day and night, where a minute down costs more than the panel.",
-    photo: { src: "/images/projects/it-parks.webp", width: 1600, height: 1095 },
+    photo: { src: "/images/projects/it-parks.webp", width: 1600, height: 1095, alt: "An office campus with a lit footbridge at night" },
     needs: [
       { name: "RMUs in a ring", href: family("mv-switchgear-rmu") },
       { name: "Dry-type transformers", image: product("transformer-dry-cast-resin"), href: family("transformers") },
@@ -80,7 +80,7 @@ export const projectTypes: ProjectType[] = [
     name: "Industries",
     question: "What electrical equipment does an industrial plant need?",
     summary: "Motors, heat and dust: equipment that has to survive the shop floor.",
-    photo: { src: "/images/projects/industries.webp", width: 1600, height: 1064 },
+    photo: { src: "/images/projects/industries.webp", width: 1600, height: 1064, alt: "Inside a heavy industrial plant with overhead cranes" },
     needs: [
       { name: "Power transformer", image: product("transformer-power-onaf"), href: family("transformers") },
       { name: "MCC with draw-out feeders", image: product("lt-mcc-drawout-feeders"), href: family("lt-panels") },

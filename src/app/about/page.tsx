@@ -127,7 +127,7 @@ export default function AboutPage() {
           <ul className="ap-range-list">
             {RANGE.map(([name, slug]) => (
               <li key={name}>
-                <Link href={`/products/${slug}`} className="link">
+                <Link href={`/products/${slug}`} className="link" title={`${name}: product lines and HSN codes`}>
                   {name}
                 </Link>
               </li>
@@ -162,10 +162,10 @@ export default function AboutPage() {
         </h2>
         <p data-reveal>We&apos;ll recommend the right products and send you a quote.</p>
         <div className="ap-end-actions" data-reveal>
-          <Link href="/quote" className="btn">
+          <Link href="/quote" className="btn" title="Get a quote for electrical equipment">
             Get a quote
           </Link>
-          <a href={whatsappHref()} className="btn btn--quiet">
+          <a href={whatsappHref()} className="btn btn--quiet" title="WhatsApp GoodBiz Power Systems">
             WhatsApp us
           </a>
         </div>

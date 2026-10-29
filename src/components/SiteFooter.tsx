@@ -30,7 +30,7 @@ export function SiteFooter() {
         <nav aria-label="Panels and switchgear">
           <strong>Power equipment</strong>
           {families.slice(0, 3).map((f) => (
-            <Link key={f.slug} href={`/products/${f.slug}`} className="link">
+            <Link key={f.slug} href={`/products/${f.slug}`} className="link" title={`${f.name}: product lines and HSN codes`}>
               {f.name}
             </Link>
           ))}
@@ -38,38 +38,38 @@ export function SiteFooter() {
         <nav aria-label="Components and supply">
           <strong>Components & enclosures</strong>
           {families.slice(3).map((f) => (
-            <Link key={f.slug} href={`/products/${f.slug}`} className="link">
+            <Link key={f.slug} href={`/products/${f.slug}`} className="link" title={`${f.name}: product lines and HSN codes`}>
               {f.name}
             </Link>
           ))}
         </nav>
         <nav aria-label="For buyers">
           <strong>For buyers</strong>
-          <Link href="/about" className="link">
+          <Link href="/about" className="link" title="About GoodBiz Power Systems: 25+ years in power distribution">
             About us
           </Link>
-          <Link href="/configurator" className="link">
+          <Link href="/configurator" className="link" title="Configure your requirement by country, ratings and standards">
             Configure a requirement
           </Link>
-          <Link href="/products#hsn" className="link">
+          <Link href="/products#hsn" className="link" title="Find the HSN code for electrical equipment">
             HSN code finder
           </Link>
-          <Link href="/products" className="link">
+          <Link href="/products" className="link" title="All products and HSN codes">
             All products
           </Link>
-          <Link href="/blog" className="link">
+          <Link href="/blog" className="link" title="Guides for buyers of electrical equipment">
             Blog
           </Link>
-          <Link href="/export" className="link">
+          <Link href="/export" className="link" title="Countries we ship electrical equipment to">
             Countries we ship to
           </Link>
         </nav>
         <div className="footer-contact">
           <strong>{site.name} export desk</strong>
-          <a className="link" href={mailtoHref()}>
+          <a className="link" href={mailtoHref()} title={`Email ${site.name}`}>
             {site.email}
           </a>
-          <a className="link" href={whatsappHref()}>
+          <a className="link" href={whatsappHref()} title={`WhatsApp ${site.name}`}>
             WhatsApp {site.phone}
           </a>
           <span>Bangalore, Karnataka, India · shipping worldwide by sea and air</span>
@@ -78,7 +78,7 @@ export function SiteFooter() {
 
       <div className="footer-last">
         <span>© {new Date().getFullYear()} GoodBiz Power Systems. Sourced in India, shipped worldwide.</span>
-        <Link href="/quote" className="btn">
+        <Link href="/quote" className="btn" title="Get a quote for electrical equipment">
           Get a quote
         </Link>
       </div>

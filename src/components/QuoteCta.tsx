@@ -36,18 +36,18 @@ export function QuoteCta({ title, text, href, action, steps = DEFAULT_STEPS, sec
         ))}
       </ol>
       <div className="quote-cta-actions" data-reveal>
-        <Link href={href} className="btn btn--large">
+        <Link href={href} className="btn btn--large" title={action}>
           {action}
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4">
             <path d="M4 12h15M13 6l6 6-6 6" />
           </svg>
         </Link>
         {secondary && (
-          <Link href={secondary.href} className="btn btn--quiet">
+          <Link href={secondary.href} className="btn btn--quiet" title={secondary.label}>
             {secondary.label}
           </Link>
         )}
-        <a href={whatsappHref()} className="btn btn--quiet">
+        <a href={whatsappHref()} className="btn btn--quiet" title="Ask GoodBiz Power Systems on WhatsApp">
           Ask on WhatsApp
         </a>
       </div>

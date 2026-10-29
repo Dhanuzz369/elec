@@ -43,7 +43,7 @@ export default function ExportIndex() {
                 .filter((c) => c.region === region)
                 .map((c) => (
                   <li key={c.code}>
-                    <Link href={`/export/${countrySlug(c)}`} className="region-link">
+                    <Link href={`/export/${countrySlug(c)}`} className="region-link" title={`Electrical equipment for ${c.name}`}>
                       <strong>{c.name}</strong>
                       <span>
                         {c.lv} · {c.hz} Hz · {c.conformity}

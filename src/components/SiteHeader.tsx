@@ -35,7 +35,7 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link href="/" className="wordmark" aria-label={`${site.name} home`}>
+      <Link href="/" className="wordmark" aria-label={`${site.name} home`} title={`${site.name} home`}>
         <TransformerSymbol />
         <span className="wordmark-text">
           {site.shortName}
@@ -56,29 +56,29 @@ export function SiteHeader() {
           </button>
           <div id="products-menu" className="menu" data-open={open} inert={!open}>
             {families.map((f) => (
-              <Link key={f.slug} href={`/products/${f.slug}`}>
+              <Link key={f.slug} href={`/products/${f.slug}`} title={`${f.name}: product lines and HSN codes`}>
                 <strong>{f.name}</strong>
                 {f.short}
               </Link>
             ))}
           </div>
         </div>
-        <Link href="/products" className="link nav-mobile">
+        <Link href="/products" className="link nav-mobile" title="All products and HSN codes">
           Products
         </Link>
-        <Link href="/products#hsn" className="link nav-hide">
+        <Link href="/products#hsn" className="link nav-hide" title="Find the HSN code for electrical equipment">
           HSN finder
         </Link>
-        <Link href="/blog" className="link">
+        <Link href="/blog" className="link" title="Guides for buyers of electrical equipment">
           Blog
         </Link>
-        <Link href="/about" className="link nav-hide">
+        <Link href="/about" className="link nav-hide" title="About GoodBiz Power Systems: 25+ years in power distribution">
           About
         </Link>
-        <Link href="/products" className="link nav-hide">
+        <Link href="/products" className="link nav-hide" title="All products and HSN codes">
           All products
         </Link>
-        <Link href="/quote" className="btn">
+        <Link href="/quote" className="btn" title="Get a quote for electrical equipment">
           Get a quote
         </Link>
       </nav>

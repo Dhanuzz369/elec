@@ -70,7 +70,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </p>
         <div className="tag-links" data-reveal>
           {post.tags.map((t) => (
-            <Link key={t} href={`/blog/tag/${tagSlug(t)}`} className="chip">
+            <Link key={t} href={`/blog/tag/${tagSlug(t)}`} className="chip" title={`More on ${t}`}>
               {t}
             </Link>
           ))}
@@ -80,10 +80,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {post.cover && (
         <figure className="article-cover" data-reveal>
           {post.cover.startsWith("/") ? (
-            <Image src={post.cover} alt={post.coverAlt ?? ""} width={1600} height={900} priority />
+            <Image src={post.cover} alt={post.coverAlt ?? post.title} title={post.coverAlt ?? post.title} width={1600} height={900} priority />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={post.cover} alt={post.coverAlt ?? ""} width={1600} height={900} />
+            <img src={post.cover} alt={post.coverAlt ?? post.title} title={post.coverAlt ?? post.title} width={1600} height={900} />
           )}
         </figure>
       )}
@@ -98,20 +98,20 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           {family && (
             <li>
               <Bullet />
-              <Link href={`/products/${family.slug}`} className="link">
+              <Link href={`/products/${family.slug}`} className="link" title={`${family.name}: product lines and HSN codes`}>
                 {family.name}: product lines and HSN codes
               </Link>
             </li>
           )}
           <li>
             <Bullet />
-            <Link href={family ? `/configurator?family=${family.slug}` : "/configurator"} className="link">
+            <Link href={family ? `/configurator?family=${family.slug}` : "/configurator"} className="link" title="Configure a requirement for your country">
               Configure a requirement for your country
             </Link>
           </li>
           <li>
             <Bullet />
-            <Link href="/products#hsn" className="link">
+            <Link href="/products#hsn" className="link" title="Find the HSN code for electrical equipment">
               Look up an HSN code
             </Link>
           </li>
@@ -120,7 +120,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             .map((c) => (
               <li key={c.code}>
                 <Bullet />
-                <Link href={`/export/${countrySlug(c)}`} className="link">
+                <Link href={`/export/${countrySlug(c)}`} className="link" title={`Exporting electrical equipment to ${c.name}`}>
                   Exporting to {c.name}: grid, standards and certificate
                 </Link>
               </li>
@@ -131,14 +131,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {(newer || older) && (
         <nav className="article-pager" aria-label="More posts">
           {older ? (
-            <Link href={`/blog/${older.slug}`} className="next-family">
+            <Link href={`/blog/${older.slug}`} className="next-family" title={older.title}>
               <strong>Earlier: {older.title}</strong>
             </Link>
           ) : (
             <span />
           )}
           {newer && (
-            <Link href={`/blog/${newer.slug}`} className="next-family">
+            <Link href={`/blog/${newer.slug}`} className="next-family" title={newer.title}>
               <strong>Next: {newer.title}</strong>
             </Link>
           )}

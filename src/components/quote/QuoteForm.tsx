@@ -249,7 +249,7 @@ export function QuoteForm() {
           {t.success.title}
         </h2>
         <p>{t.success.text}</p>
-        <Link href="/products" className="btn btn--quiet">
+        <Link href="/products" className="btn btn--quiet" title={t.success.link}>
           {t.success.link}
         </Link>
       </div>
@@ -460,10 +460,10 @@ export function QuoteForm() {
             <strong>{t.fallback.title}</strong>
             <p>{t.fallback.text}</p>
             <div className="qf-fallback-actions">
-              <a className="btn" href={links.whatsapp} data-testid="fallback-whatsapp" target="_blank" rel="noopener">
+              <a className="btn" href={links.whatsapp} title={t.fallback.whatsapp} data-testid="fallback-whatsapp" target="_blank" rel="noopener">
                 {t.fallback.whatsapp}
               </a>
-              <a className="btn btn--quiet" href={links.email} data-testid="fallback-email">
+              <a className="btn btn--quiet" href={links.email} title={t.fallback.email} data-testid="fallback-email">
                 {t.fallback.email}
               </a>
             </div>

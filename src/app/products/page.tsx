@@ -63,7 +63,7 @@ export default function ProductsPage() {
             with its HSN code. Mix families and brands in one order; we consolidate them into one shipment.
           </p>
         </div>
-        <Link href="/configurator" className="btn">
+        <Link href="/configurator" className="btn" title="Get a quote for electrical equipment">
           Get a quote
         </Link>
       </header>

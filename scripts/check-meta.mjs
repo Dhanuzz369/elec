@@ -35,6 +35,14 @@ for (const file of pages) {
   if (keywords.split(",").filter((k) => k.trim()).length < 8) problems.push(`${route}: fewer than 8 keywords`);
   if (!/<meta property="og:image" content="[^"]+"/.test(html)) problems.push(`${route}: missing og:image`);
   if (!/<meta name="geo.region" content="IN-KA"/.test(html)) problems.push(`${route}: missing geo.region`);
+  // Audit tools flag images without alt or title text and links without a title.
+  const imgs = html.match(/<img\b[^>]*>/g) ?? [];
+  const badAlt = imgs.filter((t) => !/\balt="[^"]+"/.test(t)).length;
+  const badImgTitle = imgs.filter((t) => !/\btitle="[^"]+"/.test(t)).length;
+  const badLinks = (html.match(/<a\b[^>]*>/g) ?? []).filter((t) => !/\btitle="[^"]+"/.test(t)).length;
+  if (badAlt) problems.push(`${route}: ${badAlt} images without alt text`);
+  if (badImgTitle) problems.push(`${route}: ${badImgTitle} images without a title`);
+  if (badLinks) problems.push(`${route}: ${badLinks} links without a title`);
   // Product and post pages have their own share card (opengraph-image.tsx in the segment).
   if (/^\/(products|blog)\/[^/]+$/.test(route) && !route.startsWith("/blog/tag") && !html.includes(`${route}/opengraph-image`))
     problems.push(`${route}: share image is not the page's own card`);

@@ -51,7 +51,7 @@ export function ChoiceGroup({ name, labelledBy, choices, value, kind, error, onP
             />
             {kind === "card" && !wide && (
               <span className="qf-photo">
-                {c.image ? <Image src={c.image} alt="" fill sizes="(max-width: 640px) 30vw, 180px" /> : <BreakerGlyph />}
+                {c.image ? <Image src={c.image} alt={c.label} title={c.label} fill sizes="(max-width: 640px) 30vw, 180px" /> : <BreakerGlyph />}
               </span>
             )}
             <span className="qf-choice-label">{c.label}</span>

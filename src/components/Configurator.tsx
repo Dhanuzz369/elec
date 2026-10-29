@@ -272,7 +272,7 @@ export function Configurator() {
                   The enquiry is written for you. Attach your single-line diagram, BOQ or specification and send it;
                   our export desk replies within one working day.
                 </p>
-                <a className="btn" href={whatsappHref(written)}>
+                <a className="btn" href={whatsappHref(written)} title="Send this requirement on WhatsApp">
                   Send on WhatsApp instead
                 </a>
               </>
