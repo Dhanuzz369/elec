@@ -131,10 +131,12 @@ test("refresh keeps the lead id", async ({ page }) => {
   const leads = await mockEndpoint(page);
   await page.goto("/quote");
   await fillContact(page);
+  // Let the first save finish; reloading while it is pending rightly re-sends the pending copy.
+  await page.waitForFunction(() => !sessionStorage.getItem("goodbiz-lead-pending"));
   await page.reload();
   await fillContact(page);
+  await expect.poll(() => leads.filter((l) => l.stage === "contact").length).toBe(2);
   const contacts = leads.filter((l) => l.stage === "contact");
-  expect(contacts).toHaveLength(2);
   expect(contacts[0].leadId).toBe(contacts[1].leadId);
 });
 
