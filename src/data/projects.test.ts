@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { families } from "@/data/products";
-import { aboutFaq, projectTypes } from "@/data/projects";
+import { aboutFaq, photoAlt, projectTypes } from "@/data/projects";
 
 const pub = (src: string) => path.join(process.cwd(), "public", src);
 
@@ -49,4 +49,15 @@ test("the About questions answer with what is on the page", () => {
     for (const n of p.needs) expect(faq[i + 1].a).toContain(n.name);
     for (const w of p.watch) expect(faq[i + 1].a).toContain(w);
   });
+});
+
+// An alt text that repeats the card's own label is read twice by screen readers.
+test("each product card photo has its own description, not the card label", () => {
+  for (const p of projectTypes)
+    for (const n of p.needs) {
+      if (!n.image) continue;
+      const alt = photoAlt(n.image);
+      expect(alt, n.name).toBeTruthy();
+      expect(alt.toLowerCase()).not.toBe(n.name.toLowerCase());
+    }
 });

@@ -1,3 +1,5 @@
+import { families } from "@/data/products";
+
 // The four kinds of project on the About page, with what each typically needs.
 // Building photos are CC0 (recorded in assets/credits.json) and never shown as our own projects;
 // product photos are the site's own.
@@ -111,4 +113,11 @@ export function aboutFaq(): { q: string; a: string }[] {
       a: `${p.name} typically need: ${p.needs.map((n) => n.name).join(", ")}. What to watch for: ${p.watch.join("; ")}. GoodBiz Power Systems supplies all of it in one order.`,
     })),
   ];
+}
+
+// Product card photos reuse the product gallery, so they take its description.
+const GALLERY_ALT = new Map(families.flatMap((f) => f.gallery ?? []).map((g) => [g.src, g.alt]));
+
+export function photoAlt(src: string): string {
+  return GALLERY_ALT.get(src) ?? "";
 }

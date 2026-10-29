@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { TransformerSymbol } from "@/components/Motif";
-import { projectTypes } from "@/data/projects";
+import { photoAlt, projectTypes } from "@/data/projects";
 
 const STEP: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
 
@@ -93,7 +93,7 @@ export function ProjectTypes() {
         {projectTypes.map((p, i) => {
           const on = i === active;
           return (
-            <article
+            <div
               key={p.id}
               id={`panel-${p.id}`}
               role="tabpanel"
@@ -130,7 +130,7 @@ export function ProjectTypes() {
                         <>
                           <span className="ap-thumb">
                             {n.image ? (
-                              <Image src={n.image} alt={n.name} title={n.name} fill sizes="160px" />
+                              <Image src={n.image} alt={photoAlt(n.image)} title={photoAlt(n.image)} fill sizes="160px" />
                             ) : (
                               <TransformerSymbol className="ap-glyph" />
                             )}
@@ -160,7 +160,7 @@ export function ProjectTypes() {
                   </Link>
                 </div>
               </div>
-            </article>
+            </div>
           );
         })}
       </div>

@@ -118,12 +118,13 @@ test("the privacy policy is in the sitemap", () => {
   expect(urls()).toContain(`${site.url}/privacy`);
 });
 
-test("robots.txt names current AI crawlers and states content signals", () => {
+test("robots.txt names current AI crawlers and uses only standard directives", () => {
   const txt = robotsTxt();
   expect(txt).toContain("User-agent: Claude-SearchBot");
   expect(txt).toContain("User-agent: Claude-User");
   expect(txt).not.toContain("Claude-Web");
-  expect(txt).toContain("Content-Signal: search=yes, ai-input=yes, ai-train=yes");
+  // Lighthouse's robots.txt check (and Google's parser) reject unknown directives.
+  for (const line of txt.split("\n").filter(Boolean)) expect(line).toMatch(/^(User-agent|Allow|Disallow|Sitemap): /);
   expect(txt).toContain(`Sitemap: ${site.url}/sitemap.xml`);
   for (const bot of AI_BOTS) expect(txt).toContain(`User-agent: ${bot}\nAllow: /`);
 });
