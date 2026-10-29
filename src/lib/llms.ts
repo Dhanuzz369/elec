@@ -20,7 +20,7 @@ export function buildLlmsTxt(posts: Post[]): string {
     "",
     "## About",
     "",
-    `- [About ${site.name}](${absoluteUrl("/about")}): 25+ years as a licensed EPC contractor for BESCOM and other public discoms, and on KPTCL projects; recommends the right products for apartments, commercial buildings, IT parks and industries, and supplies all of it in one order`,
+    `- [About ${site.name}](${absoluteUrl("/about")}): 25+ years in power distribution with its group companies, on KPTCL projects and as a licensed EPC contractor for BESCOM and other public discoms; recommends the right products for apartments, commercial buildings, IT parks and industries, and supplies all of it in one order`,
     "",
     "## Products",
     "",

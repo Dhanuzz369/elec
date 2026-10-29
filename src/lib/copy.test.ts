@@ -56,3 +56,17 @@ test("the ban list allows honest sourcing language", () => {
   for (const bad of ["We manufacture panels", "Manufactured by GoodBiz Power Systems"])
     expect(BANNED.some((re) => re.test(bad))).toBe(true);
 });
+
+// The owner's facts: 25+ years in power distribution (with group companies); licensed EPC for
+// BESCOM and other public discoms; projects for KPTCL. Never fuse them into "25 years of EPC licence".
+test("the track record is never overstated", () => {
+  const hits: string[] = [];
+  for (const file of files(path.join(process.cwd(), "src"))) {
+    readFileSync(file, "utf8")
+      .split("\n")
+      .forEach((line, i) => {
+        if (/years as a licensed EPC|licensed EPC[^.]*KPTCL/i.test(line)) hits.push(`${path.relative(process.cwd(), file)}:${i + 1}`);
+      });
+  }
+  expect(hits).toEqual([]);
+});

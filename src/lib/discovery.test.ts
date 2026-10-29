@@ -95,5 +95,5 @@ test("llms files never publish placeholder contact details", () => {
 test("llms.txt points to the About page with the track record", () => {
   const txt = buildLlmsTxt([]);
   expect(txt).toContain(`[About GoodBiz Power Systems](${site.url}/about)`);
-  expect(txt).toMatch(/25\+ years.*BESCOM.*KPTCL/);
+  expect(txt).toMatch(/25\+ years in power distribution.*KPTCL.*licensed EPC.*BESCOM/);
 });

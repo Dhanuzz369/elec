@@ -9,7 +9,7 @@ import { pageMeta } from "@/lib/meta";
 export const metadata: Metadata = pageMeta({
   title: "About us",
   description:
-    "GoodBiz Power Systems: 25+ years as a licensed EPC contractor for BESCOM, public discoms and KPTCL. One-stop supply, RMU to enclosure, for projects worldwide.",
+    "GoodBiz Power Systems: 25+ years in power distribution, KPTCL projects and licensed EPC work for BESCOM and public discoms. One-stop supply, RMU to enclosure.",
   path: "/about",
 });
 

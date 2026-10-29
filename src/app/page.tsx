@@ -96,7 +96,7 @@ export default function Home() {
             their single contact until it is delivered.
           </p>
           <p className="about-body" data-reveal>
-            Behind it are 25+ years as a licensed EPC contractor for BESCOM, other public discoms and KPTCL.
+            Behind it are 25+ years in power distribution: projects for KPTCL, and licensed EPC work for BESCOM and other public discoms.
           </p>
           <div className="about-more" data-reveal>
             <Link href="/about" className="btn btn--quiet">
