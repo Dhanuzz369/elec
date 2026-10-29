@@ -195,6 +195,7 @@ export function blogPostingLd(post: Post): Node {
   const url = post.canonical ?? absoluteUrl(`/blog/${post.slug}`);
   return {
     "@type": "BlogPosting",
+    "@id": `${url}#article`,
     headline: post.title,
     description: post.description,
     datePublished: post.date,

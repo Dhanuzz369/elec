@@ -245,3 +245,7 @@ test("each listed post names its headline, author, dates and address", () => {
     url: `${site.url}/blog/a`,
   });
 });
+
+test("an article has a stable id so every page refers to the same entity", () => {
+  expect(blogPostingLd(post({ slug: "a" }))).toMatchObject({ "@id": `${site.url}/blog/a#article` });
+});

@@ -47,6 +47,11 @@ test("home lists the latest guides with article markup", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Guides for buyers" })).toBeVisible();
   await expect(page.locator('section[aria-labelledby="guides-title"] a[href^="/blog/"]')).toHaveCount(3);
-  const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).join();
-  expect(ld).toContain('"BlogPosting"');
+  // Each guide is its own top-level article node, the same @id as on the guide's own page.
+  const nodes = (await page.locator('script[type="application/ld+json"]').allTextContents())
+    .map((t) => JSON.parse(t))
+    .flatMap((n) => n["@graph"] ?? [n]);
+  const articles = nodes.filter((n) => n["@type"] === "BlogPosting");
+  expect(articles).toHaveLength(3);
+  for (const a of articles) expect(a["@id"]).toBe(`${a.url}#article`);
 });

@@ -9,7 +9,7 @@ import { HeroMosaic } from "@/components/HeroMosaic";
 import { QuoteCta } from "@/components/QuoteCta";
 import { Bullet, TransformerSymbol } from "@/components/Motif";
 import { JsonLd } from "@/components/JsonLd";
-import { blogLd, faqLd, webPageLd } from "@/lib/jsonld";
+import { blogPostingLd, faqLd, webPageLd } from "@/lib/jsonld";
 import { getAllPosts } from "@/lib/posts";
 import { PostList } from "@/components/PostList";
 import { FaqList } from "@/components/FaqList";
@@ -281,7 +281,7 @@ export default async function Home() {
         href="/configurator"
         action="Configure your requirement"
       />
-      <JsonLd data={[webPageLd({ path: "/", name: HOME_TITLE, extra: { about: { "@id": `${site.url}/#organization` } } }), faqLd(SITE_FAQ), blogLd(guides)]} />
+      <JsonLd data={[webPageLd({ path: "/", name: HOME_TITLE, extra: { about: { "@id": `${site.url}/#organization` } } }), faqLd(SITE_FAQ), ...guides.map(blogPostingLd)]} />
     </>
   );
 }
