@@ -20,12 +20,19 @@ export function ProjectTypes() {
   useEffect(() => setHydrated(true), []);
 
   // The highlight is a copy of the list in active colours, clipped to the active row.
+  // Rows change height when the web font arrives or the column resizes, so measure again then.
   useLayoutEffect(() => {
-    const row = tabs.current[active];
-    if (!row || !list.current || !fill.current) return;
-    fill.current.style.setProperty("--h", `${list.current.scrollHeight}px`);
-    fill.current.style.setProperty("--t", `${row.offsetTop}px`);
-    fill.current.style.setProperty("--rh", `${row.offsetHeight}px`);
+    const measure = () => {
+      const row = tabs.current[active];
+      if (!row || !list.current || !fill.current) return;
+      fill.current.style.setProperty("--h", `${list.current.scrollHeight}px`);
+      fill.current.style.setProperty("--t", `${row.offsetTop}px`);
+      fill.current.style.setProperty("--rh", `${row.offsetHeight}px`);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    tabs.current.forEach((t) => t && ro.observe(t));
+    return () => ro.disconnect();
   }, [active, hydrated]);
 
   function onKeyDown(e: KeyboardEvent) {
@@ -88,7 +95,15 @@ export function ProjectTypes() {
               className="ap-panel"
             >
               <div className="ap-photo">
-                <Image src={p.photo.src} alt="" fill sizes="(max-width: 860px) 100vw, 840px" priority={i === 0} />
+                {/* Eager: the stacked, hidden panels never trigger lazy loading in some browsers. */}
+                <Image
+                  src={p.photo.src}
+                  alt=""
+                  fill
+                  sizes="(max-width: 860px) 100vw, 840px"
+                  priority={i === 0}
+                  loading={i === 0 ? undefined : "eager"}
+                />
                 <div className="ap-cap">
                   <h3>{p.name}</h3>
                   <p>{p.summary}</p>

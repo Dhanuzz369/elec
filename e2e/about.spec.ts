@@ -75,3 +75,31 @@ test("home and footer link to About", async ({ page }) => {
   await expect(page).toHaveURL(/\/about$/);
   await expect(page.locator("footer").getByRole("link", { name: "About us" })).toHaveAttribute("href", "/about");
 });
+
+test("the highlight sits exactly on the chosen row", async ({ page }, info) => {
+  test.skip(info.project.name === "phone", "the phone layout fills the chosen button instead");
+  await page.goto("/about");
+  await page.evaluate(() => document.fonts.ready);
+  for (const name of ["Residential apartments", "IT parks"]) {
+    const tab = page.getByRole("tab", { name });
+    await tab.click();
+    await expect
+      .poll(() =>
+        tab.evaluate((t) => {
+          const fill = t.parentElement!.querySelector<HTMLElement>(".ap-tab-fill")!;
+          return [fill.style.getPropertyValue("--t"), fill.style.getPropertyValue("--rh")].join();
+        }),
+      )
+      .toBe(await tab.evaluate((t) => [`${t.offsetTop}px`, `${t.offsetHeight}px`].join()));
+  }
+});
+
+test("every project photo actually loads when chosen", async ({ page }) => {
+  await page.goto("/about");
+  for (const name of ["Commercial buildings", "IT parks", "Industries"]) {
+    await page.getByRole("tab", { name }).click();
+    await expect
+      .poll(() => active(page).locator(".ap-photo img").evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth))
+      .toBeGreaterThan(0);
+  }
+});
