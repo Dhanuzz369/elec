@@ -10,6 +10,15 @@ export const metadata: Metadata = pageMeta({
   description:
     "Tell GoodBiz Power Systems your project, country and ratings. We pre-fill your grid voltage, frequency, standards and certificates, then source to match.",
   path: "/configurator",
+  keywords: [
+    "electrical panel configurator",
+    "transformer specification",
+    "grid voltage and frequency by country",
+    "electrical standards by country",
+    "certificate requirements electrical equipment",
+    "configure LT panel",
+    "electrical requirement form",
+  ],
 });
 
 export default function ConfiguratorPage() {

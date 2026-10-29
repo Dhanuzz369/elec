@@ -8,10 +8,24 @@ import { aboutPageLd, breadcrumbLd, faqLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
-  title: "About us",
+  title: "About us: 25+ years in power distribution",
   description:
     "GoodBiz Power Systems: 25+ years in power distribution, KPTCL projects and licensed EPC work for BESCOM and public discoms. One-stop supply, RMU to enclosure.",
   path: "/about",
+  keywords: [
+    "about GoodBiz Power Systems",
+    "25 years in power distribution",
+    "BESCOM EPC contractor",
+    "licensed electrical EPC contractor Karnataka",
+    "KPTCL projects",
+    "electrical contractor Bangalore",
+    "electrical equipment for residential apartments",
+    "electrical equipment for commercial buildings",
+    "electrical equipment for IT parks",
+    "industrial electrical panels",
+    "tailored electrical solution",
+    "one-stop electrical solution RMU to enclosure",
+  ],
 });
 
 const FACTS = [

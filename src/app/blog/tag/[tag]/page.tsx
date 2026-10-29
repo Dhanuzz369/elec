@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
       `Guides and notes on ${tag.tag} for buyers of electrical equipment exported from India: HSN codes, standards, certificates and shipping.`,
     ),
     path: `/blog/tag/${tag.slug}`,
+    keywords: [tag.tag, `${tag.tag} guide`, `${tag.tag} articles`],
     noindex: tag.count < 2,
   });
 }

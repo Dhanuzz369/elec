@@ -10,6 +10,15 @@ export const metadata: Metadata = pageMeta({
   description:
     "Ask GoodBiz Power Systems for a quote on panels, switchgear, transformers or parts in under a minute. Say what you need and where it ships; we reply in a day.",
   path: "/quote",
+  keywords: [
+    "electrical equipment quote",
+    "LT panel quotation",
+    "transformer price quote",
+    "RMU quotation",
+    "switchgear quote India",
+    "request a quote electrical panels",
+    "export quotation electrical equipment",
+  ],
 });
 
 export default function QuotePage() {

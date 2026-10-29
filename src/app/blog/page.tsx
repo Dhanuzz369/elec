@@ -11,6 +11,15 @@ export const metadata: Metadata = pageMeta({
   description:
     "Weekly notes for buyers of electrical equipment exported from India: HSN codes, country standards and certificates, transformer and panel choices, and shipping.",
   path: "/blog",
+  keywords: [
+    "electrical equipment export guides",
+    "HSN codes guide",
+    "country electrical standards",
+    "electrical certificates for export",
+    "transformer buying guide",
+    "LT panel buying guide",
+    "shipping electrical equipment from India",
+  ],
 });
 
 export default async function BlogIndex() {

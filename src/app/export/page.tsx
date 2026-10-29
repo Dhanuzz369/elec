@@ -6,14 +6,20 @@ import { countrySlug } from "@/lib/countries";
 import { breadcrumbLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/meta";
 
+const REGIONS = ["Gulf", "Africa", "Asia", "Oceania", "Europe", "Americas"];
+
 export const metadata: Metadata = pageMeta({
   title: "Countries we ship to",
   description:
     "Electrical panels, transformers and switchgear exported from India to the Gulf, Africa, Asia, Australia, the UK and the US, matched to each country's grid.",
   path: "/export",
+  keywords: [
+    "electrical equipment export from India",
+    "countries we ship to",
+    ...REGIONS.map((r) => `electrical panels for ${r === "Oceania" ? "Australia" : r === "Americas" ? "the Americas" : r}`),
+    ...countries.map((c) => `electrical equipment ${c.name}`),
+  ],
 });
-
-const REGIONS = ["Gulf", "Africa", "Asia", "Oceania", "Europe", "Americas"];
 
 export default function ExportIndex() {
   return (

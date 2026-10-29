@@ -4,6 +4,7 @@ import { ProductExplorer } from "@/components/ProductExplorer";
 import { HsnFinder } from "@/components/HsnFinder";
 import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
+import { families } from "@/data/products";
 import { breadcrumbLd, faqLd, familiesListLd, hsnTermSetLd } from "@/lib/jsonld";
 import { defaultHsnEntries } from "@/lib/hsn";
 import { pageMeta } from "@/lib/meta";
@@ -38,6 +39,15 @@ export const metadata: Metadata = pageMeta({
   description:
     "LT panels, MCC, MV switchgear, RMUs, transformers, breakers, enclosures, junction boxes, busbars and panel parts from India, with 8-digit HSN codes.",
   path: "/products",
+  keywords: [
+    ...families.map((f) => f.name),
+    "electrical products from India",
+    "HSN code finder",
+    "HSN codes for electrical equipment",
+    "8-digit HSN code",
+    "PCC MCC panels",
+    "busbars and panel parts",
+  ],
 });
 
 export default function ProductsPage() {

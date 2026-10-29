@@ -22,6 +22,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${fam.name}: product lines and HSN codes`,
     description: fam.metaDescription,
     path: `/products/${fam.slug}`,
+    image: `/products/${fam.slug}/opengraph-image`,
+    keywords: [
+      fam.name,
+      `${fam.name} exporter India`,
+      `${fam.name} supplier`,
+      ...fam.variants.map((v) => v.name),
+      ...[...new Set(fam.variants.map((v) => `HSN ${v.hsn}`))],
+      ...fam.standards,
+    ],
   });
 }
 

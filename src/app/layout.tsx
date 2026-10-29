@@ -16,6 +16,17 @@ export const metadata: Metadata = {
   },
   description: "GoodBiz Power Systems exports LT panels, transformers, RMUs, MV switchgear and enclosures from India, matched to your country's grid and certificates.",
   applicationName: site.name,
+  keywords: site.keywords,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
+  category: "Electrical equipment",
+  other: {
+    "geo.region": "IN-KA",
+    "geo.placename": "Bangalore, Karnataka, India",
+    "geo.position": "12.9716;77.5946",
+    ICBM: "12.9716, 77.5946",
+  },
   openGraph: { siteName: site.name, locale: "en", type: "website" },
   twitter: { card: "summary_large_image" },
   verification: {

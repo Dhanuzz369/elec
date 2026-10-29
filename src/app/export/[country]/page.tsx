@@ -31,6 +31,16 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     title: `Electrical equipment for ${c.name}`,
     description: countryDescription(c),
     path: `/export/${countrySlug(c)}`,
+    keywords: [
+      `electrical equipment for ${c.name}`,
+      `electrical panels ${c.name}`,
+      `transformers for ${c.name}`,
+      `LT panels ${c.lv} ${c.name}`,
+      `switchgear export to ${c.name}`,
+      `${c.hz} Hz electrical equipment`,
+      c.conformity,
+      `export electrical equipment from India to ${c.name}`,
+    ],
   });
 }
 

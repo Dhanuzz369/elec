@@ -31,6 +31,13 @@ for (const file of pages) {
   else if (description.length < 120 || description.length > 160)
     problems.push(`${route}: description is ${description.length} characters (keep 120–160)`);
   if (!/<link rel="canonical" href="[^"]+"/.test(html)) problems.push(`${route}: missing canonical link`);
+  const keywords = decode(html.match(/<meta name="keywords" content="([^"]*)"/)?.[1] ?? "");
+  if (keywords.split(",").filter((k) => k.trim()).length < 8) problems.push(`${route}: fewer than 8 keywords`);
+  if (!/<meta property="og:image" content="[^"]+"/.test(html)) problems.push(`${route}: missing og:image`);
+  if (!/<meta name="geo.region" content="IN-KA"/.test(html)) problems.push(`${route}: missing geo.region`);
+  // Product and post pages have their own share card (opengraph-image.tsx in the segment).
+  if (/^\/(products|blog)\/[^/]+$/.test(route) && !route.startsWith("/blog/tag") && !html.includes(`${route}/opengraph-image`))
+    problems.push(`${route}: share image is not the page's own card`);
   for (const [map, value] of [
     [titles, title],
     [descriptions, description],

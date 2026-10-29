@@ -14,6 +14,18 @@ export const metadata: Metadata = {
   title: HOME_TITLE,
   description: "GoodBiz Power Systems exports LT panels, transformers, RMUs, MV switchgear and enclosures from India, matched to your country's grid and certificates.",
   path: "/",
+  keywords: [
+    "panels and transformers from India",
+    "LT panels exporter",
+    "PCC and MCC panels",
+    "distribution transformer supplier",
+    "ring main unit supplier",
+    "MV switchgear exporter",
+    "electrical enclosures and junction boxes",
+    "HSN codes for electrical equipment",
+    "electrical equipment for projects abroad",
+    "25 years in power distribution",
+  ],
   }),
   title: { absolute: HOME_TITLE },
 };
