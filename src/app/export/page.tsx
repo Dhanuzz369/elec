@@ -3,7 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { countries } from "@/data/countries";
 import { countrySlug } from "@/lib/countries";
-import { breadcrumbLd } from "@/lib/jsonld";
+import { breadcrumbLd, webPageLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/meta";
 
 const REGIONS = ["Gulf", "Africa", "Asia", "Oceania", "Europe", "Americas"];
@@ -57,10 +57,10 @@ export default function ExportIndex() {
       </section>
       <div style={{ height: "var(--section)" }} />
       <JsonLd
-        data={breadcrumbLd([
+        data={[webPageLd({ path: "/export", name: "Countries we ship to", type: "CollectionPage" }), breadcrumbLd([
           { name: "Home", path: "/" },
           { name: "Countries we ship to", path: "/export" },
-        ])}
+        ])]}
       />
     </>
   );

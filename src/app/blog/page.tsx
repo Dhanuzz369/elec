@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PostList, TagLinks } from "@/components/PostList";
 import { JsonLd } from "@/components/JsonLd";
-import { blogLd, breadcrumbLd } from "@/lib/jsonld";
+import { blogLd, breadcrumbLd, webPageLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/meta";
 import { getAllPosts, getAllTags } from "@/lib/posts";
 
@@ -69,6 +69,7 @@ export default async function BlogIndex() {
       <div style={{ height: "var(--section)" }} />
       <JsonLd
         data={[
+          webPageLd({ path: "/blog", name: "Blog", type: "CollectionPage" }),
           breadcrumbLd([
             { name: "Home", path: "/" },
             { name: "Blog", path: "/blog" },

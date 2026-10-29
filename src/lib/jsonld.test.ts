@@ -15,6 +15,7 @@ import {
   familyLd,
   hsnTermSetLd,
   organizationLd,
+  webPageLd,
 } from "@/lib/jsonld";
 import type { Post } from "@/lib/posts";
 
@@ -93,7 +94,7 @@ test("breadcrumbs are absolute and ordered", () => {
   expect(breadcrumbLd([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }])).toMatchObject({
     "@type": "BreadcrumbList",
     itemListElement: [
-      { position: 1, name: "Home", item: `${site.url}/` },
+      { position: 1, name: "Home", item: site.url },
       { position: 2, name: "Blog", item: `${site.url}/blog` },
     ],
   });
@@ -173,4 +174,47 @@ test("the company description carries the track record", () => {
   expect(description).toMatch(/25\+ years in power distribution/);
   expect(description).toMatch(/BESCOM/);
   expect(description).toMatch(/KPTCL/);
+});
+
+test("breadcrumbs carry an id and start at the canonical home address", () => {
+  const b = breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Get a quote", path: "/quote" },
+  ]) as { "@id": string; itemListElement: { item: string }[] };
+  expect(b["@id"]).toBe(`${site.url}/quote#breadcrumb`);
+  expect(b.itemListElement[0].item).toBe(site.url);
+});
+
+test("each page node has an id, its breadcrumb and a modified date", () => {
+  expect(webPageLd({ path: "/quote", name: "Get a quote", type: "ContactPage" })).toMatchObject({
+    "@type": "ContactPage",
+    "@id": `${site.url}/quote#webpage`,
+    url: `${site.url}/quote`,
+    isPartOf: { "@id": `${site.url}/#website` },
+    breadcrumb: { "@id": `${site.url}/quote#breadcrumb` },
+    dateModified: "2026-10-29",
+  });
+  expect(aboutPageLd()).toMatchObject({ breadcrumb: { "@id": `${site.url}/about#breadcrumb` }, dateModified: "2026-10-29" });
+});
+
+test("country pages describe the export service to that country", () => {
+  expect(countryPageLd(countries[0], "/export/saudi-arabia")).toMatchObject({
+    "@id": `${site.url}/export/saudi-arabia#webpage`,
+    breadcrumb: { "@id": `${site.url}/export/saudi-arabia#breadcrumb` },
+    mainEntity: {
+      "@type": "Service",
+      provider: { "@id": `${site.url}/#organization` },
+      areaServed: { "@type": "Country", name: "Saudi Arabia" },
+    },
+  });
+});
+
+test("an empty blog emits no Blog node", () => {
+  expect(blogLd([])).toBeNull();
+});
+
+test("the organization states no legal name until the registered one is known", () => {
+  const org = organizationLd() as { legalName?: string; knowsAbout: string[] };
+  expect(org.legalName).toBeUndefined();
+  expect(org.knowsAbout.length).toBeLessThanOrEqual(15);
 });

@@ -2,6 +2,7 @@ import { countries, type Country } from "@/data/countries";
 import { families, type Family } from "@/data/products";
 import { projectTypes } from "@/data/projects";
 import { absoluteUrl, publishable, site } from "@/data/site";
+import { COUNTRIES_UPDATED, PAGE_UPDATED } from "@/data/updated";
 import type { Faq, Post } from "@/lib/posts";
 
 // schema.org builders. Every claim here must also be visible on the page.
@@ -31,7 +32,8 @@ export function organizationLd(): Node {
     "@type": "Organization",
     "@id": ORG_ID,
     name: site.name,
-    legalName: site.legalName,
+    // Stated only once the registered name (Pvt Ltd, LLP…) is known; the trade name is not a legal name.
+    ...(site.legalName !== site.name && { legalName: site.legalName }),
     url: site.url,
     logo: absoluteUrl(site.logo),
     description: site.description,
@@ -45,7 +47,8 @@ export function organizationLd(): Node {
       ...families.map((f) => f.name),
       "HSN codes for electrical equipment",
       ...projectTypes.map((p) => `Electrical supply for ${p.name.toLowerCase()}`),
-      ...[...new Set(countries.map((c) => c.conformity))],
+      "Export of electrical equipment from India",
+      "Electrical standards and certificates by country",
     ],
     contactPoint: {
       "@type": "ContactPoint",
@@ -59,15 +62,24 @@ export function organizationLd(): Node {
   };
 }
 
-export function aboutPageLd(): Node {
+// One node per page, linked to the site, its breadcrumb and (when known) its last change.
+export function webPageLd(input: { path: string; name: string; type?: string; extra?: Node }): Node {
+  const url = input.path === "/" ? site.url : absoluteUrl(input.path);
   return {
-    "@type": "AboutPage",
-    "@id": `${absoluteUrl("/about")}#page`,
-    url: absoluteUrl("/about"),
-    name: "About us",
+    "@type": input.type ?? "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: input.name,
     isPartOf: { "@id": SITE_ID },
-    mainEntity: orgRef,
+    ...(input.path !== "/" && { breadcrumb: { "@id": `${url}#breadcrumb` } }),
+    ...(PAGE_UPDATED[input.path] && { dateModified: PAGE_UPDATED[input.path] }),
+    inLanguage: "en",
+    ...input.extra,
   };
+}
+
+export function aboutPageLd(): Node {
+  return webPageLd({ path: "/about", name: "About us", type: "AboutPage", extra: { mainEntity: orgRef } });
 }
 
 export function websiteLd(): Node {
@@ -81,14 +93,17 @@ export function websiteLd(): Node {
   };
 }
 
+// Home is written as the canonical address (no trailing slash) so the two never differ.
 export function breadcrumbLd(items: { name: string; path: string }[]): Node {
+  const at = (path: string) => (path === "/" ? site.url : absoluteUrl(path));
   return {
     "@type": "BreadcrumbList",
+    "@id": `${at(items[items.length - 1].path)}#breadcrumb`,
     itemListElement: items.map((it, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: it.name,
-      item: absoluteUrl(it.path),
+      item: at(it.path),
     })),
   };
 }
@@ -188,7 +203,8 @@ export function blogPostingLd(post: Post): Node {
   };
 }
 
-export function blogLd(posts: Post[]): Node {
+export function blogLd(posts: Post[]): Node | null {
+  if (!posts.length) return null;
   return {
     "@type": "Blog",
     name: `${site.name} blog`,
@@ -204,12 +220,21 @@ export function blogLd(posts: Post[]): Node {
 }
 
 export function countryPageLd(c: Country, path: string): Node {
-  return {
-    "@type": "WebPage",
+  const country = { "@type": "Country", name: c.name };
+  return webPageLd({
+    path,
     name: `Electrical equipment for ${c.name}`,
-    url: absoluteUrl(path),
-    isPartOf: { "@id": SITE_ID },
-    about: { "@type": "Country", name: c.name },
-    publisher: orgRef,
-  };
+    extra: {
+      about: country,
+      publisher: orgRef,
+      dateModified: COUNTRIES_UPDATED,
+      mainEntity: {
+        "@type": "Service",
+        name: `Electrical equipment supply to ${c.name}`,
+        serviceType: "Sourcing and export of electrical panels, switchgear and transformers",
+        provider: orgRef,
+        areaServed: country,
+      },
+    },
+  });
 }

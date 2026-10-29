@@ -11,7 +11,7 @@ import { formatDate } from "@/lib/format";
 import { pageMeta } from "@/lib/meta";
 import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
-import { blogPostingLd, breadcrumbLd, faqLd } from "@/lib/jsonld";
+import { blogPostingLd, breadcrumbLd, faqLd, webPageLd } from "@/lib/jsonld";
 import { getAllPosts, getPost, tagSlug } from "@/lib/posts";
 
 export const dynamicParams = false;
@@ -147,6 +147,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <div style={{ height: "var(--section)" }} />
       <JsonLd
         data={[
+          webPageLd({ path: `/blog/${post.slug}`, name: post.title }),
           breadcrumbLd([
             { name: "Home", path: "/" },
             { name: "Blog", path: "/blog" },

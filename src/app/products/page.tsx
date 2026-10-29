@@ -5,7 +5,7 @@ import { HsnFinder } from "@/components/HsnFinder";
 import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import { families } from "@/data/products";
-import { breadcrumbLd, faqLd, familiesListLd, hsnTermSetLd } from "@/lib/jsonld";
+import { breadcrumbLd, familiesListLd, faqLd, hsnTermSetLd, webPageLd } from "@/lib/jsonld";
 import { defaultHsnEntries } from "@/lib/hsn";
 import { pageMeta } from "@/lib/meta";
 
@@ -72,6 +72,7 @@ export default function ProductsPage() {
       <FaqList faq={HSN_FAQ} title="HSN questions" id="hsn-faq" />
       <JsonLd
         data={[
+          webPageLd({ path: "/products", name: "Products and HSN codes", type: "CollectionPage" }),
           breadcrumbLd([
             { name: "Home", path: "/" },
             { name: "Products", path: "/products" },

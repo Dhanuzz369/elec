@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { mailtoHref, site, whatsappHref } from "@/data/site";
-import { breadcrumbLd } from "@/lib/jsonld";
+import { breadcrumbLd, webPageLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/meta";
 
 // Describes only what the site actually does: the quote form and configurator send
@@ -93,10 +93,10 @@ export default function PrivacyPage() {
       </div>
       <div style={{ height: "var(--section)" }} />
       <JsonLd
-        data={breadcrumbLd([
+        data={[webPageLd({ path: "/privacy", name: "Privacy policy" }), breadcrumbLd([
           { name: "Home", path: "/" },
           { name: "Privacy policy", path: "/privacy" },
-        ])}
+        ])]}
       />
     </>
   );

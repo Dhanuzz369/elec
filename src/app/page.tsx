@@ -4,9 +4,12 @@ import Link from "next/link";
 import { brands } from "@/data/brands";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
+import { site } from "@/data/site";
 import { HeroMosaic } from "@/components/HeroMosaic";
 import { QuoteCta } from "@/components/QuoteCta";
 import { Bullet, TransformerSymbol } from "@/components/Motif";
+import { JsonLd } from "@/components/JsonLd";
+import { webPageLd } from "@/lib/jsonld";
 import { HOME_TITLE, pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = {
@@ -253,6 +256,7 @@ export default function Home() {
         href="/configurator"
         action="Configure your requirement"
       />
+      <JsonLd data={webPageLd({ path: "/", name: HOME_TITLE, extra: { about: { "@id": `${site.url}/#organization` } } })} />
     </>
   );
 }

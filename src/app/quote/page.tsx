@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { QuoteForm } from "@/components/quote/QuoteForm";
-import { breadcrumbLd } from "@/lib/jsonld";
+import { breadcrumbLd, webPageLd } from "@/lib/jsonld";
+import { site } from "@/data/site";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -38,10 +39,10 @@ export default function QuotePage() {
         <QuoteForm />
       </div>
       <JsonLd
-        data={breadcrumbLd([
+        data={[webPageLd({ path: "/quote", name: "Get a quote", type: "ContactPage", extra: { mainEntity: { "@id": `${site.url}/#organization` } } }), breadcrumbLd([
           { name: "Home", path: "/" },
           { name: "Get a quote", path: "/quote" },
-        ])}
+        ])]}
       />
     </>
   );

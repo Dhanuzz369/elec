@@ -4,11 +4,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { families, getFamily } from "@/data/products";
 import { Bullet, TransformerDrawing, TransformerSymbol } from "@/components/Motif";
+import { FAMILIES_UPDATED } from "@/data/updated";
 import { pageMeta } from "@/lib/meta";
 import { FaqList } from "@/components/FaqList";
 import { QuoteCta } from "@/components/QuoteCta";
 import { JsonLd } from "@/components/JsonLd";
-import { breadcrumbLd, faqLd, familyLd } from "@/lib/jsonld";
+import { breadcrumbLd, familyLd, faqLd, webPageLd } from "@/lib/jsonld";
 
 export function generateStaticParams() {
   return families.map((f) => ({ slug: f.slug }));
@@ -163,6 +164,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
       <FaqList faq={fam.faq} />
       <JsonLd
         data={[
+          webPageLd({ path: `/products/${fam.slug}`, name: `${fam.name}: product lines and HSN codes`, extra: { dateModified: FAMILIES_UPDATED } }),
           breadcrumbLd([
             { name: "Home", path: "/" },
             { name: "Products", path: "/products" },

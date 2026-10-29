@@ -35,6 +35,7 @@ for (const file of pages) {
   if (keywords.split(",").filter((k) => k.trim()).length < 8) problems.push(`${route}: fewer than 8 keywords`);
   if (!/<meta property="og:image" content="[^"]+"/.test(html)) problems.push(`${route}: missing og:image`);
   if (!/<meta name="geo.region" content="IN-KA"/.test(html)) problems.push(`${route}: missing geo.region`);
+  if (!/#webpage"/.test(html)) problems.push(`${route}: no page node (#webpage) in the structured data`);
   const h1s = (html.match(/<h1[\s>]/g) ?? []).length;
   if (h1s !== 1) problems.push(`${route}: ${h1s} h1 elements (want exactly 1)`);
   const imagePreloads = (html.match(/<link rel="preload" as="image"/g) ?? []).length;
