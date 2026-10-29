@@ -233,3 +233,15 @@ test("the site offers a search action into the HSN code finder", () => {
 test("page nodes name GoodBiz Power Systems as author", () => {
   expect(webPageLd({ path: "/about", name: "About us" })).toMatchObject({ author: { "@id": `${site.url}/#organization` } });
 });
+
+test("each listed post names its headline, author, dates and address", () => {
+  const blog = blogLd([post({ slug: "a", updated: "2026-10-20" })]) as { blogPost: Record<string, unknown>[] };
+  expect(blog.blogPost[0]).toMatchObject({
+    "@type": "BlogPosting",
+    headline: "A title",
+    author: { "@type": "Organization", name: site.name },
+    datePublished: "2026-10-10",
+    dateModified: "2026-10-20",
+    url: `${site.url}/blog/a`,
+  });
+});

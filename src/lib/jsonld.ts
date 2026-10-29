@@ -220,8 +220,12 @@ export function blogLd(posts: Post[]): Node | null {
     blogPost: posts.map((p) => ({
       "@type": "BlogPosting",
       headline: p.title,
+      description: p.description,
+      author: authorLd(p.author),
       datePublished: p.date,
+      dateModified: p.updated ?? p.date,
       url: p.canonical ?? absoluteUrl(`/blog/${p.slug}`),
+      ...(p.cover && { image: p.cover.startsWith("/") ? absoluteUrl(p.cover) : p.cover }),
     })),
   };
 }

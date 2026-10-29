@@ -42,3 +42,11 @@ test("an agent asking for Markdown gets Markdown; browsers still get HTML", asyn
   const html = await request.get("/export/kenya", { headers: { Accept: "text/html" } });
   expect(html.headers()["content-type"]).toContain("text/html");
 });
+
+test("home lists the latest guides with article markup", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Guides for buyers" })).toBeVisible();
+  await expect(page.locator('section[aria-labelledby="guides-title"] a[href^="/blog/"]')).toHaveCount(3);
+  const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).join();
+  expect(ld).toContain('"BlogPosting"');
+});

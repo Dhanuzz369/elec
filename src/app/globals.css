@@ -4098,3 +4098,21 @@ fieldset {
   max-width: 56ch;
   color: var(--muted);
 }
+
+/* Home: latest guides */
+.home-guides {
+  padding: var(--section) var(--margin) 0;
+}
+
+.home-guides-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.home-guides-head h2 {
+  font-size: var(--step-head);
+}

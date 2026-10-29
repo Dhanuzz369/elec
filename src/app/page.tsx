@@ -9,7 +9,9 @@ import { HeroMosaic } from "@/components/HeroMosaic";
 import { QuoteCta } from "@/components/QuoteCta";
 import { Bullet, TransformerSymbol } from "@/components/Motif";
 import { JsonLd } from "@/components/JsonLd";
-import { faqLd, webPageLd } from "@/lib/jsonld";
+import { blogLd, faqLd, webPageLd } from "@/lib/jsonld";
+import { getAllPosts } from "@/lib/posts";
+import { PostList } from "@/components/PostList";
 import { FaqList } from "@/components/FaqList";
 import { SITE_FAQ } from "@/data/site-faq";
 import { HOME_TITLE, pageMeta } from "@/lib/meta";
@@ -74,7 +76,8 @@ const INDUSTRIES = [
   "Government projects",
 ];
 
-export default function Home() {
+export default async function Home() {
+  const guides = (await getAllPosts()).slice(0, 3);
   return (
     <>
       <section className="hero-wall" aria-labelledby="hero-title">
@@ -256,6 +259,20 @@ export default function Home() {
         </ul>
       </section>
 
+      {guides.length > 0 && (
+        <section className="home-guides" aria-labelledby="guides-title">
+          <div className="home-guides-head">
+            <h2 id="guides-title" data-reveal>
+              Guides for buyers
+            </h2>
+            <Link href="/blog" className="btn btn--quiet" title="All guides for buyers of electrical equipment" data-reveal>
+              All guides
+            </Link>
+          </div>
+          <PostList posts={guides} />
+        </section>
+      )}
+
       <FaqList faq={SITE_FAQ} title="Questions buyers ask first" id="home-faq" />
 
       <QuoteCta
@@ -264,7 +281,7 @@ export default function Home() {
         href="/configurator"
         action="Configure your requirement"
       />
-      <JsonLd data={[webPageLd({ path: "/", name: HOME_TITLE, extra: { about: { "@id": `${site.url}/#organization` } } }), faqLd(SITE_FAQ)]} />
+      <JsonLd data={[webPageLd({ path: "/", name: HOME_TITLE, extra: { about: { "@id": `${site.url}/#organization` } } }), faqLd(SITE_FAQ), blogLd(guides)]} />
     </>
   );
 }
