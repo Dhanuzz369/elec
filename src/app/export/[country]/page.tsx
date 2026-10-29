@@ -63,7 +63,7 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
   return (
     <>
       <header className="country-head" data-stagger>
-        <h1 data-reveal>{c.name}</h1>
+        <h1 data-reveal>Electrical panels and transformers for {c.name}</h1>
         <p data-reveal>
           Electrical equipment for {c.name}: panels, transformers, RMUs and switchgear sourced from partner manufacturers to the grid, standards and
           paperwork of {c.name},{" "}

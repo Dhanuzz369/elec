@@ -80,7 +80,7 @@ export default function Home() {
         {/* No scroll reveal here: this text is the largest element on a phone, and hiding it
             until JavaScript runs delays the first meaningful paint. */}
         <div className="hero-wall-text">
-          <h1 id="hero-title">Fit for your grid</h1>
+          <h1 id="hero-title">Panels and transformers, fit for your grid</h1>
           <p>
             Your export partner for electrical panels, switchgear, transformers and enclosures, sourced from
             India&apos;s manufacturers to the voltage, standards and paperwork of your country.
@@ -193,6 +193,10 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <p className="brand-note">
+          Logos show brands we source from. GoodBiz Power Systems is not an authorised distributor of these brands unless a
+          quotation says so.
+        </p>
       </section>
 
       <section className="field-notes why" aria-labelledby="why-title">

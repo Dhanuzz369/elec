@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectTypes } from "@/components/about/ProjectTypes";
 import { whatsappHref } from "@/data/site";
@@ -155,6 +156,8 @@ export default function AboutPage() {
           ))}
         </ol>
       </section>
+
+      <FaqList faq={aboutFaq()} title="Questions buyers ask about us" id="about-faq" />
 
       <section className="ap-end" aria-labelledby="ap-end-title" data-stagger>
         <h2 id="ap-end-title" data-reveal>

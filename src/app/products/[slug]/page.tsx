@@ -4,7 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { families, getFamily } from "@/data/products";
 import { Bullet, TransformerDrawing, TransformerSymbol } from "@/components/Motif";
+import { countries } from "@/data/countries";
 import { FAMILIES_UPDATED } from "@/data/updated";
+import { countrySlug } from "@/lib/countries";
 import { pageMeta } from "@/lib/meta";
 import { FaqList } from "@/components/FaqList";
 import { QuoteCta } from "@/components/QuoteCta";
@@ -159,6 +161,22 @@ export default async function FamilyPage({ params }: { params: Promise<{ slug: s
             </ul>
           </div>
         ))}
+      </section>
+
+      <section className="ship-to" aria-labelledby="ship-to-title">
+        <h2 id="ship-to-title" data-reveal>
+          {fam.name} for your country
+        </h2>
+        <p data-reveal>Grid, standards and import certificate for each destination we ship to.</p>
+        <ul className="chips" data-reveal>
+          {countries.map((c) => (
+            <li key={c.code}>
+              <Link href={`/export/${countrySlug(c)}`} className="chip" title={`${fam.name} for ${c.name}`}>
+                {c.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <FaqList faq={fam.faq} />
