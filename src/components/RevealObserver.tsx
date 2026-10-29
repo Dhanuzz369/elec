@@ -9,12 +9,14 @@ const ITEM = "[data-reveal], [data-reveal-circle]";
 // A [data-stagger] group is observed as a whole and its direct children arrive
 // in 70ms steps, so heading, text and picture land in order (and children that
 // start clipped out of view, like the footer blocks, still get revealed).
-// Content is only hidden once JS has run (.js on <html>).
+// Content is only hidden once JS has run (.js on <html>), and whatever is already
+// on screen at that moment is marked revealed first, so the first view never
+// blinks out and back in (which would also push back Largest Contentful Paint).
 export function RevealObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
-    document.documentElement.classList.add("js");
+    const onScreen = (el: Element) => el.getBoundingClientRect().top < window.innerHeight;
 
     const reveal = (el: Element) => {
       if (el.hasAttribute("data-stagger")) {
@@ -25,6 +27,14 @@ export function RevealObserver() {
         (el as HTMLElement).dataset.in = "true";
       }
     };
+
+    document.querySelectorAll("[data-stagger]").forEach((group) => {
+      if (onScreen(group)) reveal(group);
+    });
+    document.querySelectorAll(ITEM).forEach((el) => {
+      if (onScreen(el)) (el as HTMLElement).dataset.in = "true";
+    });
+    document.documentElement.classList.add("js");
 
     const io = new IntersectionObserver(
       (entries) => {
