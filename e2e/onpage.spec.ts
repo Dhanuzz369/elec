@@ -22,3 +22,12 @@ test("About answers who GoodBiz Power Systems is, on the page", async ({ page })
   await page.goto("/about");
   await expect(page.getByText("Who is GoodBiz Power Systems?")).toBeVisible();
 });
+
+test("each country page has its own network, port and certificate notes", async ({ page }) => {
+  await page.goto("/export/kenya");
+  await expect(page.getByRole("heading", { name: "Supplying Kenya" })).toBeVisible();
+  await expect(page.getByText(/Port of Mombasa/)).toBeVisible();
+  await page.goto("/export/indonesia");
+  await expect(page.getByText(/Tanjung Priok/)).toBeVisible();
+  await expect(page.getByText(/Last updated 19 October 2026/)).toHaveCount(0);
+});

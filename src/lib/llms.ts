@@ -1,4 +1,5 @@
 import { countries } from "@/data/countries";
+import { countryNotes } from "@/data/country-notes";
 import { families } from "@/data/products";
 import { TRACK_RECORD, projectTypes } from "@/data/projects";
 import { absoluteUrl, site, publishable } from "@/data/site";
@@ -67,7 +68,7 @@ export function buildLlmsFullTxt(): string {
     out.push(`### ${region}`, "");
     for (const c of countries.filter((x) => x.region === region)) {
       out.push(
-        `- ${c.name}: LV ${c.lv}; MV ${c.mv}; ${c.hz} Hz; standards ${c.standard}; certificate ${c.conformity} (${certificatePerShipment(c) ? `arranged by ${site.name} per shipment` : "held by the manufacturer"}); design ambient ${c.ambient} °C; nameplates in ${c.plate}.`,
+        `- ${c.name}: LV ${c.lv}; MV ${c.mv}; ${c.hz} Hz; standards ${c.standard}; certificate ${c.conformity} (${certificatePerShipment(c) ? `arranged by ${site.name} per shipment` : "held by the manufacturer"}); design ambient ${c.ambient} °C; nameplates in ${c.plate}. ${Object.values(countryNotes[c.code]).join(" ")}`,
       );
     }
     out.push("");

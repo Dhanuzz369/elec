@@ -4013,3 +4013,45 @@ fieldset {
   align-items: center;
   color: var(--ink);
 }
+
+/* Country page: what is specific to supplying this destination */
+.country-notes {
+  padding: var(--section) var(--margin) 0;
+}
+
+.country-notes h2 {
+  font-size: var(--step-head);
+  margin-bottom: 32px;
+}
+
+.country-notes dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.country-notes div {
+  background: var(--surface);
+  padding: 24px;
+}
+
+.country-notes dt {
+  font-weight: 500;
+  font-size: var(--step-lead);
+  margin-bottom: 10px;
+}
+
+.country-notes dd {
+  margin: 0;
+  max-width: 56ch;
+}
+
+@media (max-width: 860px) {
+  .country-notes dl {
+    grid-template-columns: 1fr;
+  }
+  .country-notes div {
+    padding: 18px;
+  }
+}

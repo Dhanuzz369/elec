@@ -6,6 +6,7 @@ import { QuoteCta } from "@/components/QuoteCta";
 import { JsonLd } from "@/components/JsonLd";
 import { Bullet } from "@/components/Motif";
 import { countries } from "@/data/countries";
+import { countryNotes } from "@/data/country-notes";
 import { families } from "@/data/products";
 import {
   certificatePerShipment,
@@ -50,6 +51,7 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
   if (!c) notFound();
   const path = `/export/${countrySlug(c)}`;
   const faq = countryFaq(c);
+  const notes = countryNotes[c.code];
   const facts: [string, string][] = [
     ["Low voltage", c.lv],
     ["Medium voltage", c.mv],
@@ -95,8 +97,27 @@ export default async function CountryPage({ params }: { params: Promise<{ countr
         </dl>
         <p className="grid-note">
           Typical values for {c.name}. Your project specification and the local utility&apos;s approval list
-          always take priority. Last updated <time dateTime="2026-10-19">19 October 2026</time>.
+          always take priority.
         </p>
+      </section>
+
+      <section className="country-notes" aria-labelledby="notes-title">
+        <h2 id="notes-title" data-reveal>
+          Supplying {c.name}
+        </h2>
+        <dl data-stagger>
+          {[
+            ["The network", notes.utilities],
+            ["Shipping from India", notes.ports],
+            ["Import certificate", notes.certificate],
+            ["What to specify", notes.specify],
+          ].map(([k, v]) => (
+            <div key={k} data-reveal>
+              <dt>{k}</dt>
+              <dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section className="country-families" aria-labelledby="families-title">
