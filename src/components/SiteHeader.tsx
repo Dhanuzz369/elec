@@ -69,7 +69,7 @@ export function SiteHeader() {
         <Link href="/hsn-code-finder" className="link nav-hide" title="Find the HSN code for electrical equipment">
           HSN finder
         </Link>
-        <Link href="/blog" className="link" title="Guides for buyers of electrical equipment">
+        <Link href="/blog" className="link nav-xs-hide" title="Guides for buyers of electrical equipment">
           Blog
         </Link>
         <Link href="/about" className="link nav-hide" title="About GoodBiz Power Systems: 25+ years in power distribution">

@@ -1,3 +1,4 @@
+import { aiService } from "@/lib/ai-files";
 import { absoluteUrl, mailtoHref, resolveSiteUrl, site, whatsappHref } from "@/data/site";
 
 test("url has no trailing slash", () => {
@@ -57,4 +58,10 @@ test("real contact details are set", () => {
   expect(site.whatsapp).toBe("918884799369");
   expect(site.address).toMatchObject({ city: "Bangalore", region: "Karnataka", country: "IN" });
   expect(whatsappHref()).toBe("https://wa.me/918884799369");
+});
+
+test("the AI service file names the service and its capabilities", () => {
+  const s = aiService();
+  expect(s.name.length).toBeGreaterThan(3);
+  expect(s.capabilities.length).toBeGreaterThan(3);
 });

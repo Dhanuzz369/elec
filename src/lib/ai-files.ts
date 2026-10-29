@@ -43,6 +43,16 @@ export function aiFaq() {
 
 export function aiService() {
   return {
+    name: `${site.name}: electrical equipment sourcing and export`,
+    description: site.description,
+    capabilities: [
+      "Recommending the right products and brands for apartments, commercial buildings, IT parks and industries",
+      "Sourcing LT panels, MV switchgear, RMUs, transformers, breakers, enclosures and parts from partner manufacturers in India",
+      "Matching each order to the destination's voltage, frequency, standards and import certificate",
+      "Testing every order before it ships, with drawings, test reports and export paperwork",
+      "Consolidating several products and brands into one shipment by sea or air",
+      "Quoting the Indian 8-digit HSN code for every line item",
+    ],
     provider: site.name,
     serviceType: "Sourcing and export of electrical equipment from India",
     products: families.map((f) => ({ name: f.name, summary: f.short, url: absoluteUrl(`/products/${f.slug}`) })),

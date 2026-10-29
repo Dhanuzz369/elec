@@ -20,3 +20,14 @@ test("header links, footer links and About tabs are at least 44px tall", async (
   expect(heights.length).toBeGreaterThan(5);
   for (const [name, h] of heights) expect(h, String(name)).toBeGreaterThanOrEqual(44);
 });
+
+test.describe("the smallest phones (320px)", () => {
+  test.use({ viewport: { width: 320, height: 640 } });
+  for (const path of ["/", "/about", "/export/saudi-arabia", "/quote"]) {
+    test(`${path} does not scroll sideways`, async ({ page }) => {
+      await page.goto(path);
+      const width = await page.evaluate(() => document.documentElement.scrollWidth);
+      expect(width).toBeLessThanOrEqual(320);
+    });
+  }
+});

@@ -1731,6 +1731,13 @@ fieldset {
   }
 }
 
+/* The smallest phones (320 px): drop Blog from the header (it is in the footer). */
+@media (max-width: 360px) {
+  .nav .nav-xs-hide {
+    display: none;
+  }
+}
+
 @media (max-width: 860px) {
   .nav-mobile {
     display: inline;
@@ -2483,8 +2490,11 @@ fieldset {
   max-width: 56ch;
 }
 
-.why-list strong {
+.why-list .why-title {
+  display: inline;
+  font: inherit;
   font-weight: 500;
+  letter-spacing: inherit;
 }
 
 .industries {

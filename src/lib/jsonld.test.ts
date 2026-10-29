@@ -229,3 +229,7 @@ test("the site offers a search action into the HSN code finder", () => {
     },
   });
 });
+
+test("page nodes name GoodBiz Power Systems as author", () => {
+  expect(webPageLd({ path: "/about", name: "About us" })).toMatchObject({ author: { "@id": `${site.url}/#organization` } });
+});

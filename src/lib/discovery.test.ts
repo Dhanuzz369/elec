@@ -142,3 +142,9 @@ test("there is a web app manifest and a favicon.ico", () => {
   expect(existsSync(path.join(process.cwd(), "src/app/manifest.ts"))).toBe(true);
   expect(existsSync(path.join(process.cwd(), "src/app/favicon.ico"))).toBe(true);
 });
+
+test("search and answer crawlers are each named, not left to the wildcard", () => {
+  const txt = robotsTxt();
+  for (const bot of ["OAI-SearchBot", "Claude-SearchBot", "PerplexityBot", "Googlebot", "Applebot", "Perplexity-User"])
+    expect(txt).toContain(`User-agent: ${bot}\nAllow: /`);
+});

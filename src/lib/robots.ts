@@ -7,12 +7,15 @@ export const AI_BOTS = [
   "OAI-SearchBot",
   "ChatGPT-User",
   "PerplexityBot",
+  "Perplexity-User",
   "ClaudeBot",
   "Claude-SearchBot",
   "Claude-User",
   "Google-Extended",
   "Applebot-Extended",
   "Bingbot",
+  "Googlebot",
+  "Applebot",
 ] as const;
 
 export function robotsConfig(): MetadataRoute.Robots {

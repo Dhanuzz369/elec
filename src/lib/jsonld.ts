@@ -71,6 +71,7 @@ export function webPageLd(input: { path: string; name: string; type?: string; ex
     url,
     name: input.name,
     isPartOf: { "@id": SITE_ID },
+    author: orgRef,
     ...(input.path !== "/" && { breadcrumb: { "@id": `${url}#breadcrumb` } }),
     ...(PAGE_UPDATED[input.path] && { dateModified: PAGE_UPDATED[input.path] }),
     inLanguage: "en",

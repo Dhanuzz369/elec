@@ -17,7 +17,7 @@ import { HOME_TITLE, pageMeta } from "@/lib/meta";
 export const metadata: Metadata = {
   ...pageMeta({
   title: HOME_TITLE,
-  description: "GoodBiz Power Systems exports LT panels, transformers, RMUs, MV switchgear and enclosures from India, matched to your country's grid and certificates.",
+  description: "GoodBiz Power Systems is an Indian exporter of LT panels, transformers, RMUs, MV switchgear and enclosures, matched to your country's grid and certificates.",
   path: "/",
   keywords: [
     "panels and transformers from India",
@@ -210,9 +210,9 @@ export default function Home() {
             {REASONS.map((r) => (
               <li key={r.title}>
                 <Bullet />
-                <span>
-                  <strong>{r.title}.</strong> {r.text}
-                </span>
+                <div>
+                  <h3 className="why-title">{r.title}.</h3> {r.text}
+                </div>
               </li>
             ))}
           </ul>
