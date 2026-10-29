@@ -176,5 +176,65 @@
    "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
   ],
   "saved": "2026-10-19T06:53:13.408Z"
+ },
+ {
+  "file": "public/images/projects/apartments.webp",
+  "media": "image",
+  "title": "Modern apartment building",
+  "license": "CC0",
+  "licenseCode": "cc0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Modern_apartment_building_(Unsplash).jpg",
+  "via": "Wikimedia Commons (Unsplash)",
+  "width": 1600,
+  "height": 1067,
+  "credit": null,
+  "saved": "2026-10-29T00:00:00.000Z"
+ },
+ {
+  "file": "public/images/projects/commercial.webp",
+  "media": "image",
+  "title": "Office buildings under clouds",
+  "license": "CC0",
+  "licenseCode": "cc0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Office_buildings_under_clouds_(Unsplash).jpg",
+  "via": "Wikimedia Commons (Unsplash)",
+  "width": 1600,
+  "height": 1067,
+  "credit": null,
+  "saved": "2026-10-29T00:00:00.000Z"
+ },
+ {
+  "file": "public/images/projects/it-parks.webp",
+  "media": "image",
+  "title": "Office bridge",
+  "license": "CC0",
+  "licenseCode": "cc0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Office_bridge_(Unsplash).jpg",
+  "via": "Wikimedia Commons (Unsplash)",
+  "width": 1600,
+  "height": 1095,
+  "credit": null,
+  "saved": "2026-10-29T00:00:00.000Z"
+ },
+ {
+  "file": "public/images/projects/industries.webp",
+  "media": "image",
+  "title": "Heavy industry",
+  "license": "CC0",
+  "licenseCode": "cc0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "creditRequired": false,
+  "page": "https://commons.wikimedia.org/wiki/File:Heavy_industry_(Unsplash).jpg",
+  "via": "Wikimedia Commons (Unsplash)",
+  "width": 1600,
+  "height": 1064,
+  "credit": null,
+  "saved": "2026-10-29T00:00:00.000Z"
  }
 ]
