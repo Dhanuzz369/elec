@@ -8,3 +8,15 @@ test("first-screen content stays visible once JavaScript starts", async ({ page 
   expect(opacity).toBe("1");
   await expect(page.locator(".country-head h1")).toHaveAttribute("data-in", "true");
 });
+
+// WCAG 2.5.8 and Lighthouse: standalone links and tabs need room for a thumb.
+test("header links, footer links and About tabs are at least 44px tall", async ({ page }) => {
+  await page.goto("/about");
+  const heights = await page.evaluate(() =>
+    [...document.querySelectorAll<HTMLElement>(".nav .link, .footer-cols .link, .ap-tab[role=tab]")]
+      .filter((el) => el.offsetParent !== null)
+      .map((el) => [el.textContent?.trim(), Math.round(el.getBoundingClientRect().height)] as const),
+  );
+  expect(heights.length).toBeGreaterThan(5);
+  for (const [name, h] of heights) expect(h, String(name)).toBeGreaterThanOrEqual(44);
+});

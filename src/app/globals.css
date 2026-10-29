@@ -235,6 +235,13 @@ textarea {
   font-size: var(--step-small);
 }
 
+/* Text links in the header get a full 44px tap height without looking bigger. */
+.nav .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 .nav-products {
   position: relative;
 }
@@ -783,8 +790,14 @@ textarea {
 .footer-cols nav {
   grid-column: span 2;
   display: grid;
-  gap: 10px;
+  gap: 0;
   align-content: start;
+}
+
+.footer-cols .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .footer-cols nav strong {
@@ -2880,8 +2893,8 @@ fieldset {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 46% 52% at 50% 50%, rgba(233, 248, 236, 0.97) 0%, rgba(233, 248, 236, 0.9) 45%, rgba(233, 248, 236, 0) 100%), /* taste-skill-ignore */
-    rgba(233, 248, 236, 0.28);
+    radial-gradient(ellipse 58% 60% at 50% 50%, rgba(233, 248, 236, 0.97) 0%, rgba(233, 248, 236, 0.92) 50%, rgba(233, 248, 236, 0) 100%), /* taste-skill-ignore */
+    rgba(233, 248, 236, 0.4);
 }
 
 .hero-wall-text {
@@ -3910,9 +3923,12 @@ fieldset {
     margin-inline: calc(var(--margin) * -1);
     padding-inline: var(--margin);
     scrollbar-width: none;
+    /* Fade the right edge so it is clear the row scrolls sideways. */
+    mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
   }
   .ap-tab {
     width: auto;
+    min-height: 44px;
     flex: 0 0 auto;
     grid-template-columns: auto auto;
     gap: 8px;
