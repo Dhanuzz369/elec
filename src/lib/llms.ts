@@ -27,7 +27,7 @@ export function buildLlmsTxt(posts: Post[]): string {
     "## Products",
     "",
     ...families.map((f) => `- [${f.name}](${absoluteUrl(`/products/${f.slug}`)}): ${f.short}`),
-    `- [HSN code finder](${absoluteUrl("/products#hsn")}): Indian 8-digit HSN codes for electrical equipment`,
+    `- [HSN code finder](${absoluteUrl("/hsn-code-finder")}): Indian 8-digit HSN codes for electrical equipment`,
     "",
     "## Countries",
     "",

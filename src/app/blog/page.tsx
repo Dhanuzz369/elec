@@ -57,7 +57,7 @@ export default async function BlogIndex() {
           <div className="empty">
             <p>No posts yet. The first one is on its way.</p>
             <Link
-              href="/products#hsn"
+              href="/hsn-code-finder"
               className="btn"
               title="Find the HSN code for electrical equipment"
             >

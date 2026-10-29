@@ -31,3 +31,17 @@ test("each country page has its own network, port and certificate notes", async 
   await expect(page.getByText(/Tanjung Priok/)).toBeVisible();
   await expect(page.getByText(/Last updated 19 October 2026/)).toHaveCount(0);
 });
+
+test("the HSN code finder has its own page and finds codes", async ({ page }) => {
+  await page.goto("/hsn-code-finder");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("HSN code finder for electrical equipment");
+  await page.getByLabel("Search products or HSN codes").fill("85371000");
+  await expect(page.locator(".results").getByText("85371000").first()).toBeVisible();
+  await expect(page.getByText("What is the HSN code for LT panels?")).toBeVisible();
+});
+
+test("header and footer point to the HSN code finder page", async ({ page }) => {
+  await page.goto("/about");
+  await expect(page.locator("footer").getByRole("link", { name: "HSN code finder" })).toHaveAttribute("href", "/hsn-code-finder");
+  await expect(page.locator('a[href="/products#hsn"]')).toHaveCount(0);
+});

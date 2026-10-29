@@ -158,7 +158,7 @@ export function hsnTermSetLd(entries: { code: string; description: string; produ
   return {
     "@type": "DefinedTermSet",
     name: "HSN codes for electrical equipment (India, 8-digit)",
-    url: absoluteUrl("/products#hsn"),
+    url: absoluteUrl("/hsn-code-finder"),
     hasDefinedTerm: entries.map((e) => ({
       "@type": "DefinedTerm",
       termCode: e.code,

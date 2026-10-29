@@ -51,7 +51,7 @@ export function SiteFooter() {
           <Link href="/configurator" className="link" title="Configure your requirement by country, ratings and standards">
             Configure a requirement
           </Link>
-          <Link href="/products#hsn" className="link" title="Find the HSN code for electrical equipment">
+          <Link href="/hsn-code-finder" className="link" title="Find the HSN code for electrical equipment">
             HSN code finder
           </Link>
           <Link href="/products" className="link" title="All products and HSN codes">

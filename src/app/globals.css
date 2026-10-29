@@ -4055,3 +4055,20 @@ fieldset {
     padding: 18px;
   }
 }
+
+/* Products page: pointer to the HSN code finder */
+.hsn-pointer {
+  padding: var(--section) var(--margin) 0;
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.hsn-pointer h2 {
+  font-size: var(--step-head);
+}
+
+.hsn-pointer p {
+  max-width: 56ch;
+  color: var(--muted);
+}

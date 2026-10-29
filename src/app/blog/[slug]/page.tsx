@@ -111,7 +111,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </li>
           <li>
             <Bullet />
-            <Link href="/products#hsn" className="link" title="Find the HSN code for electrical equipment">
+            <Link href="/hsn-code-finder" className="link" title="Find the HSN code for electrical equipment">
               Look up an HSN code
             </Link>
           </li>

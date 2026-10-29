@@ -66,7 +66,7 @@ export function SiteHeader() {
         <Link href="/products" className="link nav-mobile" title="All products and HSN codes">
           Products
         </Link>
-        <Link href="/products#hsn" className="link nav-hide" title="Find the HSN code for electrical equipment">
+        <Link href="/hsn-code-finder" className="link nav-hide" title="Find the HSN code for electrical equipment">
           HSN finder
         </Link>
         <Link href="/blog" className="link" title="Guides for buyers of electrical equipment">
