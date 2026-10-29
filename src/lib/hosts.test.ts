@@ -13,3 +13,14 @@ test("every page gets the basic security headers", () => {
   expect(rule.source).toBe("/:path*");
   for (const n of ["X-Content-Type-Options", "Referrer-Policy", "X-Frame-Options", "Permissions-Policy"]) expect(names).toContain(n);
 });
+
+test("a content security policy allows only this site and the lead endpoint", () => {
+  const headers = securityHeaders()[0].headers;
+  const csp = headers.find((h) => h.key === "Content-Security-Policy")?.value ?? "";
+  expect(csp).toContain("default-src 'self'");
+  expect(csp).toContain("frame-ancestors 'self'");
+  expect(csp).toContain("object-src 'none'");
+  expect(csp).toMatch(/connect-src 'self' [^;]*https:\/\/script\.google\.com/);
+  expect(csp).toMatch(/form-action 'self' [^;]*https:\/\/script\.google\.com/);
+  expect(csp).not.toMatch(/fontshare/);
+});

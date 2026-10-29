@@ -1,7 +1,9 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { site } from "@/data/site";
 import { buildLlmsFullTxt, buildLlmsTxt } from "@/lib/llms";
 import type { Post } from "@/lib/posts";
-import { AI_BOTS, robotsConfig } from "@/lib/robots";
+import { AI_BOTS, robotsConfig, robotsTxt } from "@/lib/robots";
 import { sitemapEntries } from "@/lib/sitemap";
 
 const post = (over: Partial<Post>): Post => ({
@@ -114,4 +116,28 @@ test("an empty blog stays out of the sitemap and llms.txt", () => {
 
 test("the privacy policy is in the sitemap", () => {
   expect(urls()).toContain(`${site.url}/privacy`);
+});
+
+test("robots.txt names current AI crawlers and states content signals", () => {
+  const txt = robotsTxt();
+  expect(txt).toContain("User-agent: Claude-SearchBot");
+  expect(txt).toContain("User-agent: Claude-User");
+  expect(txt).not.toContain("Claude-Web");
+  expect(txt).toContain("Content-Signal: search=yes, ai-input=yes, ai-train=yes");
+  expect(txt).toContain(`Sitemap: ${site.url}/sitemap.xml`);
+  for (const bot of AI_BOTS) expect(txt).toContain(`User-agent: ${bot}\nAllow: /`);
+});
+
+test("sitemap entries carry no priority and a real content date", () => {
+  for (const e of sitemapEntries({ posts, tags })) {
+    expect(e).not.toHaveProperty("priority");
+    expect(e.lastModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  }
+  const own = sitemapEntries({ posts, tags }).find((e) => e.url.endsWith("/blog/own"));
+  expect(own?.lastModified).toBe("2026-10-12");
+});
+
+test("there is a web app manifest and a favicon.ico", () => {
+  expect(existsSync(path.join(process.cwd(), "src/app/manifest.ts"))).toBe(true);
+  expect(existsSync(path.join(process.cwd(), "src/app/favicon.ico"))).toBe(true);
 });

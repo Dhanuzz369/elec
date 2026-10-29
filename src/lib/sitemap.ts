@@ -2,32 +2,29 @@ import type { MetadataRoute } from "next";
 import { countries } from "@/data/countries";
 import { families } from "@/data/products";
 import { absoluteUrl } from "@/data/site";
+import { COUNTRIES_UPDATED, FAMILIES_UPDATED, PAGE_UPDATED } from "@/data/updated";
 import { countrySlug } from "@/lib/countries";
 import type { Post } from "@/lib/posts";
 
-const BUILD_DATE = new Date().toISOString().slice(0, 10);
-
 // Posts with a cross-site canonical belong to another site's sitemap, and tag
-// pages with a single post are noindex, so both are left out.
+// pages with a single post are noindex, so both are left out. No priority: Google ignores it.
 export function sitemapEntries(input: { posts: Post[]; tags: { slug: string; count: number }[] }): MetadataRoute.Sitemap {
-  const page = (path: string, priority: number, lastModified = BUILD_DATE) => ({
-    url: absoluteUrl(path),
-    lastModified,
-    priority,
-  });
+  const page = (path: string, lastModified = PAGE_UPDATED[path]) => ({ url: absoluteUrl(path), lastModified });
+  const latestPost = input.posts.map((p) => p.updated ?? p.date).sort().at(-1);
   return [
-    page("/", 1),
-    page("/products", 0.9),
-    page("/quote", 0.9),
-    page("/about", 0.8),
-    page("/configurator", 0.8),
-    page("/export", 0.8),
-    page("/privacy", 0.2),
+    page("/"),
+    page("/products"),
+    page("/quote"),
+    page("/about"),
+    page("/configurator"),
+    page("/export"),
+    page("/hsn-code-finder"),
+    page("/privacy"),
     // An empty blog is noindex, so it only joins the sitemap once a post is live.
-    ...(input.posts.length ? [page("/blog", 0.7)] : []),
-    ...families.map((f) => page(`/products/${f.slug}`, 0.9)),
-    ...countries.map((c) => page(`/export/${countrySlug(c)}`, 0.8)),
-    ...input.posts.filter((p) => !p.canonical).map((p) => page(`/blog/${p.slug}`, 0.6, p.updated ?? p.date)),
-    ...input.tags.filter((t) => t.count >= 2).map((t) => page(`/blog/tag/${t.slug}`, 0.4)),
+    ...(input.posts.length && latestPost ? [page("/blog", latestPost)] : []),
+    ...families.map((f) => page(`/products/${f.slug}`, FAMILIES_UPDATED)),
+    ...countries.map((c) => page(`/export/${countrySlug(c)}`, COUNTRIES_UPDATED)),
+    ...input.posts.filter((p) => !p.canonical).map((p) => page(`/blog/${p.slug}`, p.updated ?? p.date)),
+    ...input.tags.filter((t) => t.count >= 2).map((t) => page(`/blog/tag/${t.slug}`, latestPost)),
   ];
 }

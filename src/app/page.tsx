@@ -181,7 +181,7 @@ export default function Home() {
               {b.logo ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={b.logo} alt={`${b.name} logo`} title={b.name} width={72} height={72} />
+                  <img src={b.logo} alt={`${b.name} logo`} title={b.name} width={72} height={72} loading="lazy" />
                   <span>{b.name}</span>
                 </>
               ) : (

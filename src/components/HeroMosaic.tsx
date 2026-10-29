@@ -15,8 +15,8 @@ function photos() {
 
 // A wall of our product photographs behind the hero text. Each column holds its
 // tiles twice so a CSS drift of -50% loops without a seam; odd columns run the
-// other way. Only the first tile per column loads eagerly, the rest lazily, so
-// the wall never competes with the headline for bandwidth. Purely decorative:
+// other way. Every tile loads lazily and none is preloaded, so the wall never
+// competes with the headline for bandwidth. Purely decorative:
 // the photos are also on the product pages.
 export function HeroMosaic() {
   const all = photos();
@@ -35,7 +35,7 @@ export function HeroMosaic() {
                 width={480}
                 height={320}
                 sizes="(max-width: 860px) 34vw, 20vw"
-                loading={i === 0 ? "eager" : "lazy"}
+                loading="lazy"
               />
             </div>
           ))}

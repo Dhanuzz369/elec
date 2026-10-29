@@ -35,6 +35,10 @@ for (const file of pages) {
   if (keywords.split(",").filter((k) => k.trim()).length < 8) problems.push(`${route}: fewer than 8 keywords`);
   if (!/<meta property="og:image" content="[^"]+"/.test(html)) problems.push(`${route}: missing og:image`);
   if (!/<meta name="geo.region" content="IN-KA"/.test(html)) problems.push(`${route}: missing geo.region`);
+  const h1s = (html.match(/<h1[\s>]/g) ?? []).length;
+  if (h1s !== 1) problems.push(`${route}: ${h1s} h1 elements (want exactly 1)`);
+  const imagePreloads = (html.match(/<link rel="preload" as="image"/g) ?? []).length;
+  if (imagePreloads > 1) problems.push(`${route}: ${imagePreloads} image preloads (want at most 1)`);
   // Audit tools flag images without alt or title text and links without a title.
   const imgs = html.match(/<img\b[^>]*>/g) ?? [];
   const badAlt = imgs.filter((t) => !/\balt="[^"]+"/.test(t)).length;

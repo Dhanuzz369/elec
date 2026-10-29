@@ -17,7 +17,16 @@ export function ProjectTypes() {
   const fill = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 
+  const [warm, setWarm] = useState(false);
+
   useEffect(() => setHydrated(true), []);
+
+  useEffect(() => {
+    const ric = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    const cancel = window.cancelIdleCallback ?? window.clearTimeout;
+    const id = ric(() => setWarm(true));
+    return () => cancel(id);
+  }, []);
 
   // The highlight is a copy of the list in active colours, clipped to the active row.
   // Rows change height when the web font arrives or the column resizes, so measure again then.
@@ -95,15 +104,17 @@ export function ProjectTypes() {
               className="ap-panel"
             >
               <div className="ap-photo">
-                {/* Eager: the stacked, hidden panels never trigger lazy loading in some browsers. */}
+                {/* The hidden panels start lazy (no preload competing with the first photo) and
+                    switch to eager once the browser is idle: some browsers never lazy-load an
+                    image stacked under another panel. */}
                 <Image
                   src={p.photo.src}
                   alt={p.photo.alt}
                   title={p.photo.alt}
                   fill
-                  sizes="(max-width: 860px) 100vw, 840px"
+                  sizes="(max-width: 860px) calc(100vw - 32px), min(840px, 62vw)"
                   priority={i === 0}
-                  loading={i === 0 ? undefined : "eager"}
+                  loading={i === 0 ? undefined : warm ? "eager" : "lazy"}
                 />
                 <div className="ap-cap">
                   <h3>{p.name}</h3>

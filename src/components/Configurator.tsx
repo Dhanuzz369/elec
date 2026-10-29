@@ -64,6 +64,20 @@ function fromCountry(code: string) {
   };
 }
 
+// Also the server-rendered fallback while the configurator waits for the URL's
+// query string, so the page always has its heading in the HTML.
+export function ConfiguratorIntro() {
+  return (
+    <>
+      <h1>Configure your requirement</h1>
+      <p>
+        Four short steps. Pick the destination and we fill in its grid and paperwork; change anything that your
+        specification says differently.
+      </p>
+    </>
+  );
+}
+
 export function Configurator() {
   const params = useSearchParams();
   const [step, setStep] = useState(0);
@@ -234,11 +248,7 @@ export function Configurator() {
   return (
     <div className="config">
       <form className="config-form" onSubmit={submit} noValidate>
-        <h1>Configure your requirement</h1>
-        <p>
-          Four short steps. Pick the destination and we fill in its grid and paperwork; change anything that your
-          specification says differently.
-        </p>
+        <ConfiguratorIntro />
 
         <div className="stepper" role="list">
           {STEPS.map((s, i) => (
