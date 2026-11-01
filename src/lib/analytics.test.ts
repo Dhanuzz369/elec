@@ -47,3 +47,11 @@ test("search terms keep only plain product words and codes", () => {
   expect(cleanParams({ search_term: "x".repeat(300) }).search_term).toBeUndefined();
   expect(cleanParams({ search_term: "<script>" })).toEqual({});
 });
+
+// gtag.js runs ~400 ms of script; loading it while the page hydrates cost About 40
+// Lighthouse points. It must wait until the page has loaded and the browser is idle.
+test("gtag.js loads only once the page is idle", async () => {
+  const { readFileSync } = await import("node:fs");
+  const src = readFileSync("src/components/Analytics.tsx", "utf8");
+  expect(src).toMatch(/googletagmanager\.com\/gtag\/js[^\n]*strategy="lazyOnload"/);
+});

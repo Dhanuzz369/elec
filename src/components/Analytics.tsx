@@ -11,7 +11,8 @@ const CONTACTS: [RegExp, string][] = [
   [/^tel:/, "phone"],
 ];
 
-// Loads gtag.js after the page is interactive, records WhatsApp, email and phone
+// Loads gtag.js once the page has loaded and the browser is idle (events before then
+// wait in dataLayer and are sent when it arrives), records WhatsApp, email and phone
 // clicks site-wide, and asks for consent where the law requires it.
 export function Analytics() {
   const [ask, setAsk] = useState(false);
@@ -44,7 +45,7 @@ export function Analytics() {
 
   return (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
       {ask && (
         <div className="consent" role="region" aria-label="Cookie choice">
           <p>
