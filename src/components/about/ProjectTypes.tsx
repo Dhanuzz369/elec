@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { TransformerSymbol } from "@/components/Motif";
 import { photoAlt, projectTypes } from "@/data/projects";
+import { track } from "@/lib/analytics";
 
 const STEP: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
 
@@ -44,12 +45,18 @@ export function ProjectTypes() {
     return () => ro.disconnect();
   }, [active, hydrated]);
 
+  // Which kinds of project visitors care about, for content and ad targeting.
+  function choose(i: number) {
+    if (i !== active) track("select_content", { content_type: "project_type", content_id: projectTypes[i].id });
+    setActive(i);
+  }
+
   function onKeyDown(e: KeyboardEvent) {
     const step = STEP[e.key];
     if (!step) return;
     e.preventDefault();
     const next = (active + step + projectTypes.length) % projectTypes.length;
-    setActive(next);
+    choose(next);
     tabs.current[next]?.focus();
   }
 
@@ -70,7 +77,7 @@ export function ProjectTypes() {
               "aria-controls": `panel-${p.id}`,
               "aria-selected": i === active,
               tabIndex: i === active ? 0 : -1,
-              onClick: () => setActive(i),
+              onClick: () => choose(i),
             })}
       >
         <span className="ap-tab-n num">0{i + 1}</span>

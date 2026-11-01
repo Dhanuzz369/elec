@@ -11,6 +11,7 @@ import { parsePrefill } from "@/lib/quote/prefill";
 import { getLeadId, resendPending, sendLead } from "@/lib/quote/send";
 import { clearDependents, emptyAnswers, validateStep, visibleSteps, type Answers, type Prefill, type StepId } from "@/lib/quote/steps";
 import { fill, getStrings } from "@/lib/quote/strings";
+import { track } from "@/lib/analytics";
 import { ChoiceGroup } from "./ChoiceGroup";
 
 const ADVANCE_MS = 260;
@@ -134,6 +135,8 @@ export function QuoteForm() {
     setErrors({});
     if (step === "notes") return void submit(a);
     void sendLead(payload(a, step), { endpoint: site.leadEndpoint, final: false, storage: session() });
+    // Funnel: one event per completed step, so drop-off shows step by step in GA4.
+    track("quote_step", { step, step_number: index + 1, lead_source: "quick_quote" });
     const list = visibleSteps(a, prefill);
     setDir("forward");
     setStep(list[list.indexOf(step) + 1] ?? "notes");
@@ -159,10 +162,22 @@ export function QuoteForm() {
     const wait = MIN_FILL_MS - (Date.now() - mountedAt.current);
     if (wait > 0) await new Promise((r) => setTimeout(r, wait));
     const ok = await sendLead(payload(a, "submitted"), { endpoint: site.leadEndpoint, final: true, storage: session() });
+    // The key event. Only choices are sent; name, company, email, phone and notes never are.
+    const leadParams = {
+      lead_source: "quick_quote",
+      product: a.product,
+      variety: a.variety,
+      quantity: a.quantity,
+      country: a.country.trim(),
+      terms: a.terms,
+      prefilled: prefill.product ? "yes" : "no",
+    };
     if (ok) {
+      track("generate_lead", leadParams);
       setStatus("success");
       return;
     }
+    track("lead_send_failed", leadParams);
     sending.current = false;
     setStatus("fallback");
   }

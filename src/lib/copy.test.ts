@@ -96,3 +96,9 @@ test("the home intro opens by defining GoodBiz Power Systems", () => {
   const intro = hero.slice(hero.indexOf("<p>") + 3, hero.indexOf("</p>")).replace(/\s+/g, " ").trim();
   expect(intro).toMatch(/^GoodBiz Power Systems is /);
 });
+
+test("the privacy policy discloses Google Analytics and its cookies", () => {
+  const src = readFileSync(path.join(process.cwd(), "src/app/privacy/page.tsx"), "utf8");
+  expect(src).toMatch(/Google Analytics/);
+  expect(src).not.toMatch(/We do not use cookies, analytics/);
+});

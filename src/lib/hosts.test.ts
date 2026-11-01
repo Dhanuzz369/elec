@@ -24,3 +24,11 @@ test("a content security policy allows only this site and the lead endpoint", ()
   expect(csp).toMatch(/form-action 'self' [^;]*https:\/\/script\.google\.com/);
   expect(csp).not.toMatch(/fontshare/);
 });
+
+test("the security policy lets Google Analytics load and report", () => {
+  const csp = securityHeaders()[0].headers.find((h) => h.key === "Content-Security-Policy")!.value;
+  expect(csp).toMatch(/script-src [^;]*https:\/\/www\.googletagmanager\.com/);
+  expect(csp).toMatch(/connect-src [^;]*https:\/\/\*\.google-analytics\.com/);
+  expect(csp).toMatch(/connect-src [^;]*https:\/\/\*\.analytics\.google\.com/);
+  expect(csp).toMatch(/img-src [^;]*https:\/\/\*\.google-analytics\.com/);
+});

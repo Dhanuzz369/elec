@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { families } from "@/data/products";
+import { track } from "@/lib/analytics";
 import { defaultHsnEntries, hsnEntries } from "@/lib/hsn";
 
 const ENTRIES = hsnEntries();
@@ -19,6 +20,13 @@ export function HsnFinder() {
     if (initial) setQ(initial);
   }, []);
   const query = useDeferredValue(q.trim().toLowerCase());
+
+  // GA4's recommended search event, once the visitor pauses typing.
+  useEffect(() => {
+    if (query.length < 3) return;
+    const id = window.setTimeout(() => track("search", { search_term: query, content_type: "hsn_code" }), 1200);
+    return () => window.clearTimeout(id);
+  }, [query]);
 
   const results = useMemo(() => {
     if (!query) return DEFAULTS;

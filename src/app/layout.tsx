@@ -6,6 +6,8 @@ import { HOME_TITLE } from "@/lib/meta";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { RevealObserver } from "@/components/RevealObserver";
+import { Analytics } from "@/components/Analytics";
+import { GA_ID, consentScript } from "@/lib/analytics";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/jsonld";
 
@@ -51,11 +53,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={generalSans.variable}>
+      <head>
+        {/* Consent Mode defaults must be set before gtag.js loads (see src/lib/analytics.ts). */}
+        {GA_ID && <script dangerouslySetInnerHTML={{ __html: consentScript() }} />}
+      </head>
       <body>
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
         <RevealObserver />
+        <Analytics />
         <JsonLd data={[organizationLd(), websiteLd()]} />
       </body>
     </html>

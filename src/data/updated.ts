@@ -9,7 +9,7 @@ export const PAGE_UPDATED: Record<string, string> = {
   "/configurator": "2026-10-29",
   "/export": "2026-10-29",
   "/hsn-code-finder": "2026-10-29",
-  "/privacy": "2026-10-29",
+  "/privacy": "2026-11-01",
 };
 
 // Every product family page and every country page shares one template and data file.

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ConsentControls } from "@/components/ConsentControls";
 import { JsonLd } from "@/components/JsonLd";
 import { mailtoHref, site, whatsappHref } from "@/data/site";
 import { breadcrumbLd, webPageLd } from "@/lib/jsonld";
@@ -15,7 +16,7 @@ export const metadata: Metadata = pageMeta({
   keywords: ["privacy policy", "quote form data", "data protection"],
 });
 
-const UPDATED = "29 October 2026";
+const UPDATED = "1 November 2026";
 
 export default function PrivacyPage() {
   return (
@@ -39,9 +40,9 @@ export default function PrivacyPage() {
             <li>the page you sent it from, the language and your browser&apos;s user-agent string, so we can answer in context.</li>
           </ul>
           <p>
-            We do not use cookies, analytics or advertising trackers. While you fill in the form, your browser keeps a request
-            number and an unsent copy of your answers in its own session storage, so nothing is lost if the connection drops.
-            That copy stays on your device and is cleared when you close the tab.
+            While you fill in the form, your browser keeps a request number and an unsent copy of your answers in its own
+            session storage, so nothing is lost if the connection drops. That copy stays on your device and is cleared when you
+            close the tab. We use no advertising trackers.
           </p>
 
           <h2>Why we use it</h2>
@@ -59,6 +60,23 @@ export default function PrivacyPage() {
           <p>
             If you contact us by WhatsApp or email instead, those messages are handled under WhatsApp&apos;s and your email
             provider&apos;s own terms as well as this policy.
+          </p>
+
+          <h2>Analytics</h2>
+          <p>
+            We use Google Analytics 4 to see which pages and products buyers look at, where they come from and where the quote
+            form loses them. It records pages viewed, approximate location (country and city), device and browser type, and
+            anonymous events such as &quot;quote submitted&quot;, &quot;WhatsApp clicked&quot; or the HSN search you typed. It
+            never receives your name, company, email, phone number or notes.
+          </p>
+          <p>
+            Google Analytics sets first-party cookies (named <code>_ga</code> and <code>_ga_&lt;id&gt;</code>) that last up to
+            two years. Visitors in the European Economic Area, the UK and Switzerland are asked first, and these cookies are only
+            set if they accept. Advertising features are switched off for everyone. Google processes this data under its own{" "}
+            <a href="https://policies.google.com/privacy" className="link" title="Google privacy policy" rel="noopener">
+              privacy policy
+            </a>
+            .
           </p>
 
           <h2>How long we keep it</h2>
@@ -80,6 +98,7 @@ export default function PrivacyPage() {
             </a>
             , and we will reply within a few working days.
           </p>
+          <ConsentControls />
 
           <h2>Changes</h2>
           <p>

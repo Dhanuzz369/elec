@@ -180,7 +180,7 @@ const PAGES: Record<string, () => string[]> = {
   ),
   "/privacy": simple(
     "Privacy policy",
-    `We use the details sent through the quote form and configurator only to answer the request. Full policy: ${absoluteUrl("/privacy")}.`,
+    `We use the details sent through the quote form and configurator only to answer the request. Google Analytics measures anonymous page use, with consent first in the EEA, the UK and Switzerland. Full policy: ${absoluteUrl("/privacy")}.`,
   ),
   ...Object.fromEntries(families.map((f) => [`/products/${f.slug}`, () => family(f)])),
   ...Object.fromEntries(countries.map((c) => [`/export/${countrySlug(c)}`, () => country(c)])),

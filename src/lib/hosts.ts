@@ -16,9 +16,10 @@ export function hostRedirects() {
   }));
 }
 
-// Next's bootstrap and the JSON-LD blocks are inline scripts, and components set inline
-// styles, so both need 'unsafe-inline'. Everything else comes from this site, except the
-// lead endpoint the quote form and configurator post to (and Google's redirect target).
+// Next's bootstrap, the JSON-LD blocks and the Consent Mode defaults are inline scripts,
+// and components set inline styles, so both need 'unsafe-inline'. Everything else comes
+// from this site, except the lead endpoint the forms post to (and Google's redirect
+// target) and Google Analytics (gtag.js and its collection endpoints).
 function contentSecurityPolicy(): string {
   const lead = (() => {
     try {
@@ -30,11 +31,11 @@ function contentSecurityPolicy(): string {
   const leadHosts = [...new Set([lead, "https://script.google.com", "https://script.googleusercontent.com"])].filter(Boolean).join(" ");
   return [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline'",
+    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob:",
+    "img-src 'self' data: blob: https://*.google-analytics.com https://www.googletagmanager.com",
     "font-src 'self'",
-    `connect-src 'self' ${leadHosts}`,
+    `connect-src 'self' ${leadHosts} https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com`,
     `form-action 'self' ${leadHosts} mailto:`,
     "frame-ancestors 'self'",
     "base-uri 'self'",

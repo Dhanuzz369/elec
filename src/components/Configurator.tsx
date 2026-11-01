@@ -7,6 +7,7 @@ import { families } from "@/data/products";
 import { mailtoHref, site, whatsappHref } from "@/data/site";
 import type { LeadPayload } from "@/lib/quote/payload";
 import { getLeadId, sendLead } from "@/lib/quote/send";
+import { track } from "@/lib/analytics";
 import { TransformerSymbol } from "./Motif";
 
 const PROJECTS = [
@@ -236,10 +237,14 @@ export function Configurator() {
     const ok = await sendLead(lead, { endpoint: site.leadEndpoint, final: true, storage });
     inFlight.current = false;
     setSending(false);
+    const leadParams = { lead_source: "configurator", product: lead.product, country: country.code };
     if (ok) {
+      track("generate_lead", leadParams);
       setSent("sheet");
       return;
     }
+    // The sheet was unreachable, so the request goes out by email instead: still a lead.
+    track("generate_lead", { ...leadParams, method: "email_fallback" });
     setWritten(lines.join("\n"));
     window.location.href = mailtoHref(subject, lines.join("\n"));
     setSent("email");
