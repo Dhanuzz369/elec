@@ -11,11 +11,28 @@ const CONTACTS: [RegExp, string][] = [
   [/^tel:/, "phone"],
 ];
 
-// Loads gtag.js once the page has loaded and the browser is idle (events before then
-// wait in dataLayer and are sent when it arrives), records WhatsApp, email and phone
-// clicks site-wide, and asks for consent where the law requires it.
+// gtag.js is ~180 KB and ~400 ms of script, so it loads on the visitor's first scroll,
+// tap, click or key press, or after 6 seconds, never while the page is loading. Events
+// raised before then wait in dataLayer and are sent when it arrives.
+const LOAD_AFTER_MS = 6000;
+const FIRST_INTERACTION = ["pointerdown", "keydown", "scroll", "touchstart"] as const;
+
+// Records WhatsApp, email and phone clicks site-wide, and asks for consent where the
+// law requires it.
 export function Analytics() {
   const [ask, setAsk] = useState(false);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    if (!GA_ID) return;
+    const start = () => setLoad(true);
+    const timer = window.setTimeout(start, LOAD_AFTER_MS);
+    for (const ev of FIRST_INTERACTION) window.addEventListener(ev, start, { once: true, passive: true });
+    return () => {
+      window.clearTimeout(timer);
+      for (const ev of FIRST_INTERACTION) window.removeEventListener(ev, start);
+    };
+  }, []);
 
   useEffect(() => {
     if (!GA_ID) return;
@@ -45,7 +62,7 @@ export function Analytics() {
 
   return (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
+      {load && <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />}
       {ask && (
         <div className="consent" role="region" aria-label="Cookie choice">
           <p>

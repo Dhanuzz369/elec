@@ -80,3 +80,15 @@ test.describe("visitors elsewhere", () => {
     await expect(page.getByRole("region", { name: "Cookie choice" })).toHaveCount(0);
   });
 });
+
+test("gtag.js waits for the visitor's first interaction", async ({ page }) => {
+  const gtagRequests: string[] = [];
+  page.on("request", (r) => {
+    if (r.url().includes("googletagmanager.com/gtag/js")) gtagRequests.push(r.url());
+  });
+  await page.goto("/about");
+  await page.waitForTimeout(1500);
+  expect(gtagRequests).toHaveLength(0);
+  await page.mouse.wheel(0, 400);
+  await expect.poll(() => gtagRequests.length).toBe(1);
+});

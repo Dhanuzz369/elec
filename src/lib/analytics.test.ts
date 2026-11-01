@@ -48,10 +48,12 @@ test("search terms keep only plain product words and codes", () => {
   expect(cleanParams({ search_term: "<script>" })).toEqual({});
 });
 
-// gtag.js runs ~400 ms of script; loading it while the page hydrates cost About 40
-// Lighthouse points. It must wait until the page has loaded and the browser is idle.
-test("gtag.js loads only once the page is idle", async () => {
+// gtag.js runs ~400 ms of script. Loading it during or just after page load cost up to
+// 40 Lighthouse points, so it waits for the visitor's first interaction (or 6 seconds).
+test("gtag.js loads on the first interaction or after 6 seconds", async () => {
   const { readFileSync } = await import("node:fs");
   const src = readFileSync("src/components/Analytics.tsx", "utf8");
-  expect(src).toMatch(/googletagmanager\.com\/gtag\/js[^\n]*strategy="lazyOnload"/);
+  for (const ev of ["pointerdown", "keydown", "scroll", "touchstart"]) expect(src).toContain(`"${ev}"`);
+  expect(src).toMatch(/LOAD_AFTER_MS = 6000/);
+  expect(src).toMatch(/\{load && <Script src=\{`https:\/\/www\.googletagmanager\.com\/gtag\/js/);
 });
