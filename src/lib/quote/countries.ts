@@ -50,3 +50,10 @@ export function suggestCountries(query: string, names: string[], limit = 6): str
   }
   return [...starts, ...contains].slice(0, limit);
 }
+
+// For analytics: the canonical country name when the buyer typed one, otherwise
+// "other", so free text (which could hold a name or address) never leaves the site.
+export function knownCountry(input: string, lang = "en"): string {
+  const typed = input.trim().toLowerCase();
+  return countryNames(lang).find((n) => n.toLowerCase() === typed) ?? "other";
+}

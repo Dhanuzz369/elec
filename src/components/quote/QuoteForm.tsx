@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getFamily } from "@/data/products";
 import { mailtoHref, site } from "@/data/site";
-import { countryNames, suggestCountries } from "@/lib/quote/countries";
+import { countryNames, knownCountry, suggestCountries } from "@/lib/quote/countries";
 import { OTHER, QUANTITY_CHOICES, TERMS_CHOICES, productChoices, varietyChoices } from "@/lib/quote/options";
 import { buildPayload, fallbackLinks, type Stage } from "@/lib/quote/payload";
 import { parsePrefill } from "@/lib/quote/prefill";
@@ -168,7 +168,7 @@ export function QuoteForm() {
       product: a.product,
       variety: a.variety,
       quantity: a.quantity,
-      country: a.country.trim(),
+      country: knownCountry(a.country),
       terms: a.terms,
       prefilled: prefill.product ? "yes" : "no",
     };

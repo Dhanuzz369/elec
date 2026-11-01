@@ -54,6 +54,7 @@ const ALLOWED = new Set([
   "content_id",
 ]);
 const EMAIL = /\S+@\S+\.\S+/;
+const SEARCH_TERM = /^[\p{L}\p{N} .,/()&+-]{2,40}$/u;
 
 export function cleanParams(params: Record<string, string | number | undefined>): Record<string, string | number> {
   const out: Record<string, string | number> = {};
@@ -65,6 +66,8 @@ export function cleanParams(params: Record<string, string | number | undefined>)
     }
     // Ten or more digits is a phone number, not an 8-digit HSN code.
     if (EMAIL.test(raw) || (raw.match(/\d/g)?.length ?? 0) >= 10) continue;
+    // Search terms are kept only when they look like a product word or code.
+    if (key === "search_term" && !SEARCH_TERM.test(raw)) continue;
     out[key] = raw.slice(0, 100);
   }
   return out;

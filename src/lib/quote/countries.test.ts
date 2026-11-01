@@ -1,3 +1,4 @@
+import { knownCountry } from "@/lib/quote/countries";
 import { countryNames, suggestCountries } from "@/lib/quote/countries";
 
 const names = countryNames("en");
@@ -24,4 +25,12 @@ test("accents and case are ignored", () => {
 
 test("other languages get their own names", () => {
   expect(countryNames("fr")).toContain("Allemagne");
+});
+
+// Analytics gets a real country name or "other", never the free text a buyer typed.
+test("free text maps to a known country or other", () => {
+  expect(knownCountry("kenya")).toBe("Kenya");
+  expect(knownCountry("  Saudi Arabia ")).toBe("Saudi Arabia");
+  expect(knownCountry("Ship to John at Lagos port")).toBe("other");
+  expect(knownCountry("")).toBe("other");
 });

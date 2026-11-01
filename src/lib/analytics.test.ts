@@ -19,7 +19,7 @@ test("event parameters drop personal data and unknown fields", () => {
 });
 
 test("long values are cut and contact details inside values are refused", () => {
-  expect(cleanParams({ search_term: "x".repeat(300) }).search_term).toHaveLength(100);
+  expect(cleanParams({ content_id: "x".repeat(300) }).content_id).toHaveLength(100);
   expect(cleanParams({ search_term: "mail power@goodbizglobal.com" })).toEqual({});
 });
 
@@ -40,4 +40,10 @@ test("the consent prompt shows only for European time zones without a stored cho
   expect(needsConsentPrompt("Asia/Kolkata", null)).toBe(false);
   expect(needsConsentPrompt("Africa/Lagos", null)).toBe(false);
   expect(needsConsentPrompt("America/New_York", null)).toBe(false);
+});
+
+test("search terms keep only plain product words and codes", () => {
+  expect(cleanParams({ search_term: "MCCB 8536" }).search_term).toBe("MCCB 8536");
+  expect(cleanParams({ search_term: "x".repeat(300) }).search_term).toBeUndefined();
+  expect(cleanParams({ search_term: "<script>" })).toEqual({});
 });
