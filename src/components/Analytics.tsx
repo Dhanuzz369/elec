@@ -12,9 +12,9 @@ const CONTACTS: [RegExp, string][] = [
 ];
 
 // gtag.js is ~180 KB and ~400 ms of script, so it loads on the visitor's first scroll,
-// tap, click or key press, or after 6 seconds, never while the page is loading. Events
+// tap, click or key press, or after 12 seconds, never while the page is loading. Events
 // raised before then wait in dataLayer and are sent when it arrives.
-const LOAD_AFTER_MS = 6000;
+const LOAD_AFTER_MS = 12000;
 const FIRST_INTERACTION = ["pointerdown", "keydown", "scroll", "touchstart"] as const;
 
 // Records WhatsApp, email and phone clicks site-wide, and asks for consent where the

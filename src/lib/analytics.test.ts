@@ -49,11 +49,11 @@ test("search terms keep only plain product words and codes", () => {
 });
 
 // gtag.js runs ~400 ms of script. Loading it during or just after page load cost up to
-// 40 Lighthouse points, so it waits for the visitor's first interaction (or 6 seconds).
-test("gtag.js loads on the first interaction or after 6 seconds", async () => {
+// 40 Lighthouse points, so it waits for the visitor's first interaction (or 12 seconds).
+test("gtag.js loads on the first interaction or after 12 seconds", async () => {
   const { readFileSync } = await import("node:fs");
   const src = readFileSync("src/components/Analytics.tsx", "utf8");
   for (const ev of ["pointerdown", "keydown", "scroll", "touchstart"]) expect(src).toContain(`"${ev}"`);
-  expect(src).toMatch(/LOAD_AFTER_MS = 6000/);
+  expect(src).toMatch(/LOAD_AFTER_MS = 12000/);
   expect(src).toMatch(/\{load && <Script src=\{`https:\/\/www\.googletagmanager\.com\/gtag\/js/);
 });
